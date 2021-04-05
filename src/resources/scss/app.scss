@@ -1252,7 +1252,7 @@
       left: 50%;
       transform: translate(-50%,-50%);
       z-index: 2;
-      display: flex;
+      // display: flex;
       overflow: hidden;
       border-radius: 5px;
       
@@ -1262,7 +1262,7 @@
           background: var(--white-color);
           margin: auto;
           padding: 16px;
-          visibility: hidden;
+          display: none;
           
           .border-modalForm {
             display: flex;
