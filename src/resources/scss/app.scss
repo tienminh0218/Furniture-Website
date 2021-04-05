@@ -1299,9 +1299,10 @@
           }
 
           .title {
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             margin: 24px 0;
             text-align: center; 
+            color: var(--main-color)
           }
   
           .form-container {
@@ -1313,7 +1314,7 @@
   
               label {
                 font-size: 1.6rem;
-                font-weight: 500;
+                font-weight: bold;
                 color: #333;
               }
   
@@ -1388,6 +1389,10 @@
 
       .modal-registerForm {
         @extend .modal-loginForm;
+        .login-suggest {
+          @extend .register-suggest;
+        }
+        
       }
   
   

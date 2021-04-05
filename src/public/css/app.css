@@ -908,25 +908,26 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
           height: 1px;
           width: 100%;
           background-color: #dbdbdb; }
-      .modals .modal-container .modal-loginForm .register-suggest, .modals .modal-container .modal-registerForm .register-suggest {
+      .modals .modal-container .modal-loginForm .register-suggest, .modals .modal-container .modal-registerForm .register-suggest, .modals .modal-container .modal-registerForm .login-suggest {
         text-align: center;
         margin-top: 6px;
         font-size: 1.4rem;
         color: #333; }
-        .modals .modal-container .modal-loginForm .register-suggest a, .modals .modal-container .modal-registerForm .register-suggest a {
+        .modals .modal-container .modal-loginForm .register-suggest a, .modals .modal-container .modal-registerForm .register-suggest a, .modals .modal-container .modal-registerForm .login-suggest a {
           text-decoration: none;
           color: var(--main-color); }
       .modals .modal-container .modal-loginForm .title, .modals .modal-container .modal-registerForm .title {
-        font-size: 2.2rem;
+        font-size: 2.6rem;
         margin: 24px 0;
-        text-align: center; }
+        text-align: center;
+        color: var(--main-color); }
       .modals .modal-container .modal-loginForm .form-container, .modals .modal-container .modal-registerForm .form-container {
         width: 400px; }
         .modals .modal-container .modal-loginForm .form-container .form-group, .modals .modal-container .modal-registerForm .form-container .form-group {
           margin-bottom: 20px; }
           .modals .modal-container .modal-loginForm .form-container .form-group label, .modals .modal-container .modal-registerForm .form-container .form-group label {
             font-size: 1.6rem;
-            font-weight: 500;
+            font-weight: bold;
             color: #333; }
           .modals .modal-container .modal-loginForm .form-container .form-group .form-control, .modals .modal-container .modal-registerForm .form-container .form-group .form-control {
             width: 100%;
