@@ -14,7 +14,8 @@ html {
   font-size: 62.5%;
   line-height: 1.6rem;
   font-family: 'Roboto', sans-serif;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  scroll-behavior: smooth; }
 
 .grid {
   width: 1200px;
@@ -390,7 +391,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     font-size: 2rem;
     color: var(--main-color); }
     .container__body .body__group-title-home a h2 {
-      margin-bottom: 2rem; }
+      margin: 5rem 0 2rem 0; }
   .container__body .body__group-title-home p {
     color: #8E8E8E;
     font-size: 1.5rem; }
@@ -873,109 +874,130 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
   -webkit-appearance: none;
   margin: 0; }
 
-.modals .modal-backgroundColor {
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1; }
-
-.modals .modal-background {
-  position: absolute;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  display: flex; }
-  .modals .modal-background .modal-loginForm {
-    background: var(--white-color);
-    margin: auto;
-    padding: 16px; }
-    .modals .modal-background .modal-loginForm .border-modalForm {
-      display: flex;
-      align-items: center; }
-      .modals .modal-background .modal-loginForm .border-modalForm p {
-        margin: 0 6px;
-        font-size: 1.6rem;
-        color: #ccc; }
-      .modals .modal-background .modal-loginForm .border-modalForm .leftBorder-modal, .modals .modal-background .modal-loginForm .border-modalForm .rightBorder-modal {
-        height: 1px;
-        width: 100%;
-        background-color: #dbdbdb; }
-    .modals .modal-background .modal-loginForm .register-suggest {
-      text-align: center;
-      margin-top: 6px;
-      font-size: 1.4rem;
-      color: #333; }
-      .modals .modal-background .modal-loginForm .register-suggest a {
-        text-decoration: none;
-        color: var(--main-color); }
-    .modals .modal-background .modal-loginForm .title {
-      font-size: 2.2rem;
-      margin: 24px 0;
-      text-align: center; }
-    .modals .modal-background .modal-loginForm .form-container {
-      width: 400px; }
-      .modals .modal-background .modal-loginForm .form-container .form-group {
-        margin-bottom: 20px; }
-        .modals .modal-background .modal-loginForm .form-container .form-group label {
+.modals {
+  display: none; }
+  .modals .modal-backgroundColor {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; }
+  .modals .modal-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px; }
+    .modals .modal-background .modal-loginForm {
+      background: var(--white-color);
+      margin: auto;
+      padding: 16px; }
+      .modals .modal-background .modal-loginForm .border-modalForm {
+        display: flex;
+        align-items: center; }
+        .modals .modal-background .modal-loginForm .border-modalForm p {
+          margin: 0 6px;
           font-size: 1.6rem;
-          font-weight: 500;
-          color: #333; }
-        .modals .modal-background .modal-loginForm .form-container .form-group .form-control {
+          color: #ccc; }
+        .modals .modal-background .modal-loginForm .border-modalForm .leftBorder-modal, .modals .modal-background .modal-loginForm .border-modalForm .rightBorder-modal {
+          height: 1px;
           width: 100%;
-          outline: none;
-          height: 30px;
-          font-size: 1.8rem;
-          padding: 18px 8px;
-          margin: 8px 0;
-          border: 1px solid #ccc;
-          border-radius: 4px; }
-        .modals .modal-background .modal-loginForm .form-container .form-group .btn-submit {
-          width: 100%;
-          padding: 8px;
-          font-size: 1.8rem;
-          outline: none;
-          border: none;
-          color: var(--white-color);
-          border-radius: 4px;
-          background-color: var(--main-color);
-          cursor: pointer; }
-        .modals .modal-background .modal-loginForm .form-container .form-group .errorBox {
-          display: none; }
-          .modals .modal-background .modal-loginForm .form-container .form-group .errorBox .error-message {
-            margin-left: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            color: var(--red-color);
-            font-size: 1.4rem; }
-            .modals .modal-background .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark {
-              background-color: var(--red-color);
-              width: 14px;
-              height: 14px;
-              border-radius: 50%;
-              color: var(--white-color);
-              font-size: 1.4rem;
+          background-color: #dbdbdb; }
+      .modals .modal-background .modal-loginForm .register-suggest {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 1.4rem;
+        color: #333; }
+        .modals .modal-background .modal-loginForm .register-suggest a {
+          text-decoration: none;
+          color: var(--main-color); }
+      .modals .modal-background .modal-loginForm .title {
+        font-size: 2.2rem;
+        margin: 24px 0;
+        text-align: center; }
+      .modals .modal-background .modal-loginForm .form-container {
+        width: 400px; }
+        .modals .modal-background .modal-loginForm .form-container .form-group {
+          margin-bottom: 20px; }
+          .modals .modal-background .modal-loginForm .form-container .form-group label {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #333; }
+          .modals .modal-background .modal-loginForm .form-container .form-group .form-control {
+            width: 100%;
+            outline: none;
+            height: 30px;
+            font-size: 1.4rem;
+            padding: 18px 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px; }
+          .modals .modal-background .modal-loginForm .form-container .form-group .btn-submit {
+            width: 100%;
+            padding: 8px;
+            font-size: 1.8rem;
+            outline: none;
+            border: none;
+            color: var(--white-color);
+            border-radius: 4px;
+            background-color: var(--main-color);
+            cursor: pointer; }
+          .modals .modal-background .modal-loginForm .form-container .form-group .errorBox {
+            display: none; }
+            .modals .modal-background .modal-loginForm .form-container .form-group .errorBox .error-message {
+              margin-left: 4px;
               display: flex;
               align-items: center;
-              justify-content: center;
-              margin-right: 2px; }
-    .modals .modal-background .modal-loginForm .close-modal {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 2.4rem;
-      cursor: pointer;
-      padding: 12px; }
-      .modals .modal-background .modal-loginForm .close-modal:hover {
-        background-color: #ccc;
-        color: #757575; }
-  .modals .modal-background .modal-registerForm {
-    display: none; }
+              justify-content: start;
+              color: var(--red-color);
+              font-size: 1.4rem; }
+              .modals .modal-background .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark {
+                background-color: var(--red-color);
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                color: var(--white-color);
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 2px; }
+      .modals .modal-background .modal-loginForm .close-modal {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2.4rem;
+        cursor: pointer;
+        padding: 12px; }
+        .modals .modal-background .modal-loginForm .close-modal:hover {
+          background-color: #ccc;
+          color: #757575; }
+    .modals .modal-background .modal-registerForm {
+      display: none; }
+
+.container-backToTop:active {
+  color: var(--main-color); }
+
+.container-backToTop .backToTop {
+  position: fixed;
+  z-index: 1;
+  bottom: 8%;
+  right: 2%;
+  padding: 1.4rem;
+  border-radius: 50%;
+  background-color: rgba(168, 166, 166, 0.1);
+  display: none;
+  transition: all 0.25s ease-in-out; }
+  .container-backToTop .backToTop:hover {
+    background-color: rgba(168, 166, 166, 0.2); }
+  .container-backToTop .backToTop .icon-backToTop {
+    font-size: 2.4rem;
+    color: var(--main-color); }
 
 .form-group.existError .errorBox {
   display: block !important; }

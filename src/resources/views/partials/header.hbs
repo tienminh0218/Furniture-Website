@@ -1,4 +1,4 @@
- <header class="header">
+ <header class="header" id="top">
             <div class="header__top">
                 <p class="header__top-slogan">Trang mua hàng nội thất trực tuyến chính hãng!</p>
             </div>
@@ -121,6 +121,8 @@
 <div class="modals">
 
     <div class="modal-backgroundColor"></div>
+
+    {{!-- //////////////////////////////// Modal Forms //////////////////////////////// --}}
     <div class="modal-background">
         {{!-- //// Login form ////// --}}
         <div class="modal-loginForm">
@@ -163,10 +165,20 @@
             </p>
         </div>
 
+        {{!-- //// Register form ////// --}}
         <div class="modal-registerForm">
             
         </div>
 
     </div>
 
+
 </div>
+
+
+    {{!-- //// Back to top button ////// --}}
+    <a href="#top" class="container-backToTop">
+        <div class="backToTop">
+             <i class="fas fa-arrow-up icon-backToTop"></i>
+        </div>
+    </a>
