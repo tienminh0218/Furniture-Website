@@ -1,8 +1,8 @@
 :root {
-  --white-color:#fff;
-  --black-color:#000;
-  --main-color:#0975F5;
-  --text-color:#333;
+  --white-color: #fff;
+  --black-color: #000;
+  --main-color: #0975f5;
+  --text-color: #333;
   --red-color: #f30000; }
 
 * {
@@ -13,7 +13,7 @@
 html {
   font-size: 62.5%;
   line-height: 1.6rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
   scroll-behavior: smooth; }
 
@@ -31,14 +31,14 @@ html {
 
 .main {
   width: 100%;
-  background-color: #F3F5F6; }
+  background-color: #f3f5f6; }
 
 header {
   height: 158px;
-  border-bottom: 1px solid #EAEAEA; }
+  border-bottom: 1px solid #eaeaea; }
   header .header__top {
     height: 38px;
-    background-color: #1FB5D4;
+    background-color: #1fb5d4;
     display: flex; }
     header .header__top .header__top-slogan {
       margin: auto;
@@ -53,7 +53,8 @@ header {
     justify-content: space-between;
     width: 75%; }
 
-.bars, .navbar-rpsive {
+.bars,
+.navbar-rpsive {
   display: none; }
 
 header .header__mid .header__mid-left {
@@ -82,7 +83,7 @@ header .header__mid .header__mid-left {
 .header__mid-left .header__mid-left-search .header__mid-left-input {
   width: 100%;
   padding: 10px 15px;
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   outline: none;
   font-size: 15px;
   border-radius: 2px; }
@@ -167,10 +168,10 @@ header .header__bot {
   font-size: 1.3rem;
   font-weight: 700; }
   .header__bot-list .header__bot-item .header__bot-item-link:hover {
-    color: #ADC1F0; }
+    color: #adc1f0; }
 
 header .header__bot .header__bot-container .header__bot-list .header__bot-item-link:hover .arrow-down-list {
-  color: #ADC1F0;
+  color: #adc1f0;
   transform: rotate(180deg);
   transition: linear 0.1s; }
 
@@ -191,10 +192,10 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
 
 .header__bot-item .header__bot-list-sub .header__bot-list-sub-item a {
   text-decoration: none;
-  color: #8E8E8E;
+  color: #8e8e8e;
   font-size: 14px;
   display: block;
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #eaeaea;
   line-height: 36px;
   margin-left: 2rem; }
 
@@ -206,7 +207,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
   -webkit-animation: slowShow linear 0.4s; }
 
 .header__bot-item .header__bot-list-sub li a:hover {
-  color: #ADC1F0; }
+  color: #adc1f0; }
   .header__bot-item .header__bot-list-sub li a:hover .arrow-down-list {
     transform: rotate(180deg); }
 
@@ -217,7 +218,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     transform: translateY(0%); } }
 
 .container {
-  background-color: #F3F5F6; }
+  background-color: #f3f5f6; }
 
 /* slide start */
 .body-slide {
@@ -290,7 +291,9 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     .navigation-auto div:not(:last-child) {
       margin-right: 40px; }
 
-#radio1:checked ~ .navigation-auto .auto-btn1, #radio2:checked ~ .navigation-auto .auto-btn2, #radio3:checked ~ .navigation-auto .auto-btn3 {
+#radio1:checked ~ .navigation-auto .auto-btn1,
+#radio2:checked ~ .navigation-auto .auto-btn2,
+#radio3:checked ~ .navigation-auto .auto-btn3 {
   background: var(--main-color); }
 
 .body-slide .slider .slides .btn-img {
@@ -304,7 +307,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
   width: 45px;
   text-align: center;
   line-height: 45px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 2px; }
 
 .body-slide .slider .slides i.btn-img-right {
@@ -315,7 +318,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
   width: 45px;
   text-align: center;
   line-height: 45px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 2px; }
 
 .body-slide .slider .slides .main-btnimg .btn-img {
@@ -393,7 +396,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     .container__body .body__group-title-home a h2 {
       margin: 5rem 0 2rem 0; }
   .container__body .body__group-title-home p {
-    color: #8E8E8E;
+    color: #8e8e8e;
     font-size: 1.5rem; }
 
 .container__body .body__product-list {
@@ -404,7 +407,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
   .container__body .body__product-list .body__product-list-content {
     padding: 10px 0px;
     width: 20%;
-    border: 1px solid #EAEAEA; }
+    border: 1px solid #eaeaea; }
 
 /* body product list */
 .body__product-list .body__product-list-content .product-list-content-img {
@@ -488,7 +491,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
 
 .body__collection-slide .body__collect-content {
   width: 25%;
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   display: flex;
   padding: 1rem; }
 
@@ -526,7 +529,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     color: var(--main-color);
     margin-bottom: 2rem; }
   .body__news .body__news-content-i4 a {
-    color: #8E8E8E;
+    color: #8e8e8e;
     font-size: 1.6rem; }
 
 /* input email */
@@ -539,16 +542,16 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     width: 100%;
     padding: 1.5rem;
     outline: none;
-    border: 1px solid #EAEAEA;
+    border: 1px solid #eaeaea;
     background-color: var(--white-color);
     font-size: 1.4rem; }
     .body__group-title-home .input-email input::placeholder {
-      color: #8E8E8E; }
+      color: #8e8e8e; }
   .body__group-title-home .input-email button {
     width: 100px;
     margin-left: 1rem;
     padding: 1.5rem;
-    border: 1px solid #EAEAEA;
+    border: 1px solid #eaeaea;
     outline: none;
     background-color: var(--main-color);
     color: var(--white-color);
@@ -604,10 +607,10 @@ hr {
 
 .nocopy {
   text-align: center;
-  background-color: #F3F5F6;
+  background-color: #f3f5f6;
   font-size: 1.4rem;
   padding: 2rem 0;
-  color: #8E8E8E; }
+  color: #8e8e8e; }
 
 /* PC */
 @media only screen and (min-width: 1200px) and (max-width: 1722px) {
@@ -656,7 +659,10 @@ hr {
 @media only screen and (max-width: 991px) {
   .container__body {
     width: 96%; }
-  .header__bot, .header__mid-left .header__mid-left-search, .header__mid-right .header__mid-right-hotline, .header__mid_right-text {
+  .header__bot,
+  .header__mid-left .header__mid-left-search,
+  .header__mid-right .header__mid-right-hotline,
+  .header__mid_right-text {
     display: none; }
   header .header__mid {
     width: 100%; }
@@ -694,14 +700,14 @@ hr {
     background-color: var(--white-color);
     z-index: 2;
     width: 100%;
-    border: 1px solid #EAEAEA;
+    border: 1px solid #eaeaea;
     display: none; }
     .navbar-rpsive ul {
       list-style: none;
       padding: 1rem 2rem; }
       .navbar-rpsive ul li {
         padding: 2rem 2rem;
-        border-bottom: 1px solid #EAEAEA; }
+        border-bottom: 1px solid #eaeaea; }
         .navbar-rpsive ul li a {
           text-decoration: none;
           color: var(--text-color);
@@ -717,7 +723,7 @@ hr {
       margin: 0 auto;
       padding: 1rem;
       outline: none;
-      border: 1px solid #EAEAEA;
+      border: 1px solid #eaeaea;
       background-color: #f0eeee;
       border-radius: 2px; }
       .input-search-rpsive input:focus {
@@ -734,7 +740,7 @@ hr {
       justify-content: center; }
       .input-search-rpsive .icon-search-rpsive i {
         font-size: 1.6rem;
-        color: #8E8E8E; } }
+        color: #8e8e8e; } }
 
 /* detail */
 .container .detail__main {
@@ -742,7 +748,7 @@ hr {
   width: 75%;
   margin: 0 auto;
   justify-content: space-between;
-  background-color: #F3F5F6;
+  background-color: #f3f5f6;
   margin-top: 4rem;
   margin-bottom: 4rem; }
 
@@ -752,7 +758,7 @@ hr {
 .container .detail__img {
   width: 49%;
   background-color: var(--white-color);
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   display: flex;
   justify-content: space-between;
   padding: 2rem; }
@@ -766,7 +772,7 @@ hr {
 .container .detail__info {
   width: 49%;
   background-color: var(--white-color);
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   padding: 1rem 2rem; }
 
 .detail__info h1 {
@@ -855,7 +861,8 @@ hr {
   margin-top: 2rem; }
   .content__derc ul {
     list-style-type: none; }
-  .content__derc p, .content__derc ul li {
+  .content__derc p,
+  .content__derc ul li {
     font-size: 1.4rem;
     margin: 0 0 10px;
     color: #666666; }
@@ -892,44 +899,26 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
     z-index: 2;
     overflow: hidden;
     border-radius: 5px; }
-    .modals .modal-container .modal-loginForm, .modals .modal-container .modal-registerForm {
+    .modals .modal-container .modal-loginForm {
       background: var(--white-color);
       margin: auto;
       padding: 16px;
-      display: none; }
-      .modals .modal-container .modal-loginForm .border-modalForm, .modals .modal-container .modal-registerForm .border-modalForm {
-        display: flex;
-        align-items: center; }
-        .modals .modal-container .modal-loginForm .border-modalForm p, .modals .modal-container .modal-registerForm .border-modalForm p {
-          margin: 0 6px;
-          font-size: 1.6rem;
-          color: #ccc; }
-        .modals .modal-container .modal-loginForm .border-modalForm .leftBorder-modal, .modals .modal-container .modal-registerForm .border-modalForm .leftBorder-modal, .modals .modal-container .modal-loginForm .border-modalForm .rightBorder-modal, .modals .modal-container .modal-registerForm .border-modalForm .rightBorder-modal {
-          height: 1px;
-          width: 100%;
-          background-color: #dbdbdb; }
-      .modals .modal-container .modal-loginForm .register-suggest, .modals .modal-container .modal-registerForm .register-suggest, .modals .modal-container .modal-registerForm .login-suggest {
-        text-align: center;
-        margin-top: 6px;
-        font-size: 1.4rem;
-        color: #333; }
-        .modals .modal-container .modal-loginForm .register-suggest a, .modals .modal-container .modal-registerForm .register-suggest a, .modals .modal-container .modal-registerForm .login-suggest a {
-          text-decoration: none;
-          color: var(--main-color); }
-      .modals .modal-container .modal-loginForm .title, .modals .modal-container .modal-registerForm .title {
+      display: none;
+      transition: all 0.5s ease; }
+      .modals .modal-container .modal-loginForm .title {
         font-size: 2.6rem;
         margin: 24px 0;
         text-align: center;
         color: var(--main-color); }
-      .modals .modal-container .modal-loginForm .form-container, .modals .modal-container .modal-registerForm .form-container {
+      .modals .modal-container .modal-loginForm .form-container {
         width: 400px; }
-        .modals .modal-container .modal-loginForm .form-container .form-group, .modals .modal-container .modal-registerForm .form-container .form-group {
+        .modals .modal-container .modal-loginForm .form-container .form-group {
           margin-bottom: 20px; }
-          .modals .modal-container .modal-loginForm .form-container .form-group label, .modals .modal-container .modal-registerForm .form-container .form-group label {
+          .modals .modal-container .modal-loginForm .form-container .form-group label {
             font-size: 1.6rem;
             font-weight: bold;
             color: #333; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .form-control, .modals .modal-container .modal-registerForm .form-container .form-group .form-control {
+          .modals .modal-container .modal-loginForm .form-container .form-group .form-control {
             width: 100%;
             outline: none;
             height: 30px;
@@ -938,7 +927,7 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 4px; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .btn-submit, .modals .modal-container .modal-registerForm .form-container .form-group .btn-submit {
+          .modals .modal-container .modal-loginForm .form-container .form-group .btn-submit {
             width: 100%;
             padding: 8px;
             font-size: 1.8rem;
@@ -948,16 +937,16 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             border-radius: 4px;
             background-color: var(--main-color);
             cursor: pointer; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .errorBox, .modals .modal-container .modal-registerForm .form-container .form-group .errorBox {
+          .modals .modal-container .modal-loginForm .form-container .form-group .errorBox {
             display: none; }
-            .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message, .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message {
+            .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message {
               margin-left: 4px;
               display: flex;
               align-items: center;
               justify-content: start;
               color: var(--red-color);
               font-size: 1.4rem; }
-              .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark, .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message .exclamationMark {
+              .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark {
                 background-color: var(--red-color);
                 width: 14px;
                 height: 14px;
@@ -968,14 +957,120 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
                 align-items: center;
                 justify-content: center;
                 margin-right: 2px; }
-      .modals .modal-container .modal-loginForm .close-modal, .modals .modal-container .modal-registerForm .close-modal {
+      .modals .modal-container .modal-loginForm .border-modalForm {
+        display: flex;
+        align-items: center; }
+        .modals .modal-container .modal-loginForm .border-modalForm p {
+          margin: 0 6px;
+          font-size: 1.6rem;
+          color: #ccc; }
+        .modals .modal-container .modal-loginForm .border-modalForm .leftBorder-modal, .modals .modal-container .modal-loginForm .border-modalForm .rightBorder-modal {
+          height: 1px;
+          width: 100%;
+          background-color: #dbdbdb; }
+      .modals .modal-container .modal-loginForm .text-suggest {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 1.4rem;
+        color: #333; }
+        .modals .modal-container .modal-loginForm .text-suggest a {
+          text-decoration: none;
+          color: var(--main-color); }
+      .modals .modal-container .modal-loginForm .close-modal {
         position: absolute;
         top: 0;
         right: 0;
         font-size: 2.4rem;
         cursor: pointer;
         padding: 12px; }
-        .modals .modal-container .modal-loginForm .close-modal:hover, .modals .modal-container .modal-registerForm .close-modal:hover {
+        .modals .modal-container .modal-loginForm .close-modal:hover {
+          background-color: #ccc;
+          color: #757575; }
+    .modals .modal-container .modal-registerForm {
+      background: var(--white-color);
+      margin: auto;
+      padding: 16px;
+      display: none;
+      transition: all 0.5s ease; }
+      .modals .modal-container .modal-registerForm .title {
+        font-size: 2.6rem;
+        margin: 24px 0;
+        text-align: center;
+        color: var(--main-color); }
+      .modals .modal-container .modal-registerForm .form-container {
+        width: 400px; }
+        .modals .modal-container .modal-registerForm .form-container .form-group {
+          margin-bottom: 20px; }
+          .modals .modal-container .modal-registerForm .form-container .form-group label {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #333; }
+          .modals .modal-container .modal-registerForm .form-container .form-group .form-control {
+            width: 100%;
+            outline: none;
+            height: 30px;
+            font-size: 1.4rem;
+            padding: 18px 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px; }
+          .modals .modal-container .modal-registerForm .form-container .form-group .btn-submit {
+            width: 100%;
+            padding: 8px;
+            font-size: 1.8rem;
+            outline: none;
+            border: none;
+            color: var(--white-color);
+            border-radius: 4px;
+            background-color: var(--main-color);
+            cursor: pointer; }
+          .modals .modal-container .modal-registerForm .form-container .form-group .errorBox {
+            display: none; }
+            .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message {
+              margin-left: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              color: var(--red-color);
+              font-size: 1.4rem; }
+              .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message .exclamationMark {
+                background-color: var(--red-color);
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                color: var(--white-color);
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 2px; }
+      .modals .modal-container .modal-registerForm .border-modalForm {
+        display: flex;
+        align-items: center; }
+        .modals .modal-container .modal-registerForm .border-modalForm p {
+          margin: 0 6px;
+          font-size: 1.6rem;
+          color: #ccc; }
+        .modals .modal-container .modal-registerForm .border-modalForm .leftBorder-modal, .modals .modal-container .modal-registerForm .border-modalForm .rightBorder-modal {
+          height: 1px;
+          width: 100%;
+          background-color: #dbdbdb; }
+      .modals .modal-container .modal-registerForm .text-suggest {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 1.4rem;
+        color: #333; }
+        .modals .modal-container .modal-registerForm .text-suggest a {
+          text-decoration: none;
+          color: var(--main-color); }
+      .modals .modal-container .modal-registerForm .close-modal {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2.4rem;
+        cursor: pointer;
+        padding: 12px; }
+        .modals .modal-container .modal-registerForm .close-modal:hover {
           background-color: #ccc;
           color: #757575; }
     .modals .modal-container .modal-registerForm {
