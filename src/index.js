@@ -1,12 +1,15 @@
-const path = require("path");
 const express = require("express");
 const app = express();
-const port = 3000;
+const path = require("path");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
 const db = require("./config/db");
 const route = require("./routes");
 const methodOverride = require("method-override");
+const dotenv = require("dotenv").config({ path: path.join(__dirname, ".env") });
+const port = process.env.PORT;
+
+// Static File
 app.use(express.static(path.join(__dirname, "public")));
 
 // Midddleware
@@ -34,6 +37,7 @@ app.engine(
         },
     })
 );
+
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
 
@@ -41,5 +45,5 @@ app.set("views", path.join(__dirname, "resources", "views"));
 route(app);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at http://localhost:${port} `);
 });

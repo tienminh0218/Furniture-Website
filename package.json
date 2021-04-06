@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/tienminh0218/nodejs_blog#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "jsonwebtoken": "^8.5.1",
