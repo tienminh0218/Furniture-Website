@@ -18,7 +18,7 @@ class AccountController {
         var { error } = checked;
         if (error)
             return res.status(400).json({
-                errorMessage: error.details[0].message,
+                message: error.details[0].message,
             });
 
         /// Check an exist account

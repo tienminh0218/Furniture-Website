@@ -54,3 +54,33 @@ function openModal() {
     mainModal.style.display = "block";
     modalLoginForm.style.display = "block";
 }
+//
+////// Fetch
+var btn = document.querySelector('input[type="submit"]');
+var errorNode = document.querySelector(".error-FromServer");
+var username = modalLoginForm.querySelector('input[name="username"]');
+var password = modalLoginForm.querySelector('input[name="password"]');
+btn.addEventListener("click", click);
+function click(e) {
+    e.preventDefault();
+    fetch("http://localhost:3000/account/login", {
+        // Adding method type
+        method: "POST",
+
+        // Adding body or contents to send
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+        }),
+
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            // console.log(result.errorMessage);
+            errorNode.innerHTML = result.message;
+        });
+}
