@@ -1,10 +1,8 @@
 const express = require("express");
 const route = express.Router();
-const Account = require("../app/models/Account");
+const AccountController = require("../app/controllers/AccountController.js");
 
-route.post("/", function (req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
-});
+route.post("/login", AccountController.login);
+route.post("/register", AccountController.register);
 
 module.exports = route;
