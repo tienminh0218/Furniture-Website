@@ -1,6 +1,7 @@
 const Account = require("../models/Account");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
+var jwt = require("jsonwebtoken");
 
 class AccountController {
     // POST -> /account/login
@@ -31,6 +32,16 @@ class AccountController {
                 .status(400)
                 .json({ message: "Your account not found!!" });
 
+        /// Create a token
+        var secret = process.env.SECRECT;
+        var token = jwt.sign(
+            {
+                id_user: isAccountExist._id,
+                name: isAccountExist.username,
+            },
+            secret
+        );
+
         var checkPassword = await bcrypt.compare(
             req.body.password,
             isAccountExist.password
@@ -42,9 +53,10 @@ class AccountController {
                 .status(400)
                 .json({ message: "Your password or username is incorrect" });
 
-        /// Login success
-        res.status(200).json({
+        /// Login success and create a cookie
+        res.status(200).cookie("token", token).json({
             message: "Wellcome",
+            token,
         });
     }
 
@@ -68,7 +80,6 @@ class AccountController {
                 phonenumber: req.body.phonenumber,
                 address: req.body.address,
             });
-
             // Create a new account
             newAccount
                 .save()

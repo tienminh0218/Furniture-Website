@@ -81,6 +81,7 @@ function click(e) {
         .then((response) => response.json())
         .then((result) => {
             // console.log(result.errorMessage);
-            errorNode.innerHTML = result.message;
+            // errorNode.innerHTML = result.message;
+            location.reload();
         });
 }

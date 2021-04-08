@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
+var cookieParser = require("cookie-parser");
 const db = require("./config/db");
 const route = require("./routes");
 const methodOverride = require("method-override");
@@ -13,6 +14,7 @@ const port = process.env.PORT;
 app.use(express.static(path.join(__dirname, "public")));
 
 // Midddleware
+app.use(cookieParser());
 app.use(
     express.urlencoded({
         extended: true,
