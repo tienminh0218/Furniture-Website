@@ -47,8 +47,18 @@
                             </svg>
                         </div>
                         {{# if user }}
-                            <span class="header__mid_right-text">
+                            <span class="header__mid_right-text userExist">
                                 Chào {{user.username}}
+                                <div class="container-user">
+                                    <div class="item-user">
+                                        <i class="fas fa-user"></i>
+                                        Thông tin tài khoản
+                                        </div>
+                                    <div class="item-user logoutUser">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Đăng xuất
+                                    </div>
+                                </div>
                             </span>
                         {{else}}
                             <span class="header__mid_right-text loginModal">

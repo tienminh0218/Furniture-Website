@@ -31,7 +31,8 @@ closeBtn.forEach((btnClose) => {
 clickBgModal.addEventListener("click", closeModal);
 
 /// Click open modals
-clickOpenLoginModal.addEventListener("click", openModal);
+if (clickOpenLoginModal)
+    clickOpenLoginModal.addEventListener("click", openModal);
 
 /// Click change register form
 textSuggest.forEach((txtSuggest) => {

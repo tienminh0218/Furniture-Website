@@ -29,6 +29,9 @@ html {
   display: flex;
   flex-wrap: wrap; }
 
+.showDisplay {
+  display: block !important; }
+
 .main {
   width: 100%;
   background-color: #f3f5f6; }
@@ -118,7 +121,28 @@ header .header__mid .header__mid-right {
 
 .header__mid-right .header__mid-box-icon .header__mid_right-text {
   font-size: 1.4rem;
-  cursor: pointer; }
+  cursor: pointer;
+  position: relative; }
+  .header__mid-right .header__mid-box-icon .header__mid_right-text .container-user {
+    z-index: 11;
+    background-color: #ebebef;
+    top: 120%;
+    left: 0;
+    min-width: 180px;
+    display: none;
+    position: absolute; }
+    .header__mid-right .header__mid-box-icon .header__mid_right-text .container-user .item-user {
+      padding: 14px 10px;
+      color: var(--text-color); }
+    .header__mid-right .header__mid-box-icon .header__mid_right-text .container-user:hover {
+      color: var(--text-color); }
+    .header__mid-right .header__mid-box-icon .header__mid_right-text .container-user::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      top: -8px; }
   .header__mid-right .header__mid-box-icon .header__mid_right-text:hover {
     color: var(--main-color); }
   .header__mid-right .header__mid-box-icon .header__mid_right-text .arrow-down {
