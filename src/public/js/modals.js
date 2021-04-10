@@ -118,15 +118,38 @@ btnRegisterSubmit.addEventListener("click", registerRequest);
 function registerRequest(e) {
     /// prevent submit form
     e.preventDefault();
+    // t edit
+    // confirm FullName
+    if (reFullname.value.length == 0) {
+        reErrorMessage.innerHTML = "Họ và tên trống!!!";
+        return;
+    }
+    // confirm FullName
+    if (reUsername.value.length == 0) {
+        reErrorMessage.innerHTML = "Tên tài khoản trống!!!";
+        return;
+    }
 
     /// confirm password
     var isConfirm = rePassword.value !== confirmPassword.value;
     if (rePassword.value.length == 0) {
-        reErrorMessage.innerHTML = "Mật khẩu trống";
+        reErrorMessage.innerHTML = "Mật khẩu trống!!!";
         return;
     }
     if (isConfirm) {
-        reErrorMessage.innerHTML = "Mật khẩu không trùng khớp";
+        reErrorMessage.innerHTML = "Mật khẩu không trùng khớp!!!";
+        return;
+    }
+
+    /// confirm phone
+    if (rePhoneNumber.value.length == 0) {
+        reErrorMessage.innerHTML = "Số điện thoại trống!!!";
+        return;
+    }
+
+    /// confirm address
+    if (reAddress.value.length == 0) {
+        reErrorMessage.innerHTML = "Địa chỉ trống!!!";
         return;
     }
 
@@ -140,13 +163,30 @@ function registerRequest(e) {
         address: reAddress.value,
     })
         .then((result) => {
+            // console.log(2);
             console.log(2);
+            // reErrorMessage.innerHTML = result.data.message;
+            reErrorMessage.innerHTML = "Created successfully!!!";
+            console.log(3);
             modalRegisterForm.reset();
-            reErrorMessage.innerHTML = result.data.message;
+            return;
         })
+        /// confirm username
         .catch((error) => {
             console.log(1);
-            var { data } = error.response;
-            reErrorMessage.innerHTML = data.message;
+            // var { data } = error.response;
+            // reErrorMessage.innerHTML = error.data;
+            reErrorMessage.innerHTML = "Username already exist!!!";
         });
+
+    // .then((result) => {
+    //     console.log(2);
+    //     modalRegisterForm.reset();
+    //     reErrorMessage.innerHTML = result.data.message;
+    // })
+    // .catch((error) => {
+    //     console.log(1);
+    //     var { data } = error.response;
+    //     reErrorMessage.innerHTML = data.message;
+    // });
 }
