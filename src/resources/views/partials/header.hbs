@@ -9,7 +9,7 @@
                 </div> 
                 <div class="navbar-rpsive">
                     <ul>
-                        <li> <a href="#"> TRANG CHỦ </a></li>
+                        <li> <a href="/"> TRANG CHỦ </a></li>
                         <li> <a href="#"> SẢN PHẨM </a></li>
                         <li> <a href="#"> BLOG </a></li>
                         <li> <a href="#"> PRODUCT VIEW </a></li>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="header__mid-left">
                     <div class="header__mid-left-name">
-                        <a class="header__mid-left-link" href="#">Urban Home</a>
+                        <a class="header__mid-left-link" href="/">Urban Home</a>
                     </div>
 
                     <div class="header__mid-left-search">
@@ -47,8 +47,8 @@
                             </svg>
                         </div>
                         {{# if user }}
-                            <span class="header__mid_right-text loginModal">
-                                Xin chào {{user.username}}
+                            <span class="header__mid_right-text">
+                                Chào {{user.username}}
                             </span>
                         {{else}}
                             <span class="header__mid_right-text loginModal">
@@ -100,10 +100,10 @@
                             <i class="arrow-down-list fas fa-chevron-down"></i>
                         </a>
                         <ul class="header__bot-list-sub">
-                            <li class="header__bot-list-sub-item"><a href="">Sản phẩm khuyến mãi</a></li>
-                            <li class="header__bot-list-sub-item"><a href="">Nội thất phòng khách</a></li>
-                            <li class="header__bot-list-sub-item"><a href="">Nội thất phòng ngủ</a></li>
-                            <li class="header__bot-list-sub-item"><a href="">Phụ kiện trang trí</a></li>
+                            <li class="header__bot-list-sub-item"><a href="#">Sản phẩm khuyến mãi</a></li>
+                            <li class="header__bot-list-sub-item"><a href="#">Nội thất phòng khách</a></li>
+                            <li class="header__bot-list-sub-item"><a href="#">Nội thất phòng ngủ</a></li>
+                            <li class="header__bot-list-sub-item"><a href="#">Phụ kiện trang trí</a></li>
                         </ul>
                         </li>
                         <li class="header__bot-item">
@@ -186,7 +186,7 @@
                 <div class="form-container">
                     <div class="form-group">
                         <label for="fullname">Họ và tên</label>
-                        <input type="text" id="fullname" name="fullname" class="form-control">
+                        <input type="text" id="fullname" rules="require" name="fullname" class="form-control">
                         <div class="errorBox">
                             <span class="error-message"> <span class="exclamationMark">!</span>   Lỗi cmnr</span>
                         </div>
@@ -220,11 +220,24 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="gender">Giới tính</label>
+                        <select class="form-control form-select">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                        <div class="errorBox">
+                            <span class="error-message"> <span class="exclamationMark">!</span>   Lỗi cmnr</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="address">Địa chỉ</label>
                         <input type="text" id="address" name="address" class="form-control">
                         <div class="errorBox">
                             <span class="error-message"> <span class="exclamationMark">!</span>   Lỗi cmnr</span>
                         </div>
+                    </div>
+                    <div class="form-group">
+                         <span class="error-FromServer"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn-submit" value="Đăng Ký">

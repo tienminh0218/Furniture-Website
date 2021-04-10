@@ -23,6 +23,7 @@
     },
     "homepage": "https://github.com/tienminh0218/nodejs_blog#readme",
     "dependencies": {
+        "axios": "^0.21.1",
         "bcrypt": "^5.0.1",
         "cookie-parser": "^1.4.5",
         "dotenv": "^8.2.0",

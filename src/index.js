@@ -10,6 +10,8 @@ const methodOverride = require("method-override");
 const dotenv = require("dotenv").config({ path: path.join(__dirname, ".env") });
 const port = process.env.PORT;
 
+const axios = require("axios").default;
+
 // Static File
 app.use(express.static(path.join(__dirname, "public")));
 

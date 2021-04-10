@@ -1,3 +1,12 @@
+/// Axios
+function requestData(url, method = "GET", data) {
+    return axios({
+        method,
+        url,
+        data,
+    });
+}
+
 var mainModal = document.querySelector(".modals");
 var clickOpenLoginModal = document.querySelector(".loginModal");
 var closeBtn = document.querySelectorAll(".close-modal");
@@ -31,6 +40,7 @@ textSuggest.forEach((txtSuggest) => {
 
 //// Toggle Form
 function ToggleForm() {
+    /// check status login form is open or not
     isLoginFormOpen = modalLoginForm.style.display;
 
     if (isLoginFormOpen == "none") {
@@ -49,39 +59,93 @@ function closeModal() {
     modalLoginForm.style.display = "none";
 }
 
-///// Open form for the first time
+///// Open form at the first time
 function openModal() {
     mainModal.style.display = "block";
     modalLoginForm.style.display = "block";
 }
-//
-////// Fetch
-var btn = document.querySelector('input[type="submit"]');
-var errorNode = document.querySelector(".error-FromServer");
+
+////// When user want to login
+var btnLoginSubmit = modalLoginForm.querySelector('input[type="submit"]');
 var username = modalLoginForm.querySelector('input[name="username"]');
 var password = modalLoginForm.querySelector('input[name="password"]');
-btn.addEventListener("click", click);
-function click(e) {
+var errorNode = modalLoginForm.querySelector(".error-FromServer");
+
+/// when user click Login btn
+btnLoginSubmit.addEventListener("click", loginRequest);
+
+function loginRequest(e) {
+    /// prevent submit form
     e.preventDefault();
-    fetch("http://localhost:3000/account/login", {
-        // Adding method type
-        method: "POST",
 
-        // Adding body or contents to send
-        body: JSON.stringify({
-            username: username.value,
-            password: password.value,
-        }),
-
-        // Adding headers to the request
-        headers: {
-            "Content-type": "application/json; charset=UTF-8",
-        },
+    /// Request data to login
+    requestData("http://localhost:3000/account/login", "post", {
+        username: username.value,
+        password: password.value,
     })
-        .then((response) => response.json())
-        .then((result) => {
-            // console.log(result.errorMessage);
-            // errorNode.innerHTML = result.message;
+        .then(function (response) {
             location.reload();
+        })
+        .catch(function (error) {
+            var { data } = error.response;
+            errorNode.innerHTML = data.message;
+        });
+}
+
+/// When user want to register
+var btnRegisterSubmit = modalRegisterForm.querySelector("input[type=submit]");
+var reFullname = modalRegisterForm.querySelector("input[name='fullname']");
+var reUsername = modalRegisterForm.querySelector(
+    "input[name='RegisterUsername']"
+);
+var rePassword = modalRegisterForm.querySelector(
+    "input[name='RegisterPassword']"
+);
+var confirmPassword = modalRegisterForm.querySelector(
+    "input[name='reRegisterPassword']"
+);
+var rePhoneNumber = modalRegisterForm.querySelector(
+    "input[name='phonenumber']"
+);
+var reGender = modalRegisterForm.querySelector(".form-select");
+var reAddress = modalRegisterForm.querySelector("input[name='address']");
+var reErrorMessage = modalRegisterForm.querySelector(".error-FromServer");
+
+/// when user click register btn
+btnRegisterSubmit.addEventListener("click", registerRequest);
+
+function registerRequest(e) {
+    /// prevent submit form
+    e.preventDefault();
+
+    /// confirm password
+    var isConfirm = rePassword.value !== confirmPassword.value;
+    if (rePassword.value.length == 0) {
+        reErrorMessage.innerHTML = "Mật khẩu trống";
+        return;
+    }
+    if (isConfirm) {
+        reErrorMessage.innerHTML = "Mật khẩu không trùng khớp";
+        return;
+    }
+
+    /// Request data to register
+    requestData("http://localhost:3000/account/register", "POST", {
+        username: reUsername.value,
+        password: rePassword.value,
+        fullname: reFullname.value,
+        phonenumber: rePhoneNumber.value,
+        gender: reGender.value,
+        address: reAddress.value,
+    })
+        .then((result) => {
+            console.log(2);
+            modalRegisterForm.reset();
+            reErrorMessage.innerHTML = result.data.message;
+        })
+        .catch((error) => {
+            console.log(1);
+            var { data } = error.response;
+            reErrorMessage.innerHTML = data.message;
         });
 }

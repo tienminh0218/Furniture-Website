@@ -927,6 +927,9 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 4px; }
+          .modals .modal-container .modal-loginForm .form-container .form-group .form-select {
+            padding: 0 8px;
+            height: 4rem; }
           .modals .modal-container .modal-loginForm .form-container .form-group .btn-submit {
             width: 100%;
             padding: 8px;
@@ -1017,6 +1020,9 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 4px; }
+          .modals .modal-container .modal-registerForm .form-container .form-group .form-select {
+            padding: 0 8px;
+            height: 4rem; }
           .modals .modal-container .modal-registerForm .form-container .form-group .btn-submit {
             width: 100%;
             padding: 8px;

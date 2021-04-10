@@ -6,12 +6,13 @@ var jwt = require("jsonwebtoken");
 class AccountController {
     // POST -> /account/login
     async login(req, res, next) {
-        /// Validate form
+        /// Schema form
         var schema = Joi.object({
             username: Joi.string().alphanum().min(4).max(30).required(),
             password: Joi.string().alphanum().min(6).max(30).required(),
         });
 
+        /// Validate form
         const checked = await schema.validate({
             username: req.body.username,
             password: req.body.password,
@@ -62,35 +63,60 @@ class AccountController {
 
     // POST -> /account/register
     async register(req, res, next) {
+        /// Schema form
+        var schema = Joi.object({
+            username: Joi.string().alphanum().min(4).max(30).required(),
+            password: Joi.string().alphanum().min(6).max(30).required(),
+            fullname: Joi.string().min(6).max(30).required(),
+            phonenumber: Joi.number().min(6).required(),
+            gender: Joi.string().min(1).required(),
+            address: Joi.string().alphanum().min(6).max(50).required(),
+        });
+
+        /// Validate form
+        const checked = await schema.validate({
+            username: req.body.username,
+            password: req.body.password,
+            fullname: req.body.fullname,
+            phonenumber: req.body.phonenumber,
+            gender: req.body.gender,
+            address: req.body.address,
+        });
+        var { error } = checked;
+        if (error)
+            return res.status(400).json({
+                message: error.details[0].message,
+            });
+
         /// Check username account is exist
         var isExistAccount = await Account.findOne({
             username: req.body.username,
         });
 
         if (isExistAccount) {
-            res.status(409).send("username already exist!!! ");
+            res.status(409).json("username already exist!!! ");
             return;
-        } else {
-            var hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-            var newAccount = new Account({
-                username: req.body.username,
-                password: hashedPassword,
-                fullname: req.body.fullname,
-                phonenumber: req.body.phonenumber,
-                address: req.body.address,
-            });
-            // Create a new account
-            newAccount
-                .save()
-                .then((account) => {
-                    res.status(201).json({
-                        message: "Created successfully",
-                        account,
-                    });
-                })
-                .catch(next);
         }
+        var hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+        var newAccount = new Account({
+            username: req.body.username,
+            password: hashedPassword,
+            fullname: req.body.fullname,
+            phonenumber: req.body.phonenumber,
+            gender: req.body.gender,
+            address: req.body.address,
+        });
+        // Create a new account
+        newAccount
+            .save()
+            .then((account) => {
+                res.status(201).json({
+                    message: "Created successfully",
+                    account,
+                });
+            })
+            .catch(next);
     }
 }
 

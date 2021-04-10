@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./css/app.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+    </head>
+    <body>
+        <header>
+            <div class="header__logo">
+                <i class="fas fa-tools"></i>
+                <span>Triet cc</span>
+            </div>
+            <div class="header__slogan">
+                <div class="bars btn">
+                    <i class="fas fa-bars" id="bars-rotate"></i>
+                </div>
+                <div class="navlink">
+                    <div class="navlink__user">
+                        <div class="showNoti">
+                            <i class="fas fa-bell"></i>
+                            <i class="fas fa-sort-down"></i>
+                        </div>
+                        <div class="noti-dropdown">
+                            <ul>
+                                <li>
+                                    <i class="fas fa-comment"></i>
+                                    <p>New Comment</p>
+                                    <span>4min</span>
+                                </li>
+                                <li>
+                                    <i class="fab fa-twitter"></i>
+                                    <p>Follower</p>
+                                    <span>12min</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <p>Message Sent</p>
+                                    <span>36min</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-tasks"></i>
+                                    <p>Mission Task</p>
+                                    <span>20min</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-upload"></i>
+                                    <p>Sever Rebooted</p>
+                                    <span>30min</span>
+                                </li>
+                                <li>See All Alerts ></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="navlink__user">
+                        <div class="showUser">
+                            <i class="fas fa-user"></i>
+                            <i class="fas fa-sort-down"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <ul>
+                                <li>
+                                    <i class="fas fa-user"></i>
+                                    User Profile
+                                </li>
+                                <li>
+                                    <i class="fas fa-cogs"></i>
+                                    Settings
+                                </li>
+                                <li>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container-admin">
+            <nav class="sidebar">
+                <ul>
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#">UI Elements</a></li>
+                    <li>
+                        <a href="#" class="charts-btn"
+                            >Charts
+                            <span class="fas fa-caret-down first"></span>
+                        </a>
+                        <ul class="chart-show">
+                            <li><a href="#">Charts JS</a></li>
+                            <li><a href="#">Morris Chart</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Tabs & Panels</a></li>
+                    <li><a href="#">Reponsive Tables</a></li>
+                    <li><a href="#">Forms</a></li>
+                    <li>
+                        <a href="#" class="multi-btn"
+                            >Multi-Level Dropdown
+                            <span class="fas fa-caret-down second"></span>
+                        </a>
+                        <ul class="multi-show">
+                            <li><a href="#">Second Level Link</a></li>
+                            <li><a href="#">Second Level Link</a></li>
+                            <li><a href="#">Second Level Link</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Empty Page</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </body>
+    <script src="./js/admin.js"></script> 
+</html>
