@@ -801,9 +801,16 @@ hr {
 
 .detail__img .detail__img-left {
   width: 12%; }
+  .detail__img .detail__img-left #imgSlideone:hover,
+  .detail__img .detail__img-left #imgSlidetwo:hover {
+    cursor: pointer; }
 
 .detail__img .detail__img-right {
-  width: 86%; }
+  width: 86%;
+  overflow: hidden; }
+  .detail__img .detail__img-right #detail-slideimg {
+    display: flex;
+    width: 200%; }
 
 .container .detail__info {
   width: 49%;

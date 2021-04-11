@@ -1281,10 +1281,21 @@ hr {
 .detail__img {
     .detail__img-left {
         width: 12%;
+
+        #imgSlideone:hover,
+        #imgSlidetwo:hover {
+        cursor: pointer;
+        }
     }
 
     .detail__img-right {
         width: 86%;
+        overflow: hidden;
+
+        #detail-slideimg {
+            display: flex;
+            width: 200%;
+        }
     }
 }
 
