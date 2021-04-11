@@ -1131,11 +1131,11 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
   right: 2%;
   padding: 1.4rem;
   border-radius: 50%;
-  background-color: rgba(168, 166, 166, 0.1);
+  background-color: rgba(168, 166, 166, 0.6);
   display: none;
   transition: all 0.25s ease-in-out; }
   .container-backToTop .backToTop:hover {
-    background-color: rgba(168, 166, 166, 0.2); }
+    background-color: rgba(168, 166, 166, 0.8); }
   .container-backToTop .backToTop .icon-backToTop {
     font-size: 2.4rem;
     color: var(--main-color); }

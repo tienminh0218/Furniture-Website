@@ -4,6 +4,7 @@ var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
 
 class HomeController {
+    /// Get -> /
     islogin(req, res, next) {
         var cookie = req.cookies;
         /// check is cookie exist

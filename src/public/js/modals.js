@@ -88,8 +88,11 @@ function loginRequest(e) {
             location.reload();
         })
         .catch(function (error) {
-            var { data } = error.response;
-            errorNode.innerHTML = data.message;
+            if (error.response) {
+                var { data } = error.response;
+                var messageErrorServer = data.message.replace(/"/g, "");
+                errorNode.innerHTML = messageErrorServer.toLocaleUpperCase();
+            }
         });
 }
 
@@ -140,13 +143,14 @@ function registerRequest(e) {
         address: reAddress.value,
     })
         .then((result) => {
-            console.log(2);
             modalRegisterForm.reset();
             reErrorMessage.innerHTML = result.data.message;
         })
         .catch((error) => {
-            console.log(1);
-            var { data } = error.response;
-            reErrorMessage.innerHTML = data.message;
+            if (error.response) {
+                var { data } = error.response;
+                var messageErrorServer = data.message.replace(/"/g, "");
+                reErrorMessage.innerHTML = messageErrorServer.toLocaleUpperCase();
+            }
         });
 }
