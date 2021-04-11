@@ -82,7 +82,7 @@ function loginRequest(e) {
 
     /// Request data to login
     requestData("http://localhost:3000/account/login", "post", {
-        username: username.value,
+        username: username.value.trim(),
         password: password.value,
     })
         .then(function (response) {

@@ -128,12 +128,12 @@ header .header__mid .header__mid-right {
   position: relative; }
   .header__mid-right .header__mid-box-icon .header__mid_right-text .container-user {
     z-index: 11;
-    background-color: rgba(235, 235, 239, 0.904);
+    background-color: white;
     top: 150%;
     right: 0;
     min-width: 180px;
     display: none;
-    box-shadow: 0px 0px 13px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
     border-radius: 4px;
     position: absolute; }
     .header__mid-right .header__mid-box-icon .header__mid_right-text .container-user .item-user {

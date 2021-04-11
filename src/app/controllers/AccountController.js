@@ -29,9 +29,7 @@ class AccountController {
         });
 
         if (!isAccountExist)
-            return res
-                .status(400)
-                .json({ message: "Your account not found!!" });
+            return res.status(400).json({ message: "Your account not found" });
 
         /// Create a token
         var secret = process.env.SECRECT;
@@ -84,7 +82,7 @@ class AccountController {
 
         if (isExistAccount) {
             res.status(409).json({
-                message: "username already exist!!! ",
+                message: "username already exist",
             });
             return;
         }
