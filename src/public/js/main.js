@@ -70,7 +70,21 @@ function myFunction3() {
     document.getElementById("active3").style.display = "block";
 }
 
+// slide img detail
+function slideImgRight() {
+	document.getElementById("detail-slideimg").style.marginLeft = "0%";
+	document.getElementById("detail-slideimg").style.transition = "ease-in 0.5s";
+	document.getElementById("imgSlideone").style.border = "1px solid black";
+	document.getElementById("imgSlidetwo").style.border = "none";
+	
+}
 
+function slideImgLeft() {
+	document.getElementById("detail-slideimg").style.marginLeft = "-100%";
+	document.getElementById("detail-slideimg").style.transition = "ease-in 0.5s";
+	document.getElementById("imgSlidetwo").style.border = "1px solid black";
+	document.getElementById("imgSlideone").style.border = "none";
+}
 
 /// When user logged
 var userExist = document.querySelector(".userExist");
