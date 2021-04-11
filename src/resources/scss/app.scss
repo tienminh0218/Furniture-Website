@@ -1248,6 +1248,8 @@ hr {
                 color: #8e8e8e;
             }
         }
+
+        
     }
 }
 
@@ -1509,3 +1511,136 @@ input#cart-quantity {
 .form-group.existError .errorBox {
     display: block !important;
 }
+
+
+///////////////// Responsive
+
+.container__body {
+    .body__product-list .body__product-list-content {
+      width: 33%;
+    }
+  
+    .body__banner-collectioni4 {
+      flex-wrap: wrap;
+  
+      .body__banner-collection-img {
+        width: 49%;
+      }
+    }
+  }
+  
+  .body__collection-slide .body__collect-content {
+    width: 50%;
+  }
+  
+  .body__group-title-home .input-email {
+    width: 70%;
+  }
+  
+  .footer {
+    width: 95%;
+  
+    .footer__top .footer__top-content {
+      display: block;
+    }
+  }
+  
+  .footer__top-content {
+    .footer__top-icon {
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .footer__top-text p:first-child {
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+  
+  .footer__bot {
+    width: 95%;
+    display: block;
+    overflow: hidden;
+  
+    .footer__bot-content {
+      &.ftb1 {
+        width: 49%;
+        float: left;
+        margin-right: 5rem;
+        margin-bottom: 5rem;
+      }
+  
+      &.ftb2 {
+        width: 40%;
+        float: left;
+      }
+  
+      &.ftb3 {
+        width: 50%;
+        float: left;
+      }
+    }
+  }
+  
+  .container {
+    .detail__main {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  
+    .detail__img {
+      width: 100%;
+    }
+  }
+  
+  .detail__img .detail__img-right {
+    width: 80%;
+  }
+  
+  #detail-slideimg {
+    width: 200%;
+  
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .container .detail__info {
+    width: 100%;
+  }
+  
+  .input-cart {
+    border: 3px solid black;
+  }
+  
+  .btn-cart .input-cart input {
+    &:nth-child(1) {
+      width: 64px;
+      font-size: 5rem;
+      height: 100%;
+      border: none;
+    }
+  
+    &:nth-child(2) {
+      width: 140px;
+      height: 100%;
+      font-size: 4rem;
+    }
+  
+    &:nth-child(3) {
+      width: 64px;
+      height: 100%;
+      border: none;
+      font-size: 5rem;
+    }
+  }
+  
+  .detail__info .btn-cart .input-btn button {
+    height: 100%;
+  }
+  
+  .btn-cart {
+    height: 80px;
+  }

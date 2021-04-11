@@ -70,6 +70,8 @@ function myFunction3() {
     document.getElementById("active3").style.display = "block";
 }
 
+
+
 /// When user logged
 var userExist = document.querySelector(".userExist");
 var containerUser = document.querySelector(".container-user");
