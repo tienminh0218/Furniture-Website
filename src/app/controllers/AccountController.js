@@ -70,8 +70,24 @@ class AccountController {
             fullname: Joi.string().min(6).max(30).required(),
             phonenumber: Joi.number().min(6).required(),
             gender: Joi.string().min(1).required(),
-            address: Joi.string().alphanum().min(6).max(50).required(),
+            address: Joi.string()
+                .pattern(/^[a-zA-Z0-9--/,]/)
+                .min(6)
+                .max(100)
+                .required(),
         });
+
+        /// Check username account is exist
+        var isExistAccount = await Account.findOne({
+            username: req.body.username,
+        });
+
+        if (isExistAccount) {
+            res.status(409).json({
+                message: "username already exist!!! ",
+            });
+            return;
+        }
 
         /// Validate form
         const checked = await schema.validate({
@@ -88,15 +104,6 @@ class AccountController {
                 message: error.details[0].message,
             });
 
-        /// Check username account is exist
-        var isExistAccount = await Account.findOne({
-            username: req.body.username,
-        });
-
-        if (isExistAccount) {
-            res.status(409).json("username already exist!!! ");
-            return;
-        }
         var hashedPassword = await bcrypt.hash(req.body.password, 10);
 
         var newAccount = new Account({
@@ -112,7 +119,7 @@ class AccountController {
             .save()
             .then((account) => {
                 res.status(201).json({
-                    message: "Created successfully",
+                    message: "Created successfully!!!",
                     account,
                 });
             })

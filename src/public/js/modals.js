@@ -70,11 +70,12 @@ function openModal() {
 var btnLoginSubmit = modalLoginForm.querySelector('input[type="submit"]');
 var username = modalLoginForm.querySelector('input[name="username"]');
 var password = modalLoginForm.querySelector('input[name="password"]');
-var errorNode = modalLoginForm.querySelector(".error-FromServer");
+var loginErrorMessage = modalLoginForm.querySelector(".error-FromServer");
 
 /// when user click Login btn
 btnLoginSubmit.addEventListener("click", loginRequest);
 
+/// Request data to login
 function loginRequest(e) {
     /// prevent submit form
     e.preventDefault();
@@ -88,10 +89,14 @@ function loginRequest(e) {
             location.reload();
         })
         .catch(function (error) {
+            /// check if isError
             if (error.response) {
                 var { data } = error.response;
                 var messageErrorServer = data.message.replace(/"/g, "");
-                errorNode.innerHTML = messageErrorServer.toLocaleUpperCase();
+                loginErrorMessage.innerHTML =
+                    messageErrorServer.charAt(0).toUpperCase() +
+                    messageErrorServer.slice(1) +
+                    " !!!";
             }
         });
 }
@@ -113,11 +118,12 @@ var rePhoneNumber = modalRegisterForm.querySelector(
 );
 var reGender = modalRegisterForm.querySelector(".form-select");
 var reAddress = modalRegisterForm.querySelector("input[name='address']");
-var reErrorMessage = modalRegisterForm.querySelector(".error-FromServer");
+var registerErrorMessage = modalRegisterForm.querySelector(".error-FromServer");
 
 /// when user click register btn
 btnRegisterSubmit.addEventListener("click", registerRequest);
 
+/// Request data to register
 function registerRequest(e) {
     /// prevent submit form
     e.preventDefault();
@@ -125,11 +131,11 @@ function registerRequest(e) {
     /// confirm password
     var isConfirm = rePassword.value !== confirmPassword.value;
     if (rePassword.value.length == 0) {
-        reErrorMessage.innerHTML = "Mật khẩu trống";
+        registerErrorMessage.innerHTML = "Mật khẩu trống !!!";
         return;
     }
     if (isConfirm) {
-        reErrorMessage.innerHTML = "Mật khẩu không trùng khớp";
+        registerErrorMessage.innerHTML = "Mật khẩu không trùng khớp !!!";
         return;
     }
 
@@ -143,14 +149,20 @@ function registerRequest(e) {
         address: reAddress.value,
     })
         .then((result) => {
+            console.log(result);
+            registerErrorMessage.innerHTML = "Created successfully!!!";
             modalRegisterForm.reset();
-            reErrorMessage.innerHTML = result.data.message;
         })
+        /// error form server
         .catch((error) => {
+            /// check if isError
             if (error.response) {
                 var { data } = error.response;
                 var messageErrorServer = data.message.replace(/"/g, "");
-                reErrorMessage.innerHTML = messageErrorServer.toLocaleUpperCase();
+                registerErrorMessage.innerHTML =
+                    messageErrorServer.charAt(0).toUpperCase() +
+                    messageErrorServer.slice(1) +
+                    " !!!";
             }
         });
 }
