@@ -111,6 +111,9 @@ header .header__mid .header__mid-right {
   flex-wrap: nowrap;
   justify-content: space-evenly; }
 
+.header__mid-right .header__mid-right-account:hover {
+  color: var(--main-color); }
+
 .header__mid-right .header__mid-box-icon {
   display: flex;
   align-items: center; }
