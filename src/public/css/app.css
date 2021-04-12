@@ -612,7 +612,7 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
   align-items: center; }
 
 .footer__top-content .footer__top-text {
-  font-size: 1.4rem;
+  font-size: 2rem;
   margin-left: 2rem; }
   .footer__top-content .footer__top-text p:first-child {
     color: var(--main-color);
@@ -630,8 +630,11 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
     margin-bottom: 2rem;
     font-weight: 400; }
   .footer__bot .footer__bot-content p {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem; }
+    .footer__bot .footer__bot-content p i {
+      margin-right: 1rem;
+      font-size: 2rem; }
   .footer__bot .footer__bot-content.ftb1 {
     flex: 2; }
   .footer__bot .footer__bot-content.ftb2 {
@@ -1014,14 +1017,17 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
   right: 2%;
   padding: 1.4rem;
   border-radius: 50%;
-  background-color: rgba(168, 166, 166, 0.6);
+  background-color: var(--main-color);
   display: none;
   transition: all 0.25s ease-in-out; }
   .container-backToTop .backToTop:hover {
-    background-color: rgba(168, 166, 166, 0.8); }
+    background-color: var(--white-color);
+    border: 1px solid black; }
+  .container-backToTop .backToTop:hover .icon-backToTop {
+    color: var(--main-color); }
   .container-backToTop .backToTop .icon-backToTop {
     font-size: 2.4rem;
-    color: var(--main-color); }
+    color: var(--white-color); }
 
 .form-group.existError .errorBox {
   display: block !important; }
@@ -1168,7 +1174,7 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
       width: 60%;
       text-align: end; }
   .header__mid-left .header__mid-left-name {
-    width: 65%;
+    width: 56%;
     font-weight: 700; }
   .bars {
     width: 20%;
@@ -1237,3 +1243,61 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
       .input-search-rpsive .icon-search-rpsive i {
         font-size: 1.6rem;
         color: #8e8e8e; } }
+
+@media only screen and (max-width: 420px) {
+  .header__mid-left .header__mid-left-name {
+    display: none; }
+  .container .body-slide {
+    display: none; }
+  .container__body {
+    width: 100%; }
+    .container__body .body__banner-home {
+      flex-wrap: wrap; }
+      .container__body .body__banner-home .body__banner-home-link {
+        width: 100%; }
+    .container__body .body__product-list .body__product-list-content {
+      width: 100%; }
+    .container__body .body__banner-center .body__banner-center-imgview {
+      flex-wrap: wrap; }
+      .container__body .body__banner-center .body__banner-center-imgview .body__banner-center-imgview-left {
+        width: 100%; }
+      .container__body .body__banner-center .body__banner-center-imgview .body__banner-center-imgview-right {
+        width: 100%; }
+    .container__body .body__banner-center .body__banner-collectioni4 .body__banner-collection-img {
+      width: 100%; }
+    .container__body .body__collection-slide .body__collect-content {
+      width: 100%; }
+    .container__body .body__news {
+      flex-wrap: wrap; }
+      .container__body .body__news .body__news-content {
+        width: 100%;
+        margin-bottom: 1rem; }
+        .container__body .body__news .body__news-content .body__news-content-i4 {
+          margin-top: 0.5rem; }
+          .container__body .body__news .body__news-content .body__news-content-i4 h3 {
+            margin-bottom: 0.5rem; }
+          .container__body .body__news .body__news-content .body__news-content-i4 a {
+            font-size: 2rem; }
+    .container__body .body__group-title-home .input-email {
+      width: 98%; }
+  .footer {
+    width: 100%; }
+    .footer .footer__top {
+      flex-wrap: wrap;
+      text-align: center; }
+      .footer .footer__top .footer__top-content {
+        width: 100%;
+        margin-bottom: 3rem; }
+        .footer .footer__top .footer__top-content .footer__top-text {
+          margin: 0; }
+          .footer .footer__top .footer__top-content .footer__top-text p:first-child {
+            margin-bottom: 1.2rem; }
+  .footer__bot {
+    width: 90%; }
+    .footer__bot .footer__bot-content.ftb1 {
+      width: 100%; }
+    .footer__bot .footer__bot-content.ftb2 {
+      width: 100%;
+      margin-bottom: 5rem; }
+    .footer__bot .footer__bot-content.ftb3 {
+      width: 100%; } }
