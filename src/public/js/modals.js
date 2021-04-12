@@ -66,11 +66,13 @@ function openModal() {
     modalLoginForm.style.display = "block";
 }
 
-////// When user want to login
+////// When user want to login //////
 var btnLoginSubmit = modalLoginForm.querySelector('input[type="submit"]');
-var username = modalLoginForm.querySelector('input[name="username"]');
-var password = modalLoginForm.querySelector('input[name="password"]');
 var loginErrorMessage = modalLoginForm.querySelector(".error-FromServer");
+
+// get nodeElement input in loginForm
+var inputLoginForm = modalLoginForm.querySelectorAll("input[name]");
+var dataLoginForm = {};
 
 /// when user click Login btn
 btnLoginSubmit.addEventListener("click", loginRequest);
@@ -80,11 +82,13 @@ function loginRequest(e) {
     /// prevent submit form
     e.preventDefault();
 
+    /// Get value form input loginForm
+    inputLoginForm.forEach((input) => {
+        dataLoginForm[input.name] = input.value.trim();
+    });
+
     /// Request data to login
-    requestData("http://localhost:3000/account/login", "post", {
-        username: username.value.trim(),
-        password: password.value,
-    })
+    requestData("http://localhost:3000/account/login", "post", dataLoginForm)
         .then(function (response) {
             location.reload();
         })
@@ -103,22 +107,16 @@ function loginRequest(e) {
 
 /// When user want to register
 var btnRegisterSubmit = modalRegisterForm.querySelector("input[type=submit]");
-var reFullname = modalRegisterForm.querySelector("input[name='fullname']");
-var reUsername = modalRegisterForm.querySelector(
-    "input[name='RegisterUsername']"
-);
-var rePassword = modalRegisterForm.querySelector(
-    "input[name='RegisterPassword']"
-);
+var rePassword = modalRegisterForm.querySelector("input[name='password']");
 var confirmPassword = modalRegisterForm.querySelector(
-    "input[name='reRegisterPassword']"
-);
-var rePhoneNumber = modalRegisterForm.querySelector(
-    "input[name='phonenumber']"
+    "input[name='confirmPassword']"
 );
 var reGender = modalRegisterForm.querySelector(".form-select");
-var reAddress = modalRegisterForm.querySelector("input[name='address']");
 var registerErrorMessage = modalRegisterForm.querySelector(".error-FromServer");
+
+// get nodeElement input in loginForm
+var inputRegisterForm = modalRegisterForm.querySelectorAll("input[name]");
+var dataRegisterForm = {};
 
 /// when user click register btn
 btnRegisterSubmit.addEventListener("click", registerRequest);
@@ -139,17 +137,18 @@ function registerRequest(e) {
         return;
     }
 
+    /// Get value form input registerForm
+    inputRegisterForm.forEach((input) => {
+        if (input.name !== "confirmPassword")
+            dataRegisterForm[input.name] = input.value.trim();
+    });
+
     /// Request data to register
     requestData("http://localhost:3000/account/register", "POST", {
-        username: reUsername.value,
-        password: rePassword.value,
-        fullname: reFullname.value,
-        phonenumber: rePhoneNumber.value,
+        ...dataRegisterForm,
         gender: reGender.value,
-        address: reAddress.value,
     })
         .then((result) => {
-            console.log(result);
             registerErrorMessage.innerHTML = "Created successfully!!!";
             modalRegisterForm.reset();
         })
