@@ -85,15 +85,16 @@
         <div class="container-admin">
             <nav class="sidebar">
                 <ul>
-                    <li class="active"><a href="#">Dashboard</a></li>
-                    <li><a href="#">UI Elements</a></li>
+                    <li class="active"><a href="/admin">Trang chủ</a></li>
+                    <li><a href="/admin/category">Danh mục sản phẩm</a></li>
                     <li>
-                        <a href="#" class="charts-btn"
-                            >Charts
+                        <a href="#" class="charts-btn">
+                            Elements
                             <span class="fas fa-caret-down first"></span>
                         </a>
                         <ul class="chart-show">
                             <li><a href="#">Charts JS</a></li>
+                            <li><a href="#">Morris Chart</a></li>
                             <li><a href="#">Morris Chart</a></li>
                         </ul>
                     </li>
@@ -115,7 +116,9 @@
                 </ul>
             </nav>
                 {{!-- ////////////////////////////////// Content ////////////////////////////////// --}}
-                 {{{body}}}
+                <div class="content">
+                    {{{body}}}
+                </div>
         </div>
     </body>
     <script src="../js/admin.js"></script> 

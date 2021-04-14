@@ -149,7 +149,7 @@ function registerRequest(e) {
         gender: reGender.value,
     })
         .then((result) => {
-            registerErrorMessage.innerHTML = "Created successfully!!!";
+            registerErrorMessage.innerHTML = result.data.message;
             modalRegisterForm.reset();
         })
         /// error form server

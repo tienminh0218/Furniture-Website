@@ -277,7 +277,108 @@ nav ul {
   float: left;
   margin-left: 250px;
   margin-top: 60px;
-  transition: ease-in 0.5s; }
+  transition: ease-in 0.5s;
+  padding: 50px; }
+  .content .categoryProducts-container {
+    background: var(--white-color);
+    margin: auto;
+    padding: 16px;
+    transition: all 0.5s ease; }
+    .content .categoryProducts-container .title {
+      font-size: 2.6rem;
+      margin: 24px 0;
+      text-align: center;
+      color: var(--main-color); }
+    .content .categoryProducts-container .form-container {
+      width: 400px; }
+      .content .categoryProducts-container .form-container .form-group {
+        margin-bottom: 20px; }
+        .content .categoryProducts-container .form-container .form-group label {
+          font-size: 1.6rem;
+          font-weight: bold;
+          color: #333; }
+        .content .categoryProducts-container .form-container .form-group .form-control {
+          width: 100%;
+          outline: none;
+          height: 30px;
+          font-size: 1.4rem;
+          padding: 18px 8px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px; }
+        .content .categoryProducts-container .form-container .form-group .form-select {
+          padding: 0 8px;
+          height: 4rem; }
+        .content .categoryProducts-container .form-container .form-group .btn-submit {
+          width: 100%;
+          padding: 8px;
+          font-size: 1.8rem;
+          outline: none;
+          border: none;
+          color: var(--white-color);
+          border-radius: 4px;
+          background-color: var(--main-color);
+          cursor: pointer; }
+        .content .categoryProducts-container .form-container .form-group .errorBox {
+          display: none; }
+          .content .categoryProducts-container .form-container .form-group .errorBox .error-message {
+            margin-left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: var(--red-color);
+            font-size: 1.4rem; }
+            .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark {
+              background-color: var(--red-color);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              color: var(--white-color);
+              font-size: 1.4rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 2px; }
+        .content .categoryProducts-container .form-container .form-group .error-FromServer {
+          font-size: 1.4rem;
+          color: var(--red-color); }
+    .content .categoryProducts-container .border-modalForm {
+      display: flex;
+      align-items: center; }
+      .content .categoryProducts-container .border-modalForm p {
+        margin: 0 6px;
+        font-size: 1.6rem;
+        color: #ccc; }
+      .content .categoryProducts-container .border-modalForm .leftBorder-modal, .content .categoryProducts-container .border-modalForm .rightBorder-modal {
+        height: 1px;
+        width: 100%;
+        background-color: #dbdbdb; }
+    .content .categoryProducts-container .text-suggest {
+      text-align: center;
+      margin-top: 6px;
+      font-size: 1.4rem;
+      color: #333; }
+      .content .categoryProducts-container .text-suggest a {
+        text-decoration: none;
+        color: var(--main-color); }
+    .content .categoryProducts-container .close-modal {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2.4rem;
+      cursor: pointer;
+      padding: 12px; }
+      .content .categoryProducts-container .close-modal:hover {
+        background-color: #ccc;
+        color: #757575; }
+    .content .categoryProducts-container .title {
+      margin-bottom: 5%; }
+    .content .categoryProducts-container .form-container {
+      width: 100%; }
+      .content .categoryProducts-container .form-container .form-group .form-control {
+        width: 100%; }
+      .content .categoryProducts-container .form-container .form-group .btn-submit {
+        width: 10%; }
   .content.expand-content {
     width: 100%;
     margin-left: 0;

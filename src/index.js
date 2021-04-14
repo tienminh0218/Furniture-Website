@@ -14,6 +14,8 @@ const axios = require("axios").default;
 
 // Static File
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/admin", express.static(path.join(__dirname, "public")));
+app.use("/details", express.static(path.join(__dirname, "public")));
 
 // Midddleware
 app.use(cookieParser());
@@ -46,7 +48,7 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
 
 // Routers
-route(app);
+route(app, express, path);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port} `);
