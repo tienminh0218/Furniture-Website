@@ -4,23 +4,34 @@
           <th>Tên</th>
           <th>Mô tả</th>
           <th>Danh sách sản phẩm</th>
-          <th></th>
+          <th>Sửa / Xóa</th>
         </tr>
             {{#each categorys}} 
 
                 <tr>
                     
 
-                <td>1</td>
-                <td>Tiến đùi gà</td>
-                <td>Gà</td>
-                <td>50</td>
+                <td>{{sum @index 1}}</td>
+                <td>{{this.nameCategory}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.productChild}}</td>
                 <td>
 
                     <a  href="/admin/category/insert">Thêm đê</a>
                 </td>
                 
                 </tr>
+                {{else}}
+                 
+                <tr >
+                    <td colspan="5">
+
+                    chưa có danh mục nèo <a  href="/admin/category/insert">Thêm đê</a>
+                    </td>
+
+
+                </tr>
+                  
             
          {{/each}}
 

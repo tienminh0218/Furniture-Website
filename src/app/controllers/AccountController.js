@@ -31,16 +31,7 @@ class AccountController {
         if (!isAccountExist)
             return res.status(400).json({ message: "Your account not found" });
 
-        /// Create a token
-        var secret = process.env.SECRECT;
-        var token = jwt.sign(
-            {
-                id_user: isAccountExist._id,
-                name: isAccountExist.username,
-            },
-            secret
-        );
-
+       
         var checkPassword = await bcrypt.compare(
             req.body.password,
             isAccountExist.password
@@ -51,6 +42,16 @@ class AccountController {
             return res
                 .status(400)
                 .json({ message: "Your password or username is incorrect" });
+        
+         /// Create a token
+        var secret = process.env.SECRECT;
+        var token = jwt.sign(
+            {
+                id_user: isAccountExist._id,
+                name: isAccountExist.username,
+            },
+            secret
+        );
 
         /// Login success and create a cookie
         res.status(200).cookie("token", token).json({
