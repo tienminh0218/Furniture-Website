@@ -547,3 +547,26 @@ nav ul {
         transition: ease 0.3s;
     }
 }
+
+///// Table admin/category
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 2rem;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+}
+
+.td-img {
+    width: 15%;
+
+    .products-img img {
+        width: 100%;
+    }
+}

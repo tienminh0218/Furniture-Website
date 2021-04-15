@@ -383,3 +383,20 @@ nav ul {
     width: 100%;
     margin-left: 0;
     transition: ease 0.3s; }
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  font-size: 2rem; }
+
+th,
+td {
+  padding: 15px;
+  text-align: center; }
+
+.td-img {
+  width: 15%; }
+  .td-img .products-img img {
+    width: 100%; }

@@ -1,3 +1,5 @@
+var Categorys = require("../models/Category");
+var { multipalToObject } = require("../../util/toObj");
 class AdminController {
     /// Get -> /admin/
     home(req, res, next) {
@@ -6,12 +8,32 @@ class AdminController {
 
     /// Get -> /admin/category
     category(req, res, next) {
-        res.render("admin-body/admin-category", { layout: "admin" });
+        Categorys.find({}).then((categorys) => {
+            res.render("admin-body/admin-category", {
+                layout: "admin",
+                categorys: multipalToObject(categorys),
+            });
+        });
     }
 
     /// Get -> /admin/category/insert
-    categoryInsert(req, res, next) {
+    categoryAdd(req, res, next) {
         res.render("admin-body/admin-categoryInsert", { layout: "admin" });
+    }
+
+    /// Post -> /admin/category/insert
+    categoryInsert(req, res, next) {
+        console.log(req.body);
+        // return;
+        var newCategory = new Categorys({
+            nameCategory: req.body.nameCategory,
+        });
+        newCategory
+            .save()
+            .then((newCategory) => {
+                res.status(201).redirect("/admin/category");
+            })
+            .catch((err) => res.json({ err }));
     }
 }
 
