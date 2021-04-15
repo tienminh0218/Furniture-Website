@@ -58,15 +58,14 @@ class AccountController {
             token,
         });
     }
-
     // POST -> /account/register
     async register(req, res, next) {
         /// Schema form
         var schema = Joi.object({
             username: Joi.string().alphanum().min(4).max(30).required(),
             password: Joi.string().alphanum().min(6).max(30).required(),
-            fullname: Joi.string().min(6).max(30).required(),
-            phonenumber: Joi.number().min(6).required(),
+            fullname: Joi.string().min(6).max(50).required(),
+            phonenumber: Joi.number().min(6).max(11).required(),
             gender: Joi.string().min(1).required(),
             address: Joi.string()
                 .pattern(/^[a-zA-Z0-9--/,]/)

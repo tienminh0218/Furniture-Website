@@ -1,4 +1,5 @@
 var Categorys = require("../models/Category");
+const Joi = require("joi");
 var { multipalToObject } = require("../../util/toObj");
 class AdminController {
     /// Get -> /admin/
@@ -25,15 +26,31 @@ class AdminController {
     categoryInsert(req, res, next) {
         console.log(req.body);
         // return;
-        var newCategory = new Categorys({
-            nameCategory: req.body.nameCategory,
-        });
+        var newCategory = new Categorys(req.body);
+        newCategory.isNew = false;
         newCategory
             .save()
-            .then((newCategory) => {
+            .then(() => {
                 res.status(201).redirect("/admin/category");
             })
-            .catch((err) => res.json({ err }));
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+    // Get -> /admin/product
+    product(req, res, next) {
+        res.render("admin-body/admin-product", { layout: "admin" });
+    }
+    // Get -> /admin/product/insert
+    productAdd(req, res, next) {
+        res.render("admin-body/admin-productInsert", { layout: "admin" });
+    }
+    // POST -> /admin/product/insert
+    productInsert(req, res, next) {
+        var schema = Joi.object({
+            username: Joi.string().alphanum().min(4).max(30).required(),
+            password: Joi.string().alphanum().min(6).max(30).required(),
+        });
     }
 }
 
