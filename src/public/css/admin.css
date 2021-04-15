@@ -375,6 +375,9 @@ nav ul {
       margin-bottom: 5%; }
     .content .categoryProducts-container .form-container {
       width: 100%; }
+      .content .categoryProducts-container .form-container .form-group .ck-editor__editable_inline {
+        height: 400px;
+        overflow-y: auto; }
       .content .categoryProducts-container .form-container .form-group .form-control {
         width: 100%; }
       .content .categoryProducts-container .form-container .form-group .btn-submit {

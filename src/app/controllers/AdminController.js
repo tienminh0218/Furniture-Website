@@ -23,9 +23,7 @@ class AdminController {
 
     /// Post -> /admin/category/insert
     categoryInsert(req, res, next) {
-        var newCategory = new Categorys({
-            nameCategory: req.body.nameCategory,
-        });
+        var newCategory = new Categorys(req.body);
         newCategory
             .save()
             .then((newCategory) => {
