@@ -32,7 +32,7 @@
         "joi": "^17.4.0",
         "jsonwebtoken": "^8.5.1",
         "method-override": "^3.0.0",
-        "mongoose": "^5.11.19",
+        "mongoose": "^5.11.15",
         "mongoose-delete": "^0.5.3",
         "mongoose-slug-generator": "^1.0.4"
     },
