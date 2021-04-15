@@ -5,7 +5,7 @@ const mongooseDelete = require("mongoose-delete");
 const Categorys = new Schema(
     {
         nameCategory: { type: String },
-        productChild: { type: Array },
+        productChild: [{ type: Schema.Types.ObjectId }],
         description: { type: String },
     },
     {

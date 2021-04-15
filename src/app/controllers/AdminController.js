@@ -23,8 +23,6 @@ class AdminController {
 
     /// Post -> /admin/category/insert
     categoryInsert(req, res, next) {
-        console.log(req.body);
-        // return;
         var newCategory = new Categorys({
             nameCategory: req.body.nameCategory,
         });
@@ -33,7 +31,7 @@ class AdminController {
             .then((newCategory) => {
                 res.status(201).redirect("/admin/category");
             })
-            .catch((err) => res.json({ err }));
+            .catch((err) => console.error(err));
     }
 }
 
