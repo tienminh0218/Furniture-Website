@@ -65,7 +65,11 @@ class AccountController {
             username: Joi.string().alphanum().min(4).max(30).required(),
             password: Joi.string().alphanum().min(6).max(30).required(),
             fullname: Joi.string().min(6).max(50).required(),
-            phonenumber: Joi.number().min(3).max(20).required(), /// bị cái lồn gì r nhập 2 số -> ok đu má
+            phonenumber: Joi.string()
+                .pattern(/^[A-Z0-9-]/)
+                .min(6)
+                .max(11)
+                .required(),
             gender: Joi.string().min(1).required(),
             address: Joi.string()
                 .pattern(/^[a-zA-Z0-9--/,]/)
