@@ -31,7 +31,6 @@ class AccountController {
         if (!isAccountExist)
             return res.status(400).json({ message: "Your account not found" });
 
-       
         var checkPassword = await bcrypt.compare(
             req.body.password,
             isAccountExist.password
@@ -42,8 +41,8 @@ class AccountController {
             return res
                 .status(400)
                 .json({ message: "Your password or username is incorrect" });
-        
-         /// Create a token
+
+        /// Create a token
         var secret = process.env.SECRECT;
         var token = jwt.sign(
             {
@@ -66,7 +65,11 @@ class AccountController {
             username: Joi.string().alphanum().min(4).max(30).required(),
             password: Joi.string().alphanum().min(6).max(30).required(),
             fullname: Joi.string().min(6).max(50).required(),
-            phonenumber: Joi.number().min(6).max(11).required(),
+            phonenumber: Joi.string()
+                .pattern(/^[A-Z0-9-]/)
+                .min(6)
+                .max(11)
+                .required(),
             gender: Joi.string().min(1).required(),
             address: Joi.string()
                 .pattern(/^[a-zA-Z0-9--/,]/)
