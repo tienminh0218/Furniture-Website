@@ -35,16 +35,36 @@ class AdminController {
                 console.log(error);
             });
     }
+
     // Get -> /admin/product
     product(req, res, next) {
         res.render("admin-body/admin-product", { layout: "admin" });
     }
+
     // Get -> /admin/product/insert
     productAdd(req, res, next) {
-        res.render("admin-body/admin-productInsert", { layout: "admin" });
+        Categories.find({}).then((categories) => {
+            res.render("admin-body/admin-productInsert", {
+                layout: "admin",
+                categories: multipalToObject(categories),
+            });
+        });
     }
+
     // POST -> /admin/product/insert
-    productInsert(req, res, next) {
+    async productInsert(req, res, next) {
+        /// Check product isExist
+        var isExistProduct = await Product.findOne({
+            nameProduct: req.body.nameProduct,
+        });
+        if (isExistProduct) {
+            res.status(409).json({
+                message: "Product already exist",
+            });
+            return;
+        }
+
+        /// Schema Product
         var schema = Joi.object({
             nameProduct: Joi.string().min(6).max(100).required(),
             nameCategory: Joi.string().min(6).max(100).required(),
@@ -54,6 +74,29 @@ class AdminController {
             statusProduct: Joi.string().min(6).max(100).required(),
             inventoryProduct: Joi.number().required(),
         });
+
+        /// Validate form product
+        const checked = await schema.validate({
+            nameProduct: req.body.nameProduct,
+            nameCategory: req.body.nameCategory,
+            priceProduct: req.body.priceProduct,
+            descriptionProduct: req.body.descriptionProduct,
+            imageProduct: req.body.imageProduct,
+            statusProduct: req.body.statusProduct,
+            inventoryProduct: req.body.inventoryProduct,
+        });
+        var { error } = checked;
+        //// sai cmnr ma chua sua
+        if (error) {
+            Categories.find({}).then((categories) => {
+                res.render("admin-body/admin-productInsert", {
+                    layout: "admin",
+                    errorMessageServer: error.details[0].message,
+                    categories: multipalToObject(categories),
+                });
+            });
+            return;
+        }
     }
 }
 

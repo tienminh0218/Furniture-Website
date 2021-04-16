@@ -6,19 +6,14 @@
     --main-color: #0975f5;
     --text-color: #333;
     --red-color: #f30000;
-}
-
-* {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+    --errorBackground-color: #fcebe2;
+    --textError-color: #cf4a22;
 }
 
 html {
     font-size: 62.5%;
     line-height: 1.6rem;
-    font-family: "Roboto", sans-serif;
-    box-sizing: border-box;
+    // font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -46,27 +41,33 @@ html {
 }
 
 /// Form
-@mixin formContainer {
-    background: var(--white-color);
+@mixin formContainer(
+    $backgroundColor: var(--white-color),
+    $widthFormContainer: 500px,
+    $fontSize: 1.6rem,
+    $mainColor: var(--main-color),
+    $btnSubmitWidth: 100%
+) {
+    background: $backgroundColor;
     margin: auto;
     padding: 16px;
     transition: all 0.5s ease;
 
     .title {
-        font-size: 2.6rem;
+        font-size: $fontSize + 1;
         margin: 24px 0;
         text-align: center;
-        color: var(--main-color);
+        color: $mainColor;
     }
 
     .form-container {
-        width: 400px;
+        width: $widthFormContainer;
 
         .form-group {
             margin-bottom: 20px;
 
             label {
-                font-size: 1.6rem;
+                font-size: $fontSize;
                 font-weight: bold;
                 color: #333;
             }
@@ -88,14 +89,14 @@ html {
             }
 
             .btn-submit {
-                width: 100%;
+                width: $btnSubmitWidth;
                 padding: 8px;
-                font-size: 1.8rem;
+                font-size: $fontSize;
                 outline: none;
                 border: none;
                 color: var(--white-color);
                 border-radius: 4px;
-                background-color: var(--main-color);
+                background-color: $mainColor;
                 cursor: pointer;
             }
 
@@ -522,14 +523,30 @@ nav ul {
     transition: ease-in 0.5s;
     padding: 50px;
 
+    ///// Form insert product
+    .products-container {
+        @include formContainer(
+            var(--white-color),
+            100%,
+            1.6rem,
+            var(--main-color),
+            10%
+        );
+    }
+
+    ///// Form insert category
     .categoryProducts-container {
-        @include formContainer;
+        @include formContainer(
+            var(--white-color),
+            100%,
+            1.6rem,
+            var(--main-color),
+            10%
+        );
         .title {
             margin-bottom: 5%;
         }
         .form-container {
-            width: 100%;
-
             .form-group {
                 /// Ckeditor 5
                 .ck-editor__editable_inline {
@@ -537,12 +554,12 @@ nav ul {
                     overflow-y: auto;
                 }
 
-                .form-control {
-                    width: 100%;
-                }
-                .btn-submit {
-                    width: 10%;
-                }
+                // .form-control {
+                //     width: 100%;
+                // }
+                // .btn-submit {
+                //     width: 10%;
+                // }
             }
         }
     }
