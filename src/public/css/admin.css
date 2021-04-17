@@ -286,13 +286,13 @@ nav ul {
       color: var(--main-color); }
     .content .products-container .form-container {
       width: 100%; }
-      .content .products-container .form-container .form-group {
+      .content .products-container .form-container .form-group, .content .products-container .form-container .form-group-image {
         margin-bottom: 20px; }
-        .content .products-container .form-container .form-group label {
+        .content .products-container .form-container .form-group label, .content .products-container .form-container .form-group-image label {
           font-size: 1.6rem;
           font-weight: bold;
           color: #333; }
-        .content .products-container .form-container .form-group .form-control {
+        .content .products-container .form-container .form-group .form-control, .content .products-container .form-container .form-group-image .form-control {
           width: 100%;
           outline: none;
           height: 30px;
@@ -301,10 +301,10 @@ nav ul {
           margin: 8px 0;
           border: 1px solid #ccc;
           border-radius: 4px; }
-        .content .products-container .form-container .form-group .form-select {
+        .content .products-container .form-container .form-group .form-select, .content .products-container .form-container .form-group-image .form-select {
           padding: 0 8px;
           height: 4rem; }
-        .content .products-container .form-container .form-group .btn-submit {
+        .content .products-container .form-container .form-group .btn-submit, .content .products-container .form-container .form-group-image .btn-submit {
           width: 10%;
           padding: 8px;
           font-size: 1.6rem;
@@ -314,16 +314,16 @@ nav ul {
           border-radius: 4px;
           background-color: var(--main-color);
           cursor: pointer; }
-        .content .products-container .form-container .form-group .errorBox {
+        .content .products-container .form-container .form-group .errorBox, .content .products-container .form-container .form-group-image .errorBox {
           display: none; }
-          .content .products-container .form-container .form-group .errorBox .error-message {
+          .content .products-container .form-container .form-group .errorBox .error-message, .content .products-container .form-container .form-group-image .errorBox .error-message {
             margin-left: 4px;
             display: flex;
             align-items: center;
             justify-content: start;
             color: var(--red-color);
             font-size: 1.4rem; }
-            .content .products-container .form-container .form-group .errorBox .error-message .exclamationMark {
+            .content .products-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .products-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
               background-color: var(--red-color);
               width: 14px;
               height: 14px;
@@ -334,9 +334,27 @@ nav ul {
               align-items: center;
               justify-content: center;
               margin-right: 2px; }
-        .content .products-container .form-container .form-group .error-FromServer {
+        .content .products-container .form-container .form-group .error-FromServer, .content .products-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
           color: var(--red-color); }
+      .content .products-container .form-container .form-group-image .label-image {
+        display: block;
+        width: 180px;
+        height: 40px;
+        text-align: center;
+        background: var(--main-color);
+        cursor: pointer;
+        border-radius: 6px;
+        color: var(--white-color);
+        line-height: 40px; }
+      .content .products-container .form-container .form-group-image .form-control-typeFile {
+        display: none; }
+      .content .products-container .form-container .form-group-image .preview-image {
+        width: 250px;
+        margin: 10px 0; }
+        .content .products-container .form-container .form-group-image .preview-image img {
+          width: 100%;
+          display: none; }
     .content .products-container .border-modalForm {
       display: flex;
       align-items: center; }
@@ -378,13 +396,13 @@ nav ul {
       color: var(--main-color); }
     .content .categoryProducts-container .form-container {
       width: 100%; }
-      .content .categoryProducts-container .form-container .form-group {
+      .content .categoryProducts-container .form-container .form-group, .content .categoryProducts-container .form-container .form-group-image {
         margin-bottom: 20px; }
-        .content .categoryProducts-container .form-container .form-group label {
+        .content .categoryProducts-container .form-container .form-group label, .content .categoryProducts-container .form-container .form-group-image label {
           font-size: 1.6rem;
           font-weight: bold;
           color: #333; }
-        .content .categoryProducts-container .form-container .form-group .form-control {
+        .content .categoryProducts-container .form-container .form-group .form-control, .content .categoryProducts-container .form-container .form-group-image .form-control {
           width: 100%;
           outline: none;
           height: 30px;
@@ -393,10 +411,10 @@ nav ul {
           margin: 8px 0;
           border: 1px solid #ccc;
           border-radius: 4px; }
-        .content .categoryProducts-container .form-container .form-group .form-select {
+        .content .categoryProducts-container .form-container .form-group .form-select, .content .categoryProducts-container .form-container .form-group-image .form-select {
           padding: 0 8px;
           height: 4rem; }
-        .content .categoryProducts-container .form-container .form-group .btn-submit {
+        .content .categoryProducts-container .form-container .form-group .btn-submit, .content .categoryProducts-container .form-container .form-group-image .btn-submit {
           width: 10%;
           padding: 8px;
           font-size: 1.6rem;
@@ -406,16 +424,16 @@ nav ul {
           border-radius: 4px;
           background-color: var(--main-color);
           cursor: pointer; }
-        .content .categoryProducts-container .form-container .form-group .errorBox {
+        .content .categoryProducts-container .form-container .form-group .errorBox, .content .categoryProducts-container .form-container .form-group-image .errorBox {
           display: none; }
-          .content .categoryProducts-container .form-container .form-group .errorBox .error-message {
+          .content .categoryProducts-container .form-container .form-group .errorBox .error-message, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message {
             margin-left: 4px;
             display: flex;
             align-items: center;
             justify-content: start;
             color: var(--red-color);
             font-size: 1.4rem; }
-            .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark {
+            .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
               background-color: var(--red-color);
               width: 14px;
               height: 14px;
@@ -426,9 +444,27 @@ nav ul {
               align-items: center;
               justify-content: center;
               margin-right: 2px; }
-        .content .categoryProducts-container .form-container .form-group .error-FromServer {
+        .content .categoryProducts-container .form-container .form-group .error-FromServer, .content .categoryProducts-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
           color: var(--red-color); }
+      .content .categoryProducts-container .form-container .form-group-image .label-image {
+        display: block;
+        width: 180px;
+        height: 40px;
+        text-align: center;
+        background: var(--main-color);
+        cursor: pointer;
+        border-radius: 6px;
+        color: var(--white-color);
+        line-height: 40px; }
+      .content .categoryProducts-container .form-container .form-group-image .form-control-typeFile {
+        display: none; }
+      .content .categoryProducts-container .form-container .form-group-image .preview-image {
+        width: 250px;
+        margin: 10px 0; }
+        .content .categoryProducts-container .form-container .form-group-image .preview-image img {
+          width: 100%;
+          display: none; }
     .content .categoryProducts-container .border-modalForm {
       display: flex;
       align-items: center; }
@@ -460,7 +496,7 @@ nav ul {
         color: #757575; }
     .content .categoryProducts-container .title {
       margin-bottom: 5%; }
-    .content .categoryProducts-container .form-container .form-group .ck-editor__editable_inline {
+    .content .categoryProducts-container .form-container .form-group .ck-editor__editable_inline, .content .categoryProducts-container .form-container .form-group-image .ck-editor__editable_inline {
       height: 400px;
       overflow-y: auto; }
   .content.expand-content {

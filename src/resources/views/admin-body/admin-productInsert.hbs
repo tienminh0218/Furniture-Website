@@ -3,15 +3,15 @@
         <h3 class="title">Thêm sản phẩm</h3>
         <div class="form-container">
             <div class="form-group">
-                <label for="insert-category">Tên sản phẩm</label>
-                <input type="text" class="form-control" name="nameProduct" id="insert-category">
+                <label for="name-product">Tên sản phẩm</label>
+                <input type="text" id="name-product" class="form-control" name="nameProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="gender">Tên danh mục</label>
+                <label>Tên danh mục</label>
                 <select name="nameCategory" class="form-control form-select">
                     {{# each categories}}
                     <option value="{{this.slug}}">{{this.nameCategory}}</option>
@@ -23,40 +23,43 @@
             </div>
 
             <div class="form-group">
-                <label for="insert-category">Giá sản phẩm</label>
-                <input type="text" class="form-control" name="priceProduct" id="insert-category">
+                <label for="price-product">Giá sản phẩm</label>
+                <input type="text" class="form-control" id="price-product" name="priceProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="insert-category">Tình trạng sản phẩm</label>
-                <input type="text" class="form-control" name="statusProduct" id="insert-category">
+                <label for="status-product">Tình trạng sản phẩm</label>
+                <input type="text" id="status-product" class="form-control" name="statusProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="insert-category">Tồn kho</label>
-                <input type="text" class="form-control" name="inventoryProduct" id="insert-category">
+                <label for="inventory-product">Tồn kho</label>
+                <input type="text"  id="inventory-product" class="form-control" name="inventoryProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="insert-category">Ảnh sản phẩm</label>
-                <input type="text" class="form-control" name="imageProduct" id="insert-category">
+            <div class="form-group-image">
+                <label class="label-image" for="image-product">Ảnh sản phẩm</label>
+                <div class="preview-image">
+                    <img src="" alt="image-product">
+                </div>
+                <input type="file" id="image-product" class="form-control-typeFile" name="imageProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="insert-category">Mô tả sản phẩm</label>
-                <input type="text" class="form-control" name="descriptionProduct" id="insert-category">
+                <label for="description-product">Mô tả sản phẩm</label>
+                <input type="text" id="description-product" class="form-control" name="descriptionProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
