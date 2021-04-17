@@ -1,6 +1,7 @@
 const express = require("express");
 const route = express.Router();
 const AdminController = require("../app/controllers/AdminController");
+const upload = require("../util/multer");
 
 /// Categories
 route.get("/category/insert", AdminController.categoryAdd);
@@ -9,8 +10,7 @@ route.get("/category", AdminController.category);
 
 /// Products
 route.get("/product/insert", AdminController.productAdd);
-route.get("/product/insert", AdminController.productInsert);
-route.post("/product/insert", AdminController.productInsert);
+route.post("/product/insert", upload.single("imageProduct"), AdminController.productInsert);
 route.get("/product", AdminController.product);
 
 /// Home admin

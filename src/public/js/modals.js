@@ -31,8 +31,7 @@ closeBtn.forEach((btnClose) => {
 clickBgModal.addEventListener("click", closeModal);
 
 /// Click open modals
-if (clickOpenLoginModal)
-    clickOpenLoginModal.addEventListener("click", openModal);
+if (clickOpenLoginModal) clickOpenLoginModal.addEventListener("click", openModal);
 
 /// Click change register form
 textSuggest.forEach((txtSuggest) => {
@@ -108,9 +107,7 @@ function loginRequest(e) {
 /// When user want to register
 var btnRegisterSubmit = modalRegisterForm.querySelector("input[type=submit]");
 var rePassword = modalRegisterForm.querySelector("input[name='password']");
-var confirmPassword = modalRegisterForm.querySelector(
-    "input[name='confirmPassword']"
-);
+var confirmPassword = modalRegisterForm.querySelector("input[name='confirmPassword']");
 var reGender = modalRegisterForm.querySelector(".form-select");
 var registerErrorMessage = modalRegisterForm.querySelector(".error-FromServer");
 
@@ -139,8 +136,7 @@ function registerRequest(e) {
 
     /// Get value form input registerForm
     inputRegisterForm.forEach((input) => {
-        if (input.name !== "confirmPassword")
-            dataRegisterForm[input.name] = input.value.trim();
+        if (input.name !== "confirmPassword") dataRegisterForm[input.name] = input.value.trim();
     });
 
     /// Request data to register

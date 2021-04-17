@@ -9,9 +9,10 @@ const Product = new Schema(
         nameCategory: { type: String },
         priceProduct: { type: Number },
         descriptionProduct: { type: String },
-        imageProduct: { type: String },
         statusProduct: { type: String },
         inventoryProduct: { type: String },
+        imageProduct: { type: String },
+        cloudinaryId_imageProduct: { type: String },
         slug: { type: String, slug: "nameProduct" },
     },
     {
