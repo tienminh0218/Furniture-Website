@@ -1,7 +1,12 @@
 var Categories = require("../models/Category");
 var Product = require("../models/Product");
-const Joi = require("joi");
 var { multipalToObject } = require("../../util/toObj");
+
+/// schema validate
+const joiSchemaProduct = require("../../util/joi-validate/validateProduct");
+const Joi = require("joi");
+
+/// upload file
 const cloudinary = require("../../util/cloudinary");
 const upload = require("../../util/multer");
 class AdminController {
@@ -58,49 +63,36 @@ class AdminController {
     // POST -> /admin/product/insert
     async productInsert(req, res, next) {
         /// Check product isExist
-        var isExistProduct = await Product.findOne({
-            nameProduct: req.body.nameProduct,
-        });
-        if (isExistProduct) {
-            res.status(409).json({
-                message: "Product already exist",
+        try {
+            var isExistProduct = await Product.findOne({
+                nameProduct: req.body.nameProduct,
             });
-            return;
+            if (isExistProduct) {
+                res.status(409).json({
+                    message: "Product already exist",
+                });
+                return;
+            }
+        } catch (error) {
+            console.error(error);
         }
 
-        /// Schema Product
-        var schema = Joi.object({
-            nameProduct: Joi.string().min(6).max(100).required(),
-            nameCategory: Joi.string().min(6).max(100).required(),
-            priceProduct: Joi.number().required(),
-            descriptionProduct: Joi.string().required(),
-            imageProduct: Joi.string(),
-            statusProduct: Joi.string().min(6).max(100).required(),
-            inventoryProduct: Joi.number().required(),
-        });
+        /// Validate form product insert
+        const checked = await joiSchemaProduct.schemaInsertProduct.validate(
+            {
+                nameProduct: req.body.nameProduct,
+                priceProduct: req.body.priceProduct,
+                descriptionProduct: req.body.descriptionProduct,
+                inventoryProduct: req.body.inventoryProduct,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
 
-        /// Validate form product
-        // const checked = await schema.validate({
-        //     nameProduct: req.body.nameProduct,
-        //     nameCategory: req.body.nameCategory,
-        //     priceProduct: req.body.priceProduct,
-        //     descriptionProduct: req.body.descriptionProduct,
-        //     imageProduct: req.body.imageProduct,
-        //     statusProduct: req.body.statusProduct,
-        //     inventoryProduct: req.body.inventoryProduct,
-        // });
-        // var { error } = checked;
-        //// sai cmnr ma chua sua
-        // if (error) {
-        //     Categories.find({}).then((categories) => {
-        //         res.render("admin-body/admin-productInsert", {
-        //             layout: "admin",
-        //             errorMessageServer: error.details[0].message,
-        //             categories: multipalToObject(categories),
-        //         });
-        //     });
-        //     return;
-        // }
+        if (error) {
+            res.status(409).json({ message: error.details });
+            return;
+        }
 
         try {
             /// Upload image to cloudinary
@@ -122,7 +114,7 @@ class AdminController {
 
             /// save new product to database
             newProduct.save().then(() => {
-                res.redirect("/admin/product");
+                res.status(201).json();
             });
         } catch (error) {
             console.log(error);

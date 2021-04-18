@@ -32,7 +32,11 @@
 
             <div class="form-group">
                 <label for="status-product">Tình trạng sản phẩm</label>
-                <input type="text" id="status-product" class="form-control" name="statusProduct" >
+                <select name="statusProduct" id="status-product" class="form-control form-select">
+                    <option value="1">Còn hàng</option>
+                    <option value="2">Hết hàng</option>
+                    <option value="3">Ngừng kinh doanh</option>
+                </select>
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
@@ -40,7 +44,7 @@
 
             <div class="form-group">
                 <label for="inventory-product">Tồn kho</label>
-                <input type="text"  id="inventory-product" class="form-control" name="inventoryProduct" >
+                <input type="text" id="inventory-product" class="form-control" name="inventoryProduct" >
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
@@ -51,7 +55,7 @@
                 <div class="preview-image">
                     <img src="" alt="image-product">
                 </div>
-                <input type="file" id="image-product" class="form-control-typeFile" name="imageProduct" >
+                <input type="file" id="image-product" class="form-control-typeFile" required>
                 <div class="errorBox">
                     <span class="error-message">Lỗi cmnr</span>
                 </div>
@@ -67,9 +71,6 @@
 
             <div class="form-group">
                 <span class="error-FromServer">
-                    {{# if errorMessageServer }}
-                        {{errorMessageServer}}
-                    {{/if}}
                 </span>
             </div>
 
