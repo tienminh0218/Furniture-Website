@@ -125,14 +125,25 @@
     </body>
     <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
     <script>
+        var dataClassicEditor;
         ClassicEditor
                 .create( document.querySelector( '#editor' ) )
                 .then( editor => {
-                        console.log( editor );
+                    dataClassicEditor = editor;
+                        //console.log( editor );
                 } )
                 .catch( error => {
                         console.error( error );
                 } );
+                //get data from CKEditor
+        function getDataFromTheEditor() {
+            return dataClassicEditor.getData();
+        }
+        //listen input submit
+        document.getElementById('getDataCK').addEventListener('click', () => {
+            var getData = getDataFromTheEditor();
+            console.log(getData);
+        });
     </script>
     <script src="../js/admin.js"></script> 
     <script src="../js/admin-productInsert.js"></script> 

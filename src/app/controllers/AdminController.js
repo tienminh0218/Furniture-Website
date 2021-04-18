@@ -28,6 +28,8 @@ class AdminController {
     /// Post -> /admin/category/insert
     categoryInsert(req, res, next) {
         var newCategory = new Categories(req.body);
+        console.log(newCategory);
+        return;
         newCategory
             .save()
             .then(() => {
@@ -102,7 +104,9 @@ class AdminController {
 
         try {
             /// Upload image to cloudinary
-            const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+            const result_uploadImage = await cloudinary.uploader.upload(
+                req.file.path
+            );
 
             /// Create a new product
             var newProduct = new Product({
