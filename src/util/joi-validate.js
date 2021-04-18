@@ -1,18 +1,63 @@
 const Joi = require("joi");
 
 /// Schema account login form
-var schemaLoginAccount = Joi.object({
+var schemaLoginAccount = Joi.object().keys({
     username: Joi.string()
-        .error(() => "string message")
         .alphanum()
-        .error(() => "alphanum message")
         .min(4)
-        .error(() => "min message")
         .max(30)
-        .error(() => "max message")
         .required()
-        .error(() => "required message"),
-    password: Joi.string().alphanum().min(6).max(30).required(),
+        .error((errors) => {
+            errors.forEach((err) => {
+                switch (err.code) {
+                    case "string.empty":
+                    case "any.required":
+                        err.message = "Username should not be empty";
+                        break;
+                    case "string.min":
+                        err.message = `Username should have at least ${err.local.limit}  characters`;
+                        break;
+                    case "string.max":
+                        err.message = `Username should have at most ${err.local.limit}  characters`;
+                        break;
+                    case "string.alphanum":
+                        err.message = `Á đù má định hack à`;
+                        break;
+                    default:
+                        break;
+                }
+            });
+
+            return errors;
+        }),
+
+    password: Joi.string()
+        .alphanum()
+        .min(6)
+        .max(30)
+        .required()
+        .error((errors) => {
+            errors.forEach((err) => {
+                switch (err.code) {
+                    case "string.empty":
+                    case "any.required":
+                        err.message = "Password should not be empty";
+                        break;
+                    case "string.min":
+                        err.message = `Password should be at least ${err.local.limit} characters`;
+                        break;
+                    case "string.max":
+                        err.message = `Password should be at most ${err.local.limit} characters`;
+                        break;
+                    case "string.alphanum":
+                        err.message = `Á đù má định hack à`;
+                        break;
+                    default:
+                        break;
+                }
+            });
+            return errors;
+        }),
 });
 
 /// Schema account register form
