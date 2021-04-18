@@ -4,13 +4,13 @@ const Joi = require("joi");
 var jwt = require("jsonwebtoken");
 
 /// schema validate
-var JoiSchema = require("../../util/joi-validate");
+var JoiSchemaAccount = require("../../util/joi-validate/validateAccount");
 
 class AccountController {
     // POST -> /account/login
     async login(req, res, next) {
         /// Validate form
-        const checked = await JoiSchema.schemaLoginAccount.validate(
+        const checked = await JoiSchemaAccount.schemaLoginAccount.validate(
             {
                 username: req.body.username,
                 password: req.body.password,
@@ -67,7 +67,7 @@ class AccountController {
         }
 
         /// Validate form
-        const checked = await JoiSchema.schemaRegisterAccount.validate(
+        const checked = await JoiSchemaAccount.schemaRegisterAccount.validate(
             {
                 username: req.body.username,
                 password: req.body.password,
