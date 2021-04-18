@@ -88,7 +88,7 @@ function loginRequest(e) {
 
     /// Request data to login
     requestData("http://localhost:3000/account/login", "post", dataLoginForm)
-        .then(function (response) {
+        .then((response) => {
             location.reload();
         })
         .catch(function (error) {

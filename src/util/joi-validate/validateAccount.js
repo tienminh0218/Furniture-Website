@@ -72,16 +72,16 @@ var schemaRegisterAccount = Joi.object().keys({
                 switch (err.code) {
                     case "string.empty":
                     case "any.required":
-                        err.message = "Account should not be empty!";
+                        err.message = "Account should not be empty";
                         break;
                     case "string.min":
-                        err.message = `Account should have at least ${err.local.limit} characters!`;
+                        err.message = `Account should have at least ${err.local.limit} characters`;
                         break;
                     case "string.max":
-                        err.message = `Account should have at most ${err.local.limit} characters!`;
+                        err.message = `Account should have at most ${err.local.limit} characters`;
                         break;
                     case "string.alphanum":
-                        err.message = "Đừng hack em anh ơi!!!!";
+                        err.message = "Đừng hack em anh ơi";
                         break;
                     default:
                         break;
@@ -99,16 +99,16 @@ var schemaRegisterAccount = Joi.object().keys({
                 switch (err.code) {
                     case "string.empty":
                     case "any.required":
-                        err.message = "Password should not be empty!";
+                        err.message = "Password should not be empty";
                         break;
                     case "string.min":
-                        err.message = `Password should have at least ${err.local.limit} characters!`;
+                        err.message = `Password should have at least ${err.local.limit} characters`;
                         break;
-                    case "string.min":
-                        err.message = `Password should have at most ${err.local.limit} characters!`;
+                    case "string.max":
+                        err.message = `Password should have at most ${err.local.limit} characters`;
                         break;
                     case "string.alphanum":
-                        err.message = "Đừng hack em anh ơi!!!!";
+                        err.message = "Đừng hack em anh ơi";
                         break;
                     default:
                         break;
@@ -125,13 +125,13 @@ var schemaRegisterAccount = Joi.object().keys({
                 switch (err.code) {
                     case "string.empty":
                     case "any.required":
-                        err.message = "Full name should not be empty!";
+                        err.message = "Full name should not be empty";
                         break;
                     case "string.min":
-                        err.message = `Full name should have at least ${err.local.limit} characters!`;
+                        err.message = `Full name should have at least ${err.local.limit} characters`;
                         break;
-                    case "string.min":
-                        err.message = `Full name should have at most ${err.local.limit} characters!`;
+                    case "string.max":
+                        err.message = `Full name should have at most ${err.local.limit} characters`;
                         break;
                     default:
                         break;
@@ -149,13 +149,13 @@ var schemaRegisterAccount = Joi.object().keys({
                 switch (err.code) {
                     case "string.empty":
                     case "any.required":
-                        err.message = "Phone number should not be empty!";
+                        err.message = "Phone number should not be empty";
                         break;
                     case "string.min":
-                        err.message = `Phone number should have at least ${err.local.limit} characters!`;
+                        err.message = `Phone number should have at least ${err.local.limit} characters`;
                         break;
-                    case "string.min":
-                        err.message = `Phone number should have at most ${err.local.limit} characters!`;
+                    case "string.max":
+                        err.message = `Phone number should have at most ${err.local.limit} characters`;
                         break;
                     case "string.pattern.base":
                         err.message = "Phone number should be a number";
@@ -177,16 +177,16 @@ var schemaRegisterAccount = Joi.object().keys({
                 switch (err.code) {
                     case "string.empty":
                     case "any.required":
-                        err.message = "Address should not be empty!";
+                        err.message = "Address should not be empty";
                         break;
                     case "string.min":
-                        err.message = `Address should have at least ${err.local.limit} characters!`;
+                        err.message = `Address should have at least ${err.local.limit} characters`;
                         break;
-                    case "string.min":
-                        err.message = `Address should have at most ${err.local.limit} characters!`;
+                    case "string.max":
+                        err.message = `Address should have at most ${err.local.limit} characters`;
                         break;
                     case "string.pattern.base":
-                        err.message = "Ghi đúng địa chỉ anh ơi!!!!";
+                        err.message = "Ghi đúng địa chỉ anh ơi";
                         break;
                     default:
                         break;
