@@ -5,7 +5,7 @@ var schemaLoginAccount = Joi.object().keys({
     username: Joi.string().alphanum().min(4).max(30).required(),
     password: Joi.string().alphanum().min(6).max(30).required(),
 });
-
+/// asdasdddddddddddddddddddddddddddddddddd//////////////////
 /// Schema account register form
 var schemaRegisterAccount = Joi.object().keys({
     username: Joi.string()
