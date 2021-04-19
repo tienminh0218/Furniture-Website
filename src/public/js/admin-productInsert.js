@@ -1,7 +1,7 @@
 var inputImage = document.querySelector(".form-control-typeFile");
 var imgPreview = document.querySelector(".preview-image img");
 
-inputImage.addEventListener("change", showPreview);
+if (inputImage) inputImage.addEventListener("change", showPreview);
 
 /// Show image when upload
 function showPreview(event) {
@@ -14,50 +14,51 @@ function showPreview(event) {
 
 /// When user want to insert a new product
 var formProductInsert = document.querySelector(".products-container");
-var btnSubmitProduct = formProductInsert.querySelector('input[type="submit"]');
-var inputTypeFile = formProductInsert.querySelector('input[type="file"]');
-var errorFromServer = formProductInsert.querySelector(".error-FromServer");
 
-// get nodeElement select in productInsertForm
-var selectProductForm = formProductInsert.querySelectorAll(".form-select");
+/// Check if formProductInsert not null
+if (formProductInsert) {
+    var btnSubmitProduct = formProductInsert.querySelector('input[type="submit"]');
+    var inputTypeFile = formProductInsert.querySelector('input[type="file"]');
+    var errorFromServer = formProductInsert.querySelector(".error-FromServer");
 
-// get nodeElement input in productInsertForm
-var inputProductForm = formProductInsert.querySelectorAll("input[name]");
+    // get nodeElement select in productInsertForm
+    var selectProductForm = formProductInsert.querySelectorAll(".form-select");
 
-btnSubmitProduct.addEventListener("click", insertProduct);
+    // get nodeElement input in productInsertForm
+    var inputProductForm = formProductInsert.querySelectorAll("input[name]");
 
-function insertProduct(e) {
-    e.preventDefault();
+    btnSubmitProduct.addEventListener("click", insertProduct);
 
-    const formData = new FormData();
-    formData.append("imageProduct", inputTypeFile.files[0]);
+    function insertProduct(e) {
+        e.preventDefault();
 
-    /// get value select and add to dataProductForm
-    selectProductForm.forEach((select) => {
-        formData.append(select.name, select.value);
-    });
+        const formData = new FormData();
+        formData.append("imageProduct", inputTypeFile.files[0]);
 
-    /// get value input type name and add to dataProductForm
-    inputProductForm.forEach((input) => {
-        formData.append(input.name, input.value.trim());
-    });
-
-    axios({
-        method: "post",
-        url: "http://localhost:3000/admin/product/insert",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-    })
-        .then((response) => {
-            location.reload();
-        })
-        .catch((error) => {
-            if (error.response) {
-                var { data } = error.response;
-                errorFromServer.innerHTML = data.message;
-            }
+        /// get value select and add to dataProductForm
+        selectProductForm.forEach((select) => {
+            formData.append(select.name, select.value);
         });
-}
 
-{
+        /// get value input type name and add to dataProductForm
+        inputProductForm.forEach((input) => {
+            formData.append(input.name, input.value.trim());
+        });
+
+        axios({
+            method: "post",
+            url: "http://localhost:3000/admin/product/insert",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+            .then((response) => {
+                location.reload();
+            })
+            .catch((error) => {
+                if (error.response) {
+                    var { data } = error.response;
+                    errorFromServer.innerHTML = data.message;
+                }
+            });
+    }
 }

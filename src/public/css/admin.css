@@ -503,20 +503,60 @@ nav ul {
     width: 100%;
     margin-left: 0;
     transition: ease 0.3s; }
-
-table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  font-size: 2rem; }
-
-th,
-td {
-  padding: 15px;
-  text-align: center; }
-
-.td-img {
-  width: 15%; }
-  .td-img .products-img img {
-    width: 100%; }
+  .content .header-categories .title-table {
+    font-size: 3rem;
+    color: var(--main-color);
+    margin: 40px 0;
+    text-align: center; }
+  .content .header-categories .button-function {
+    margin-bottom: 20px; }
+    .content .header-categories .button-function .btn-delete {
+      min-width: 40px;
+      padding: 6px 30px;
+      outline: none;
+      color: var(--white-color);
+      border: none;
+      border-radius: 4px;
+      background-color: #dc3545;
+      font-size: 1.6rem;
+      cursor: pointer; }
+      .content .header-categories .button-function .btn-delete.disabled {
+        opacity: 0.6;
+        pointer-events: none; }
+    .content .header-categories .button-function .btn-insert {
+      min-width: 40px;
+      padding: 6px 30px;
+      outline: none;
+      color: var(--white-color);
+      border: none;
+      border-radius: 4px;
+      background-color: var(--main-color);
+      font-size: 1.6rem;
+      cursor: pointer; }
+      .content .header-categories .button-function .btn-insert.disabled {
+        opacity: 0.6;
+        pointer-events: none; }
+    .content .header-categories .button-function .btn-update {
+      min-width: 40px;
+      padding: 6px 30px;
+      outline: none;
+      color: var(--white-color);
+      border: none;
+      border-radius: 4px;
+      background-color: #28a745;
+      font-size: 1.6rem;
+      cursor: pointer; }
+      .content .header-categories .button-function .btn-update.disabled {
+        opacity: 0.6;
+        pointer-events: none; }
+  .content .header-categories table,
+  .content .header-categories th,
+  .content .header-categories td {
+    min-width: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 2rem; }
+  .content .header-categories th,
+  .content .header-categories td {
+    padding: 15px;
+    text-align: center; }

@@ -40,6 +40,69 @@ html {
     font-family: "Poppins", sans-serif;
 }
 
+@mixin btn(
+    $minWidth: 40px,
+    $padBtn: 6px 30px,
+    $colorBtn: var(--white-color),
+    $bgColor: var(--main-color),
+    $fontSize: 1.6rem
+) {
+    min-width: $minWidth;
+    padding: $padBtn;
+    outline: none;
+    color: $colorBtn;
+    border: none;
+    border-radius: 4px;
+    background-color: $bgColor;
+    font-size: $fontSize;
+    cursor: pointer;
+
+    &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
+/// Table form preview
+@mixin templateTableView($fontSizeTitle: 3rem, $colorTitle: var(--main-color)) {
+    .title-table {
+        font-size: $fontSizeTitle;
+        color: $colorTitle;
+        margin: 40px 0;
+        text-align: center;
+    }
+    .button-function {
+        margin-bottom: 20px;
+
+        .btn-delete {
+            @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
+        }
+
+        .btn-insert {
+            @include btn(40px, 6px 30px, var(--white-color), var(--main-color), 1.6rem);
+        }
+
+        .btn-update {
+            @include btn(40px, 6px 30px, var(--white-color), #28a745, 1.6rem);
+        }
+    }
+
+    table,
+    th,
+    td {
+        min-width: 20px;
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 2rem;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: center;
+    }
+}
+
 /// Form
 @mixin templateForm(
     $backgroundColor: var(--white-color),
@@ -554,24 +617,12 @@ nav ul {
 
     ///// Form insert product
     .products-container {
-        @include templateForm(
-            var(--white-color),
-            100%,
-            1.6rem,
-            var(--main-color),
-            10%
-        );
+        @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 10%);
     }
 
     ///// Form insert category
     .categoryProducts-container {
-        @include templateForm(
-            var(--white-color),
-            100%,
-            1.6rem,
-            var(--main-color),
-            10%
-        );
+        @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 10%);
         .title {
             margin-bottom: 5%;
         }
@@ -598,27 +649,8 @@ nav ul {
         margin-left: 0;
         transition: ease 0.3s;
     }
-}
 
-///// Table admin/category
-table,
-th,
-td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    font-size: 2rem;
-}
-
-th,
-td {
-    padding: 15px;
-    text-align: center;
-}
-
-.td-img {
-    width: 15%;
-
-    .products-img img {
-        width: 100%;
+    .header-categories {
+        @include templateTableView;
     }
 }
