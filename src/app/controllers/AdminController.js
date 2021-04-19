@@ -47,7 +47,9 @@ class AdminController {
 
     // Get -> /admin/product
     product(req, res, next) {
-        res.render("admin-body/admin-product", { layout: "admin" });
+        Product.find({}).then((products) => {
+            res.render("admin-body/admin-product", { layout: "admin", products });
+        });
     }
 
     // Get -> /admin/product/insert
@@ -96,9 +98,7 @@ class AdminController {
 
         try {
             /// Upload image to cloudinary
-            const result_uploadImage = await cloudinary.uploader.upload(
-                req.file.path
-            );
+            const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
 
             /// Create a new product
             var newProduct = new Product({

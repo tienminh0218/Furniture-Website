@@ -73,33 +73,34 @@ html {
     }
     .button-function {
         margin-bottom: 20px;
-
-        .btn-delete {
-            @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
+        a {
+            .btn-delete {
+                @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
+            }
+            .btn-insert {
+                @include btn(40px, 6px 30px, var(--white-color), var(--main-color), 1.6rem);
+            }
         }
+    }
 
-        .btn-insert {
-            @include btn(40px, 6px 30px, var(--white-color), var(--main-color), 1.6rem);
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        font-size: 2rem;
+        padding: 15px;
+        text-align: center;
+        max-width: 500px;
+        overflow-wrap: break-word;
+        line-height: 2.2rem;
 
         .btn-update {
             @include btn(40px, 6px 30px, var(--white-color), #28a745, 1.6rem);
         }
-    }
-
-    table,
-    th,
-    td {
-        min-width: 20px;
-        border: 1px solid black;
-        border-collapse: collapse;
-        font-size: 2rem;
-    }
-
-    th,
-    td {
-        padding: 15px;
-        text-align: center;
     }
 }
 
@@ -651,6 +652,10 @@ nav ul {
     }
 
     .header-categories {
+        @include templateTableView;
+    }
+
+    .header-products {
         @include templateTableView;
     }
 }

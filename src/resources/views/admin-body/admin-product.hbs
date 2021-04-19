@@ -1,1 +1,60 @@
-<h3>Product</h3>
+<div class="header-products">
+    <h3 class="title-table">Danh sách sản phẩm</h3>
+    <div class="button-function">
+        <a href="#">
+            <button class="btn-delete disabled">Xóa</button>
+        </a>
+        <a href="/admin/product/insert">
+            <button class="btn-insert">Thêm sản phẩm</button>
+        </a>
+    </div>
+    <table>
+            <tr>
+            <th><input type="checkbox" name="checkAll" ></th>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Tên danh mục</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Trạng thái</th>
+            <th>Tồn kho</th>
+            <th>Ảnh</th>
+            <th></th>
+            </tr>
+                {{#each products}} 
+
+                    <tr>
+                        
+                        <td> <input type="checkbox" name="deleteCategory"> </td>
+                        <td>{{sum @index 1}}</td>
+                        <td>{{this.nameProduct}}</td>
+                        <td>{{this.nameCategory}}</td>
+                        <td>{{this.priceProduct}}</td>
+                        <td>{{this.descriptionProduct}}</td>
+                        <td>{{this.statusProduct}}</td>
+                        <td>{{this.inventoryProduct}}</td>
+                        <td>
+                            <img src="{{this.imageProduct}}" alt="ảnh sản phẩm">
+                        </td>
+                        <td>
+                            <button class="btn-update">Sửa</button>
+                        </td>
+                    
+                    </tr>
+                    {{else}}
+                    
+                    <tr >
+                        <td colspan="5">
+                            chưa có sản phẩm nèo :(((( <a  href="/admin/product/insert">Thêm đê</a>
+                        </td>
+
+
+                    </tr>
+                    
+                
+            {{/each}}
+
+            
+            
+    </table>
+</div>
