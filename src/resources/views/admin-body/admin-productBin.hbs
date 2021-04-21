@@ -7,11 +7,7 @@
         <a href="/admin/product/insert">
             <button class="btn-insert">Thêm sản phẩm</button>
         </a>
-         <a href="/admin/product/insert">
-            <button class="btn-update">
-                <i class="bi bi-trash"></i>
-            </button>
-        </a>
+       
     </div>
     <table>
             <tr>
@@ -30,7 +26,7 @@
 
                     <tr>
                         
-                        <td> <input type="checkbox" idProduct="{{this._id}}" name="deleteCategory"> </td>
+                        <td> <input type="checkbox" name="deleteCategory"> </td>
                         <td>{{sum @index 1}}</td>
                         <td>{{this.nameProduct}}</td>
                         <td>{{this.nameCategory}}</td>
@@ -39,9 +35,7 @@
                         <td>{{this.statusProduct}}</td>
                         <td>{{this.inventoryProduct}}</td>
                         <td>
-                            <div class="image-product">
-                                <img src="{{this.imageProduct}}" alt="ảnh sản phẩm">
-                            </div>
+                            <img src="{{this.imageProduct}}" alt="ảnh sản phẩm">
                         </td>
                         <td>
                             <button class="btn-update">Sửa</button>
@@ -65,12 +59,3 @@
             
     </table>
 </div>
-
-{{!-- form delete --}}
-<form id="deleteForm" method="post" action="">
-  
-</form>
-        <script src="../js/admin-product.js"></script> 
- <script >
-     formDetele('.header-products')
- </script> 

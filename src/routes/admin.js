@@ -12,6 +12,7 @@ route.get("/category", AdminController.category);
 route.get("/product/insert", AdminController.productAdd);
 route.post("/product/insert", upload.single("imageProduct"), AdminController.productInsert);
 route.get("/product", AdminController.product);
+route.delete("/product/:id", AdminController.productDelete);
 
 /// Home admin
 route.get("/", AdminController.home);

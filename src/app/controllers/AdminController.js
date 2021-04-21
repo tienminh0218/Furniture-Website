@@ -1,6 +1,6 @@
 var Categories = require("../models/Category");
 var Product = require("../models/Product");
-var { multipalToObject } = require("../../util/toObj");
+var { multipleToObject } = require("../../util/toObj");
 
 /// schema validate
 const joiSchemaProduct = require("../../util/joi-validate/validateProduct");
@@ -20,7 +20,7 @@ class AdminController {
         Categories.find({}).then((categorys) => {
             res.render("admin-body/admin-category", {
                 layout: "admin",
-                categorys: multipalToObject(categorys),
+                categorys: multipleToObject(categorys),
             });
         });
     }
@@ -48,7 +48,10 @@ class AdminController {
     // Get -> /admin/product
     product(req, res, next) {
         Product.find({}).then((products) => {
-            res.render("admin-body/admin-product", { layout: "admin", products });
+            res.render("admin-body/admin-product", {
+                layout: "admin",
+                products: multipleToObject(products),
+            });
         });
     }
 
@@ -57,8 +60,18 @@ class AdminController {
         Categories.find({}).then((categories) => {
             res.render("admin-body/admin-productInsert", {
                 layout: "admin",
-                categories: multipalToObject(categories),
+                categories: multipleToObject(categories),
             });
+        });
+    }
+
+    // DELETE -> /admin/product/:id
+    productDelete(req, res, next) {
+        var newArr = req.params.id.split(",");
+        Product.delete({
+            _id: { $in: newArr },
+        }).then(() => {
+            res.redirect("back");
         });
     }
 

@@ -2,7 +2,6 @@ var inputImage = document.querySelector(".form-control-typeFile");
 var imgPreview = document.querySelector(".preview-image img");
 
 if (inputImage) inputImage.addEventListener("change", showPreview);
-
 /// Show image when upload
 function showPreview(event) {
     if (event.target.files.length > 0) {
@@ -47,7 +46,7 @@ if (formProductInsert) {
 
         axios({
             method: "post",
-            url: "http://localhost:3000/admin/product/insert",
+            url: `http://localhost:3001/admin/product/insert`,
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
         })
@@ -57,6 +56,7 @@ if (formProductInsert) {
             .catch((error) => {
                 if (error.response) {
                     var { data } = error.response;
+                    console.log(data);
                     errorFromServer.innerHTML = data.message;
                 }
             });

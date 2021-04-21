@@ -22,9 +22,9 @@ const Product = new Schema(
 
 /// add plugin
 mongoose.plugin(slug);
-// Course.plugin(mongooseDelete,{
-//     overrideMethods: 'all',
-//     deletedAt : true,
-// })
+Product.plugin(mongooseDelete, {
+    overrideMethods: "all",
+    deletedAt: true,
+});
 
 module.exports = mongoose.model("product", Product);

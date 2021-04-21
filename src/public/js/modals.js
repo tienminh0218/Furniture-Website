@@ -25,6 +25,7 @@ function showErrorMessage(error, form, errorFormServer) {
                     err.message;
             });
         } else {
+            errorFormServer.style.color = "red";
             errorFormServer.innerHTML = data.message;
         }
     }
@@ -167,6 +168,7 @@ function registerRequest(e) {
         gender: reGender.value,
     })
         .then((result) => {
+            registerErrorMessage.style.color = "#155724";
             registerErrorMessage.innerHTML = result.data.message;
             modalRegisterForm.closest(".registerFormParent").reset();
         })

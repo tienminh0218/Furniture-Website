@@ -74,11 +74,16 @@ html {
     .button-function {
         margin-bottom: 20px;
         a {
+            text-decoration: none;
             .btn-delete {
                 @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
             }
             .btn-insert {
                 @include btn(40px, 6px 30px, var(--white-color), var(--main-color), 1.6rem);
+            }
+            .btn-update {
+                @include btn(40px, 6px 15px, var(--white-color), #28a745, 1.6rem);
+                float: right;
             }
         }
     }
@@ -94,9 +99,16 @@ html {
         font-size: 2rem;
         padding: 15px;
         text-align: center;
-        max-width: 500px;
+        max-width: 200px;
         overflow-wrap: break-word;
         line-height: 2.2rem;
+
+        .image-product {
+            width: 100px;
+            img {
+                width: 100%;
+            }
+        }
 
         .btn-update {
             @include btn(40px, 6px 30px, var(--white-color), #28a745, 1.6rem);

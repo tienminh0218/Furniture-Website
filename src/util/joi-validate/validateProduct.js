@@ -3,7 +3,6 @@ const Joi = require("joi");
 /// Schema product insert form
 var schemaInsertProduct = Joi.object({
     nameProduct: Joi.string()
-        .alphanum()
         .min(6)
         .max(100)
         .required()
@@ -19,9 +18,6 @@ var schemaInsertProduct = Joi.object({
                         break;
                     case "string.max":
                         err.message = `Name product should have at most ${err.local.limit} characters`;
-                        break;
-                    case "string.alphanum":
-                        err.message = "Hack à địt mẹ";
                         break;
                     default:
                         break;
