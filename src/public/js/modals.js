@@ -7,6 +7,29 @@ function requestData(url, method = "GET", data) {
     });
 }
 
+function clearErrorMessage(form) {
+    let errMessNotify = form.querySelectorAll(".error-message");
+    form.querySelector(".error-FromServer").innerHTML = "";
+    errMessNotify.forEach((err) => {
+        err.innerHTML = "";
+    });
+}
+
+function showErrorMessage(error, form, errorFormServer) {
+    if (error.response) {
+        var { data } = error.response;
+        if (Array.isArray(data.message)) {
+            data.message.forEach((err) => {
+                let inputError = form.querySelector(`input[name=${err.path[0]}]`);
+                inputError.closest(".form-group").querySelector(".error-message").innerHTML =
+                    err.message;
+            });
+        } else {
+            errorFormServer.innerHTML = data.message;
+        }
+    }
+}
+
 var mainModal = document.querySelector(".modals");
 var clickOpenLoginModal = document.querySelector(".loginModal");
 var closeBtn = document.querySelectorAll(".close-modal");
@@ -82,10 +105,7 @@ function loginRequest(e) {
     e.preventDefault();
 
     // clear error
-    let errMessNotify = modalLoginForm.querySelectorAll(".error-message");
-    errMessNotify.forEach((err) => {
-        err.innerHTML = "";
-    });
+    clearErrorMessage(modalLoginForm);
 
     /// Get value form input loginForm
     inputLoginForm.forEach((input) => {
@@ -99,19 +119,7 @@ function loginRequest(e) {
         })
         .catch(function (error) {
             /// check if isError
-            if (error.response) {
-                var { data } = error.response;
-                if (Array.isArray(data.message)) {
-                    data.message.forEach((err) => {
-                        let inputError = modalLoginForm.querySelector(`input[name=${err.path[0]}]`);
-                        inputError
-                            .closest(".form-group")
-                            .querySelector(".error-message").innerHTML = err.message;
-                    });
-                } else {
-                    loginErrorMessage.innerHTML = data.message;
-                }
-            }
+            showErrorMessage(error, modalLoginForm, loginErrorMessage);
         });
 }
 
@@ -135,19 +143,16 @@ function registerRequest(e) {
     e.preventDefault();
 
     // clear error
-    let errMessNotify = modalRegisterForm.querySelectorAll(".error-message");
-    errMessNotify.forEach((err) => {
-        err.innerHTML = "";
-    });
+    clearErrorMessage(modalRegisterForm);
 
     /// confirm password
     var isConfirm = rePassword.value !== confirmPassword.value;
     if (rePassword.value.length == 0) {
-        registerErrorMessage.innerHTML = "Mật khẩu trống !!!";
+        registerErrorMessage.innerHTML = "Password should not be empty";
         return;
     }
     if (isConfirm) {
-        registerErrorMessage.innerHTML = "Mật khẩu không trùng khớp !!!";
+        registerErrorMessage.innerHTML = "Your confirm password is incorrect";
         return;
     }
 
@@ -163,32 +168,11 @@ function registerRequest(e) {
     })
         .then((result) => {
             registerErrorMessage.innerHTML = result.data.message;
-            modalRegisterForm.reset();
+            modalRegisterForm.closest(".registerFormParent").reset();
         })
         /// error form server
         .catch((error) => {
             /// check if isError
-            if (error.response) {
-                var { data } = error.response;
-                if (Array.isArray(data.message)) {
-                    data.message.forEach((err) => {
-                        let inputError = modalRegisterForm.querySelector(
-                            `input[name=${err.path[0]}]`
-                        );
-                        inputError
-                            .closest(".form-group")
-                            .querySelector(".error-message").innerHTML = err.message;
-                    });
-                } else {
-                    registerErrorMessage.innerHTML = data.message;
-                }
-
-                // var { data } = error.response;
-                // var messageErrorServer = data.message.replace(/"/g, "");
-                // registerErrorMessage.innerHTML =
-                //     messageErrorServer.charAt(0).toUpperCase() +
-                //     messageErrorServer.slice(1) +
-                //     " !!!";
-            }
+            showErrorMessage(error, modalRegisterForm, registerErrorMessage);
         });
 }
