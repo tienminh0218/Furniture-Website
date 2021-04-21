@@ -96,6 +96,7 @@ class AccountController {
             gender: req.body.gender,
             address: req.body.address,
         });
+
         // Create a new account
         newAccount
             .save()
