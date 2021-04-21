@@ -100,7 +100,7 @@ html {
             }
 
             .errorBox {
-                display: none;
+                // display: none;
 
                 .error-message {
                     margin-left: 4px;
@@ -354,12 +354,7 @@ header .header__mid .header__mid-right {
     }
 }
 
-header
-    .header__bot
-    .header__bot-container
-    .header__bot-list
-    .header__bot-item
-    .arrow-down-list {
+header .header__bot .header__bot-container .header__bot-list .header__bot-item .arrow-down-list {
     color: var(--text-color);
     margin-left: 8px;
     display: inline-flex;
@@ -1254,10 +1249,6 @@ input#cart-quantity {
     }
 }
 
-
-
-
-
 // ---- modal ------
 .modals {
     display: none;
@@ -1333,7 +1324,6 @@ input#cart-quantity {
     display: block !important;
 }
 
-
 // reponsive
 
 /* PC */
@@ -1388,8 +1378,6 @@ input#cart-quantity {
         }
     }
 }
-
-
 
 /* Tablet */
 
@@ -1460,7 +1448,6 @@ input#cart-quantity {
 }
 
 @media only screen and (max-width: 991px) {
-
     .container {
         .detail__main {
             width: 100%;
@@ -1510,14 +1497,12 @@ input#cart-quantity {
                 }
             }
         }
-
     }
 
     .container__body {
         width: 96%;
 
         .body__product-list {
-
             .body__product-list-content {
                 width: 33%;
             }
@@ -1532,14 +1517,12 @@ input#cart-quantity {
         }
 
         .body__collection-slide {
-
             .body__collect-content {
                 width: 50%;
             }
         }
 
         .body__group-title-home {
-
             .input-email {
                 width: 70%;
             }
@@ -1550,7 +1533,6 @@ input#cart-quantity {
         width: 95%;
 
         .footer__top {
-
             .footer__top-content {
                 display: block;
 
@@ -1590,8 +1572,6 @@ input#cart-quantity {
             float: left;
         }
     }
-
-    
 
     .header__bot,
     .header__mid-left .header__mid-left-search,
@@ -1737,7 +1717,6 @@ input#cart-quantity {
             }
         }
         .body__product-list {
-
             .body__product-list-content {
                 width: 100%;
             }
@@ -1805,7 +1784,7 @@ input#cart-quantity {
     }
     .footer__bot {
         width: 90%;
-        
+
         .footer__bot-content.ftb1 {
             width: 100%;
         }

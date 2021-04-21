@@ -81,6 +81,12 @@ function loginRequest(e) {
     /// prevent submit form
     e.preventDefault();
 
+    // clear error
+    let errMessNotify = modalLoginForm.querySelectorAll(".error-message");
+    errMessNotify.forEach((err) => {
+        err.innerHTML = "";
+    });
+
     /// Get value form input loginForm
     inputLoginForm.forEach((input) => {
         dataLoginForm[input.name] = input.value.trim();
@@ -95,11 +101,16 @@ function loginRequest(e) {
             /// check if isError
             if (error.response) {
                 var { data } = error.response;
-                var messageErrorServer = data.message.replace(/"/g, "");
-                loginErrorMessage.innerHTML =
-                    messageErrorServer.charAt(0).toUpperCase() +
-                    messageErrorServer.slice(1) +
-                    " !!!";
+                if (Array.isArray(data.message)) {
+                    data.message.forEach((err) => {
+                        let inputError = modalLoginForm.querySelector(`input[name=${err.path[0]}]`);
+                        inputError
+                            .closest(".form-group")
+                            .querySelector(".error-message").innerHTML = err.message;
+                    });
+                } else {
+                    loginErrorMessage.innerHTML = data.message;
+                }
             }
         });
 }
@@ -122,6 +133,12 @@ btnRegisterSubmit.addEventListener("click", registerRequest);
 function registerRequest(e) {
     /// prevent submit form
     e.preventDefault();
+
+    // clear error
+    let errMessNotify = modalRegisterForm.querySelectorAll(".error-message");
+    errMessNotify.forEach((err) => {
+        err.innerHTML = "";
+    });
 
     /// confirm password
     var isConfirm = rePassword.value !== confirmPassword.value;
@@ -153,11 +170,25 @@ function registerRequest(e) {
             /// check if isError
             if (error.response) {
                 var { data } = error.response;
-                var messageErrorServer = data.message.replace(/"/g, "");
-                registerErrorMessage.innerHTML =
-                    messageErrorServer.charAt(0).toUpperCase() +
-                    messageErrorServer.slice(1) +
-                    " !!!";
+                if (Array.isArray(data.message)) {
+                    data.message.forEach((err) => {
+                        let inputError = modalRegisterForm.querySelector(
+                            `input[name=${err.path[0]}]`
+                        );
+                        inputError
+                            .closest(".form-group")
+                            .querySelector(".error-message").innerHTML = err.message;
+                    });
+                } else {
+                    registerErrorMessage.innerHTML = data.message;
+                }
+
+                // var { data } = error.response;
+                // var messageErrorServer = data.message.replace(/"/g, "");
+                // registerErrorMessage.innerHTML =
+                //     messageErrorServer.charAt(0).toUpperCase() +
+                //     messageErrorServer.slice(1) +
+                //     " !!!";
             }
         });
 }

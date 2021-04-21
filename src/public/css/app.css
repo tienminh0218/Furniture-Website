@@ -859,26 +859,24 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             border-radius: 4px;
             background-color: var(--main-color);
             cursor: pointer; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .errorBox {
-            display: none; }
-            .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message {
-              margin-left: 4px;
+          .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message {
+            margin-left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: var(--red-color);
+            font-size: 1.4rem; }
+            .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark {
+              background-color: var(--red-color);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              color: var(--white-color);
+              font-size: 1.4rem;
               display: flex;
               align-items: center;
-              justify-content: start;
-              color: var(--red-color);
-              font-size: 1.4rem; }
-              .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark {
-                background-color: var(--red-color);
-                width: 14px;
-                height: 14px;
-                border-radius: 50%;
-                color: var(--white-color);
-                font-size: 1.4rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-right: 2px; }
+              justify-content: center;
+              margin-right: 2px; }
           .modals .modal-container .modal-loginForm .form-container .form-group .error-FromServer {
             font-size: 1.4rem;
             color: var(--red-color); }
@@ -952,26 +950,24 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             border-radius: 4px;
             background-color: var(--main-color);
             cursor: pointer; }
-          .modals .modal-container .modal-registerForm .form-container .form-group .errorBox {
-            display: none; }
-            .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message {
-              margin-left: 4px;
+          .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message {
+            margin-left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: var(--red-color);
+            font-size: 1.4rem; }
+            .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message .exclamationMark {
+              background-color: var(--red-color);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              color: var(--white-color);
+              font-size: 1.4rem;
               display: flex;
               align-items: center;
-              justify-content: start;
-              color: var(--red-color);
-              font-size: 1.4rem; }
-              .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message .exclamationMark {
-                background-color: var(--red-color);
-                width: 14px;
-                height: 14px;
-                border-radius: 50%;
-                color: var(--white-color);
-                font-size: 1.4rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-right: 2px; }
+              justify-content: center;
+              margin-right: 2px; }
           .modals .modal-container .modal-registerForm .form-container .form-group .error-FromServer {
             font-size: 1.4rem;
             color: var(--red-color); }
