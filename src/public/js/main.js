@@ -72,18 +72,17 @@ function myFunction3() {
 
 // slide img detail
 function slideImgRight() {
-	document.getElementById("detail-slideimg").style.marginLeft = "0%";
-	document.getElementById("detail-slideimg").style.transition = "ease-in 0.5s";
-	document.getElementById("imgSlideone").style.border = "1px solid black";
-	document.getElementById("imgSlidetwo").style.border = "none";
-	
+    document.getElementById("detail-slideimg").style.marginLeft = "0%";
+    document.getElementById("detail-slideimg").style.transition = "ease-in 0.5s";
+    document.getElementById("imgSlideone").style.border = "1px solid black";
+    document.getElementById("imgSlidetwo").style.border = "none";
 }
 
 function slideImgLeft() {
-	document.getElementById("detail-slideimg").style.marginLeft = "-100%";
-	document.getElementById("detail-slideimg").style.transition = "ease-in 0.5s";
-	document.getElementById("imgSlidetwo").style.border = "1px solid black";
-	document.getElementById("imgSlideone").style.border = "none";
+    document.getElementById("detail-slideimg").style.marginLeft = "-100%";
+    document.getElementById("detail-slideimg").style.transition = "ease-in 0.5s";
+    document.getElementById("imgSlidetwo").style.border = "1px solid black";
+    document.getElementById("imgSlideone").style.border = "none";
 }
 
 /// When user logged
@@ -99,7 +98,7 @@ if (userExist && containerUser) {
     logoutUser.addEventListener("click", eraseCookie);
     adminUser.addEventListener(
         "click",
-        () => (window.location.href = "http://localhost:3000/admin")
+        () => (window.location.href = "http://localhost:3001/admin")
     );
 }
 

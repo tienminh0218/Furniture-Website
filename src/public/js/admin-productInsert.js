@@ -2,12 +2,37 @@ var inputImage = document.querySelector(".form-control-typeFile");
 var imgPreview = document.querySelector(".preview-image img");
 
 if (inputImage) inputImage.addEventListener("change", showPreview);
+
 /// Show image when upload
 function showPreview(event) {
     if (event.target.files.length > 0) {
         var src = URL.createObjectURL(event.target.files[0]);
         imgPreview.src = src;
         imgPreview.style.display = "block";
+    }
+}
+
+function clearErrorMessage(form) {
+    let errMessNotify = form.querySelectorAll(".error-message");
+    form.querySelector(".error-FromServer").innerHTML = "";
+    errMessNotify.forEach((err) => {
+        err.innerHTML = "";
+    });
+}
+
+function showErrorMessage(error, form, errorFormServer) {
+    if (error.response) {
+        var { data } = error.response;
+        if (Array.isArray(data.message)) {
+            data.message.forEach((err) => {
+                let inputError = form.querySelector(`input[name=${err.path[0]}]`);
+                inputError.closest(".form-group").querySelector(".error-message").innerHTML =
+                    err.message;
+            });
+        } else {
+            errorFormServer.style.color = "red";
+            errorFormServer.innerHTML = data.message;
+        }
     }
 }
 
@@ -30,6 +55,9 @@ if (formProductInsert) {
 
     function insertProduct(e) {
         e.preventDefault();
+
+        /// check message
+        clearErrorMessage(formProductInsert);
 
         const formData = new FormData();
         formData.append("imageProduct", inputTypeFile.files[0]);
@@ -54,11 +82,7 @@ if (formProductInsert) {
                 location.reload();
             })
             .catch((error) => {
-                if (error.response) {
-                    var { data } = error.response;
-                    console.log(data);
-                    errorFromServer.innerHTML = data.message;
-                }
+                showErrorMessage(error, formProductInsert, errorFromServer);
             });
     }
 }

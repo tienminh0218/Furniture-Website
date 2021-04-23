@@ -1,4 +1,4 @@
-var inputcheckItems = document.querySelectorAll('input[type="checkbox"][name="deleteCategory"]');
+var inputcheckItems = document.querySelectorAll('input[type="checkbox"][name="itemCheck"]');
 var inputCheckAll = document.querySelector('input[type="checkbox"][name="checkAll"]');
 var btnDelete = document.querySelector(".btn-delete");
 
@@ -25,7 +25,7 @@ function checkedAllInput(e) {
 /// is all input has checked
 function isCheckedAll(e) {
     var inputHasCheck = document.querySelectorAll(
-        "input[type='checkbox'][name='deleteCategory']:checked"
+        "input[type='checkbox'][name='itemCheck']:checked"
     );
 
     /// check if as least one input has checked

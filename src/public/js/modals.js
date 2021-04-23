@@ -114,7 +114,7 @@ function loginRequest(e) {
     });
 
     /// Request data to login
-    requestData("http://localhost:3000/account/login", "post", dataLoginForm)
+    requestData("http://localhost:3001/account/login", "post", dataLoginForm)
         .then((response) => {
             location.reload();
         })
@@ -163,7 +163,7 @@ function registerRequest(e) {
     });
 
     /// Request data to register
-    requestData("http://localhost:3000/account/register", "POST", {
+    requestData("http://localhost:3001/account/register", "POST", {
         ...dataRegisterForm,
         gender: reGender.value,
     })

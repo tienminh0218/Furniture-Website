@@ -2,12 +2,12 @@
     <h3 class="title-table">Danh sách sản phẩm</h3>
     <div class="button-function">
         <a href="#">
-            <button class="btn-delete disabled">Xóa</button>
+            <button class="btn-delete deleteProduct disabled">Xóa</button>
         </a>
         <a href="/admin/product/insert">
             <button class="btn-insert">Thêm sản phẩm</button>
         </a>
-         <a href="/admin/product/insert">
+         <a href="/admin/product/bin">
             <button class="btn-update">
                 <i class="bi bi-trash"></i>
             </button>
@@ -30,7 +30,7 @@
 
                     <tr>
                         
-                        <td> <input type="checkbox" idProduct="{{this._id}}" name="deleteCategory"> </td>
+                        <td> <input type="checkbox" idDatabase="{{this._id}}" name="itemCheck"> </td>
                         <td>{{sum @index 1}}</td>
                         <td>{{this.nameProduct}}</td>
                         <td>{{this.nameCategory}}</td>
@@ -70,7 +70,7 @@
 <form id="deleteForm" method="post" action="">
   
 </form>
-        <script src="../js/admin-product.js"></script> 
+        <script src="../js/databaseChangings.js"></script> 
  <script >
-     formDetele('.header-products')
+     databaseChangings('.header-products', 'product','.deleteProduct','delete')
  </script> 

@@ -314,26 +314,24 @@ nav ul {
           border-radius: 4px;
           background-color: var(--main-color);
           cursor: pointer; }
-        .content .products-container .form-container .form-group .errorBox, .content .products-container .form-container .form-group-image .errorBox {
-          display: none; }
-          .content .products-container .form-container .form-group .errorBox .error-message, .content .products-container .form-container .form-group-image .errorBox .error-message {
-            margin-left: 4px;
+        .content .products-container .form-container .form-group .errorBox .error-message, .content .products-container .form-container .form-group-image .errorBox .error-message {
+          margin-left: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          color: var(--red-color);
+          font-size: 1.4rem; }
+          .content .products-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .products-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
+            background-color: var(--red-color);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
-            justify-content: start;
-            color: var(--red-color);
-            font-size: 1.4rem; }
-            .content .products-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .products-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
-              background-color: var(--red-color);
-              width: 14px;
-              height: 14px;
-              border-radius: 50%;
-              color: var(--white-color);
-              font-size: 1.4rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-right: 2px; }
+            justify-content: center;
+            margin-right: 2px; }
         .content .products-container .form-container .form-group .error-FromServer, .content .products-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
           color: var(--red-color); }
@@ -424,26 +422,24 @@ nav ul {
           border-radius: 4px;
           background-color: var(--main-color);
           cursor: pointer; }
-        .content .categoryProducts-container .form-container .form-group .errorBox, .content .categoryProducts-container .form-container .form-group-image .errorBox {
-          display: none; }
-          .content .categoryProducts-container .form-container .form-group .errorBox .error-message, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message {
-            margin-left: 4px;
+        .content .categoryProducts-container .form-container .form-group .errorBox .error-message, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message {
+          margin-left: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          color: var(--red-color);
+          font-size: 1.4rem; }
+          .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
+            background-color: var(--red-color);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
-            justify-content: start;
-            color: var(--red-color);
-            font-size: 1.4rem; }
-            .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
-              background-color: var(--red-color);
-              width: 14px;
-              height: 14px;
-              border-radius: 50%;
-              color: var(--white-color);
-              font-size: 1.4rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-right: 2px; }
+            justify-content: center;
+            margin-right: 2px; }
         .content .categoryProducts-container .form-container .form-group .error-FromServer, .content .categoryProducts-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
           color: var(--red-color); }
