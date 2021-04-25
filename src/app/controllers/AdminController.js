@@ -111,49 +111,45 @@ class AdminController {
 
     // PUT -> /admin/product/update?id=
     async productUpdate(req, res, next) {
-        let isImageExist = req.file?.path;
-        let oldProduct = await Product.find({ _id: req.params.id });
-        /// check new image
-        if (isImageExist) {
-            // try {
-            //     await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
-            //     const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
-            // } catch (error) {
-            //     console.log(error);
-            // }
-            /// check if nameCategory is changed
-            if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
-                Categories.findOneAndUpdate(
-                    { slug: req.body.nameCategory },
-                    { $pull: { productchid: { _id: req.params.id } } },
-                    { new: true }
-                )
-                    .then((x) => {
-                        res.json({ x });
-                    })
-                    .catch((err) => console.log(err));
-            }
-            return;
-            let productChild = await Product.updateOne(
-                { _id: req.params.id },
-                {
-                    nameProduct:
-                        req.body.nameProduct || oldProduct[0].nameProduct,
-                    nameCategory: req.body.nameCategory,
-                    priceProduct:
-                        req.body.priceProduct || oldProduct[0].priceProduct,
-                    statusProduct: req.body.statusProduct,
-                    inventoryProduct:
-                        req.body.inventoryProduct ||
-                        oldProduct[0].inventoryProduct,
-                    descriptionProduct:
-                        req.body.descriptionProduct ||
-                        oldProduct[0].descriptionProduct,
-                    imageProduct: result_uploadImage.url,
-                    cloudinaryId_imageProduct: result_uploadImage.public_id,
-                }
+        var oldProduct = await Product.find({ _id: req.params.id });
+
+        try {
+            await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
+            var result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+        } catch (error) {
+            console.log(error);
+        }
+
+        /// check if nameCategory is changed
+        if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
+            await Categories.findOneAndUpdate(
+                {},
+                { $pull: { productchid: { _id: oldProduct[0]._id } } },
+                { multi: true }
             );
         }
+
+        var productChild = await Product.findOneAndUpdate(
+            { _id: req.params.id },
+            {
+                nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                nameCategory: req.body.nameCategory,
+                priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                statusProduct: req.body.statusProduct,
+                inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                imageProduct: result_uploadImage.url,
+                cloudinaryId_imageProduct: result_uploadImage.public_id,
+            },
+            /// ko có thằng đĩ này thì nó trả về thằng củ nên mới ko thay đổi
+            { new: true }
+        );
+
+        Categories.findOneAndUpdate({ slug: productChild.nameCategory }, { $push: { productchid: productChild } }).then(
+            () => {
+                res.json("ok");
+            }
+        );
     }
 
     // GET -> /admin/product/bin
