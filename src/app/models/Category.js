@@ -10,7 +10,6 @@ const Categories = new Schema(
         productchid: [
             {
                 nameProduct: { type: String },
-                nameCategory: { type: String },
                 priceProduct: { type: Number },
                 descriptionProduct: { type: String },
                 statusProduct: { type: String },

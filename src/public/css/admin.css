@@ -351,8 +351,7 @@ nav ul {
         width: 250px;
         margin: 10px 0; }
         .content .products-container .form-container .form-group-image .preview-image img {
-          width: 100%;
-          display: none; }
+          width: 100%; }
     .content .products-container .border-modalForm {
       display: flex;
       align-items: center; }
@@ -459,8 +458,7 @@ nav ul {
         width: 250px;
         margin: 10px 0; }
         .content .categoryProducts-container .form-container .form-group-image .preview-image img {
-          width: 100%;
-          display: none; }
+          width: 100%; }
     .content .categoryProducts-container .border-modalForm {
       display: flex;
       align-items: center; }

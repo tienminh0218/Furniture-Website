@@ -1,6 +1,6 @@
 var Categories = require("../models/Category");
 var Product = require("../models/Product");
-var { multipleToObject } = require("../../util/toObj");
+var { multipleToObject, toObject } = require("../../util/toObj");
 
 /// schema validate
 const joiSchemaProduct = require("../../util/joi-validate/validateProduct");
@@ -91,6 +91,60 @@ class AdminController {
                 categories: multipleToObject(categories),
             });
         });
+    }
+
+    // Get -> /admin/product/update?id=
+    async productUpdateView(req, res, next) {
+        var idProduct = req.query.id;
+
+        Promise.all([Product.find({ _id: idProduct }), Categories.find({})]).then(([product, categories]) => {
+            res.render("admin-body/admin-productUpdate", {
+                layout: "admin",
+                product: multipleToObject(product),
+                categories: multipleToObject(categories),
+            });
+        });
+    }
+
+    // PUT -> /admin/product/update?id=
+    async productUpdate(req, res, next) {
+        let isImageExist = req.file?.path;
+        let oldProduct = await Product.find({ _id: req.params.id });
+        /// check new image
+        if (isImageExist) {
+            // try {
+            //     await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
+            //     const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+            // } catch (error) {
+            //     console.log(error);
+            // }
+            /// check if nameCategory is changed
+            if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
+                Categories.findOneAndUpdate(
+                    { slug: req.body.nameCategory },
+                    { $pull: { productchid: { _id: req.params.id } } },
+                    { new: true }
+                )
+                    .then((x) => {
+                        res.json({ x });
+                    })
+                    .catch((err) => console.log(err));
+            }
+            return;
+            let productChild = await Product.updateOne(
+                { _id: req.params.id },
+                {
+                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameCategory: req.body.nameCategory,
+                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    statusProduct: req.body.statusProduct,
+                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                    descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                    imageProduct: result_uploadImage.url,
+                    cloudinaryId_imageProduct: result_uploadImage.public_id,
+                }
+            );
+        }
     }
 
     // GET -> /admin/product/bin

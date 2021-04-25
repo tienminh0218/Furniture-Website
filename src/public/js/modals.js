@@ -9,7 +9,11 @@ function requestData(url, method = "GET", data) {
 
 function clearErrorMessage(form) {
     let errMessNotify = form.querySelectorAll(".error-message");
+    let inputs = form.querySelectorAll("input");
     form.querySelector(".error-FromServer").innerHTML = "";
+    inputs.forEach((input) => {
+        input.style.borderColor = "#ccc";
+    });
     errMessNotify.forEach((err) => {
         err.innerHTML = "";
     });
@@ -21,6 +25,7 @@ function showErrorMessage(error, form, errorFormServer) {
         if (Array.isArray(data.message)) {
             data.message.forEach((err) => {
                 let inputError = form.querySelector(`input[name=${err.path[0]}]`);
+                inputError.style.borderColor = "red";
                 inputError.closest(".form-group").querySelector(".error-message").innerHTML =
                     err.message;
             });

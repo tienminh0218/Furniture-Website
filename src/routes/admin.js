@@ -13,6 +13,8 @@ route.delete("/category/:id", AdminController.categoryDelete);
 
 /// Products
 route.get("/product/insert", AdminController.productAdd);
+route.get("/product/update", AdminController.productUpdateView);
+route.put("/product/update/:id", upload.single("imageProduct"), AdminController.productUpdate);
 route.post("/product/insert", upload.single("imageProduct"), AdminController.productInsert);
 route.get("/product", AdminController.product);
 route.get("/product/bin", AdminController.productBin);
