@@ -314,26 +314,24 @@ nav ul {
           border-radius: 4px;
           background-color: var(--main-color);
           cursor: pointer; }
-        .content .products-container .form-container .form-group .errorBox, .content .products-container .form-container .form-group-image .errorBox {
-          display: none; }
-          .content .products-container .form-container .form-group .errorBox .error-message, .content .products-container .form-container .form-group-image .errorBox .error-message {
-            margin-left: 4px;
+        .content .products-container .form-container .form-group .errorBox .error-message, .content .products-container .form-container .form-group-image .errorBox .error-message {
+          margin-left: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          color: var(--red-color);
+          font-size: 1.4rem; }
+          .content .products-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .products-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
+            background-color: var(--red-color);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
-            justify-content: start;
-            color: var(--red-color);
-            font-size: 1.4rem; }
-            .content .products-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .products-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
-              background-color: var(--red-color);
-              width: 14px;
-              height: 14px;
-              border-radius: 50%;
-              color: var(--white-color);
-              font-size: 1.4rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-right: 2px; }
+            justify-content: center;
+            margin-right: 2px; }
         .content .products-container .form-container .form-group .error-FromServer, .content .products-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
           color: var(--red-color); }
@@ -353,8 +351,7 @@ nav ul {
         width: 250px;
         margin: 10px 0; }
         .content .products-container .form-container .form-group-image .preview-image img {
-          width: 100%;
-          display: none; }
+          width: 100%; }
     .content .products-container .border-modalForm {
       display: flex;
       align-items: center; }
@@ -424,26 +421,24 @@ nav ul {
           border-radius: 4px;
           background-color: var(--main-color);
           cursor: pointer; }
-        .content .categoryProducts-container .form-container .form-group .errorBox, .content .categoryProducts-container .form-container .form-group-image .errorBox {
-          display: none; }
-          .content .categoryProducts-container .form-container .form-group .errorBox .error-message, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message {
-            margin-left: 4px;
+        .content .categoryProducts-container .form-container .form-group .errorBox .error-message, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message {
+          margin-left: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          color: var(--red-color);
+          font-size: 1.4rem; }
+          .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
+            background-color: var(--red-color);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
-            justify-content: start;
-            color: var(--red-color);
-            font-size: 1.4rem; }
-            .content .categoryProducts-container .form-container .form-group .errorBox .error-message .exclamationMark, .content .categoryProducts-container .form-container .form-group-image .errorBox .error-message .exclamationMark {
-              background-color: var(--red-color);
-              width: 14px;
-              height: 14px;
-              border-radius: 50%;
-              color: var(--white-color);
-              font-size: 1.4rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-right: 2px; }
+            justify-content: center;
+            margin-right: 2px; }
         .content .categoryProducts-container .form-container .form-group .error-FromServer, .content .categoryProducts-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
           color: var(--red-color); }
@@ -463,8 +458,7 @@ nav ul {
         width: 250px;
         margin: 10px 0; }
         .content .categoryProducts-container .form-container .form-group-image .preview-image img {
-          width: 100%;
-          display: none; }
+          width: 100%; }
     .content .categoryProducts-container .border-modalForm {
       display: flex;
       align-items: center; }
@@ -510,32 +504,48 @@ nav ul {
     text-align: center; }
   .content .header-categories .button-function {
     margin-bottom: 20px; }
-    .content .header-categories .button-function a .btn-delete {
-      min-width: 40px;
-      padding: 6px 30px;
-      outline: none;
-      color: var(--white-color);
-      border: none;
-      border-radius: 4px;
-      background-color: #dc3545;
-      font-size: 1.6rem;
-      cursor: pointer; }
-      .content .header-categories .button-function a .btn-delete.disabled {
-        opacity: 0.6;
-        pointer-events: none; }
-    .content .header-categories .button-function a .btn-insert {
-      min-width: 40px;
-      padding: 6px 30px;
-      outline: none;
-      color: var(--white-color);
-      border: none;
-      border-radius: 4px;
-      background-color: var(--main-color);
-      font-size: 1.6rem;
-      cursor: pointer; }
-      .content .header-categories .button-function a .btn-insert.disabled {
-        opacity: 0.6;
-        pointer-events: none; }
+    .content .header-categories .button-function a {
+      text-decoration: none; }
+      .content .header-categories .button-function a .btn-delete {
+        min-width: 40px;
+        padding: 6px 30px;
+        outline: none;
+        color: var(--white-color);
+        border: none;
+        border-radius: 4px;
+        background-color: #dc3545;
+        font-size: 1.6rem;
+        cursor: pointer; }
+        .content .header-categories .button-function a .btn-delete.disabled {
+          opacity: 0.6;
+          pointer-events: none; }
+      .content .header-categories .button-function a .btn-insert {
+        min-width: 40px;
+        padding: 6px 30px;
+        outline: none;
+        color: var(--white-color);
+        border: none;
+        border-radius: 4px;
+        background-color: var(--main-color);
+        font-size: 1.6rem;
+        cursor: pointer; }
+        .content .header-categories .button-function a .btn-insert.disabled {
+          opacity: 0.6;
+          pointer-events: none; }
+      .content .header-categories .button-function a .btn-update {
+        min-width: 40px;
+        padding: 6px 15px;
+        outline: none;
+        color: var(--white-color);
+        border: none;
+        border-radius: 4px;
+        background-color: #28a745;
+        font-size: 1.6rem;
+        cursor: pointer;
+        float: right; }
+        .content .header-categories .button-function a .btn-update.disabled {
+          opacity: 0.6;
+          pointer-events: none; }
   .content .header-categories table {
     width: 100%;
     border-collapse: collapse; }
@@ -545,9 +555,15 @@ nav ul {
     font-size: 2rem;
     padding: 15px;
     text-align: center;
-    max-width: 500px;
+    max-width: 200px;
     overflow-wrap: break-word;
     line-height: 2.2rem; }
+    .content .header-categories th .image-product,
+    .content .header-categories td .image-product {
+      width: 100px; }
+      .content .header-categories th .image-product img,
+      .content .header-categories td .image-product img {
+        width: 100%; }
     .content .header-categories th .btn-update,
     .content .header-categories td .btn-update {
       min-width: 40px;
@@ -570,32 +586,48 @@ nav ul {
     text-align: center; }
   .content .header-products .button-function {
     margin-bottom: 20px; }
-    .content .header-products .button-function a .btn-delete {
-      min-width: 40px;
-      padding: 6px 30px;
-      outline: none;
-      color: var(--white-color);
-      border: none;
-      border-radius: 4px;
-      background-color: #dc3545;
-      font-size: 1.6rem;
-      cursor: pointer; }
-      .content .header-products .button-function a .btn-delete.disabled {
-        opacity: 0.6;
-        pointer-events: none; }
-    .content .header-products .button-function a .btn-insert {
-      min-width: 40px;
-      padding: 6px 30px;
-      outline: none;
-      color: var(--white-color);
-      border: none;
-      border-radius: 4px;
-      background-color: var(--main-color);
-      font-size: 1.6rem;
-      cursor: pointer; }
-      .content .header-products .button-function a .btn-insert.disabled {
-        opacity: 0.6;
-        pointer-events: none; }
+    .content .header-products .button-function a {
+      text-decoration: none; }
+      .content .header-products .button-function a .btn-delete {
+        min-width: 40px;
+        padding: 6px 30px;
+        outline: none;
+        color: var(--white-color);
+        border: none;
+        border-radius: 4px;
+        background-color: #dc3545;
+        font-size: 1.6rem;
+        cursor: pointer; }
+        .content .header-products .button-function a .btn-delete.disabled {
+          opacity: 0.6;
+          pointer-events: none; }
+      .content .header-products .button-function a .btn-insert {
+        min-width: 40px;
+        padding: 6px 30px;
+        outline: none;
+        color: var(--white-color);
+        border: none;
+        border-radius: 4px;
+        background-color: var(--main-color);
+        font-size: 1.6rem;
+        cursor: pointer; }
+        .content .header-products .button-function a .btn-insert.disabled {
+          opacity: 0.6;
+          pointer-events: none; }
+      .content .header-products .button-function a .btn-update {
+        min-width: 40px;
+        padding: 6px 15px;
+        outline: none;
+        color: var(--white-color);
+        border: none;
+        border-radius: 4px;
+        background-color: #28a745;
+        font-size: 1.6rem;
+        cursor: pointer;
+        float: right; }
+        .content .header-products .button-function a .btn-update.disabled {
+          opacity: 0.6;
+          pointer-events: none; }
   .content .header-products table {
     width: 100%;
     border-collapse: collapse; }
@@ -605,9 +637,15 @@ nav ul {
     font-size: 2rem;
     padding: 15px;
     text-align: center;
-    max-width: 500px;
+    max-width: 200px;
     overflow-wrap: break-word;
     line-height: 2.2rem; }
+    .content .header-products th .image-product,
+    .content .header-products td .image-product {
+      width: 100px; }
+      .content .header-products th .image-product img,
+      .content .header-products td .image-product img {
+        width: 100%; }
     .content .header-products th .btn-update,
     .content .header-products td .btn-update {
       min-width: 40px;

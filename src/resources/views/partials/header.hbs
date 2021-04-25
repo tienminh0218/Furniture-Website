@@ -114,10 +114,10 @@
                             <i class="arrow-down-list fas fa-chevron-down"></i>
                         </a>
                         <ul class="header__bot-list-sub">
-                            <li class="header__bot-list-sub-item"><a href="#">Sản phẩm khuyến mãi</a></li>
-                            <li class="header__bot-list-sub-item"><a href="#">Nội thất phòng khách</a></li>
-                            <li class="header__bot-list-sub-item"><a href="#">Nội thất phòng ngủ</a></li>
-                            <li class="header__bot-list-sub-item"><a href="#">Phụ kiện trang trí</a></li>
+                            {{#each categories }}
+                                <li class="header__bot-list-sub-item"><a href="#">{{this.nameCategory}}</a></li>
+                            {{/each}}
+
                         </ul>
                         </li>
                         <li class="header__bot-item">

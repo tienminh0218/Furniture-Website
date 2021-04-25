@@ -61,7 +61,7 @@ class AccountController {
 
         if (isExistAccount) {
             res.status(409).json({
-                message: "username already exist",
+                message: "Username already exist",
             });
             return;
         }

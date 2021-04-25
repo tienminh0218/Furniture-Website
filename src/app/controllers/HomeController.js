@@ -3,14 +3,19 @@ const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
 
+const Categories = require("../models/Category");
+const { multipleToObject } = require("../../util/toObj");
 class HomeController {
     /// Get -> /
-    islogin(req, res, next) {
+    async islogin(req, res, next) {
+        var categories = await Categories.find({});
+
         var cookie = req.cookies;
         /// check is cookie exist
         if (Object.keys(cookie).length == 0)
             return res.render("home", {
                 user: false,
+                categories: multipleToObject(categories),
             });
         /// verify token in cookie
         try {
@@ -20,7 +25,7 @@ class HomeController {
             return res.send(error);
         }
         Account.findById({ _id: decoded.id_user }).then((user) => {
-            res.render("home", { user: toObject(user) });
+            res.render("home", { user: toObject(user), categories: multipleToObject(categories) });
         });
     }
 }

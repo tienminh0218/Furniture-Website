@@ -1,15 +1,12 @@
 <div class="header-products">
-    <h3 class="title-table">Danh sách sản phẩm</h3>
+    <h3 class="title-table">Danh sách sản phẩm đã xóa</h3>
     <div class="button-function">
         <a href="#">
-            <button class="btn-delete deleteProduct disabled">Xóa</button>
+            <button class="btn-delete restoreProduct disabled">Khôi phục</button>
         </a>
-        <a href="/admin/product/insert">
-            <button class="btn-insert">Thêm sản phẩm</button>
-        </a>
-         <a href="/admin/product/bin">
+        <a href="/admin/product">
             <button class="btn-update">
-                <i class="bi bi-trash"></i>
+                <i class="bi bi-backspace"></i>
             </button>
         </a>
     </div>
@@ -24,13 +21,12 @@
             <th>Trạng thái</th>
             <th>Tồn kho</th>
             <th>Ảnh</th>
-            <th></th>
             </tr>
-                {{#each products}} 
+                {{#each productDeleted}} 
 
                     <tr>
                         
-                        <td> <input type="checkbox" idDatabase="{{this._id}}" name="itemCheck"> </td>
+                        <td> <input type="checkbox" name="itemCheck" idDatabase="{{this._id}}"> </td>
                         <td>{{sum @index 1}}</td>
                         <td>{{this.nameProduct}}</td>
                         <td>{{this.nameCategory}}</td>
@@ -43,18 +39,13 @@
                                 <img src="{{this.imageProduct}}" alt="ảnh sản phẩm">
                             </div>
                         </td>
-                        <td>
-                            <a href="/admin/product/update?id={{this._id}}">
-                                <button class="btn-update">Sửa</button>
-                            </a>
-                        </td>
                     
                     </tr>
                     {{else}}
                     
                     <tr >
                         <td colspan="10">
-                            chưa có sản phẩm nèo :(((( <a  href="/admin/product/insert">Thêm đê</a>
+                            chưa có sản phẩm nèo được xóa :(((( <a  href="/admin/product">Quay lại</a>
                         </td>
 
 
@@ -68,11 +59,11 @@
     </table>
 </div>
 
-{{!-- form delete --}}
-<form id="deleteForm" method="post" action="">
+{{!-- form restore --}}
+<form id="restoreForm" method="post" action="">
   
 </form>
         <script src="../js/databaseChangings.js"></script> 
  <script >
-     databaseChangings('.header-products', 'product','.deleteProduct','delete')
+     databaseChangings('.header-products','product','.restoreProduct','patch')
  </script> 

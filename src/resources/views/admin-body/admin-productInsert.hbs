@@ -6,7 +6,7 @@
                 <label for="name-product">Tên sản phẩm</label>
                 <input type="text" id="name-product" class="form-control" name="nameProduct" >
                 <div class="errorBox">
-                    <span class="error-message">Lỗi cmnr</span>
+                    <span class="error-message"></span>
                 </div>
             </div>
 
@@ -14,7 +14,9 @@
                 <label>Tên danh mục</label>
                 <select name="nameCategory" class="form-control form-select">
                     {{# each categories}}
-                    <option value="{{this.slug}}">{{this.nameCategory}}</option>
+                        <option value="{{this.slug}}">{{this.nameCategory}}</option>
+                        {{else}}
+                        <option value="">Chưa có danh mục nào</option>
                     {{/ each}}
                 </select>
                 <div class="errorBox">
@@ -26,7 +28,7 @@
                 <label for="price-product">Giá sản phẩm</label>
                 <input type="text" class="form-control" id="price-product" name="priceProduct" >
                 <div class="errorBox">
-                    <span class="error-message">Lỗi cmnr</span>
+                    <span class="error-message"></span>
                 </div>
             </div>
 
@@ -38,7 +40,7 @@
                     <option value="3">Ngừng kinh doanh</option>
                 </select>
                 <div class="errorBox">
-                    <span class="error-message">Lỗi cmnr</span>
+                    <span class="error-message"></span>
                 </div>
             </div>
 
@@ -46,18 +48,18 @@
                 <label for="inventory-product">Tồn kho</label>
                 <input type="text" id="inventory-product" class="form-control" name="inventoryProduct" >
                 <div class="errorBox">
-                    <span class="error-message">Lỗi cmnr</span>
+                    <span class="error-message"></span>
                 </div>
             </div>
 
             <div class="form-group-image">
                 <label class="label-image" for="image-product">Ảnh sản phẩm</label>
                 <div class="preview-image">
-                    <img src="" alt="image-product">
+                    <img src="" >
                 </div>
                 <input type="file" id="image-product" class="form-control-typeFile" required>
                 <div class="errorBox">
-                    <span class="error-message">Lỗi cmnr</span>
+                    <span class="error-message"></span>
                 </div>
             </div>
             
@@ -65,7 +67,7 @@
                 <label for="description-product">Mô tả sản phẩm</label>
                 <input type="text" id="description-product" class="form-control" name="descriptionProduct" >
                 <div class="errorBox">
-                    <span class="error-message">Lỗi cmnr</span>
+                    <span class="error-message"></span>
                 </div>
             </div>
 
@@ -81,3 +83,5 @@
         </div>
     </div>
 </form>
+
+<script src="../js/admin-productInsert.js"></script> 

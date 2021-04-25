@@ -9,7 +9,11 @@ function requestData(url, method = "GET", data) {
 
 function clearErrorMessage(form) {
     let errMessNotify = form.querySelectorAll(".error-message");
+    let inputs = form.querySelectorAll("input");
     form.querySelector(".error-FromServer").innerHTML = "";
+    inputs.forEach((input) => {
+        input.style.borderColor = "#ccc";
+    });
     errMessNotify.forEach((err) => {
         err.innerHTML = "";
     });
@@ -21,10 +25,12 @@ function showErrorMessage(error, form, errorFormServer) {
         if (Array.isArray(data.message)) {
             data.message.forEach((err) => {
                 let inputError = form.querySelector(`input[name=${err.path[0]}]`);
+                inputError.style.borderColor = "red";
                 inputError.closest(".form-group").querySelector(".error-message").innerHTML =
                     err.message;
             });
         } else {
+            errorFormServer.style.color = "red";
             errorFormServer.innerHTML = data.message;
         }
     }
@@ -113,7 +119,7 @@ function loginRequest(e) {
     });
 
     /// Request data to login
-    requestData("http://localhost:3000/account/login", "post", dataLoginForm)
+    requestData("http://localhost:3001/account/login", "post", dataLoginForm)
         .then((response) => {
             location.reload();
         })
@@ -162,11 +168,12 @@ function registerRequest(e) {
     });
 
     /// Request data to register
-    requestData("http://localhost:3000/account/register", "POST", {
+    requestData("http://localhost:3001/account/register", "POST", {
         ...dataRegisterForm,
         gender: reGender.value,
     })
         .then((result) => {
+            registerErrorMessage.style.color = "#155724";
             registerErrorMessage.innerHTML = result.data.message;
             modalRegisterForm.closest(".registerFormParent").reset();
         })
