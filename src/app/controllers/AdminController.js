@@ -116,7 +116,7 @@ class AdminController {
 
         await Categories.findOneAndUpdate(
             { slug: oldProduct[0].nameCategory },
-            { $pull: { productchid: { _id: oldProduct[0]._id } } },
+            { $pull: { productChild: { _id: oldProduct[0]._id } } },
             { multi: true }
         );
 
@@ -124,8 +124,12 @@ class AdminController {
         if (isImageExist) {
             /// delete old image and uppload a new image
             try {
-                await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
-                var result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+                await cloudinary.uploader.destroy(
+                    oldProduct[0].cloudinaryId_imageProduct
+                );
+                var result_uploadImage = await cloudinary.uploader.upload(
+                    req.file.path
+                );
             } catch (error) {
                 console.log(error);
             }
@@ -135,12 +139,18 @@ class AdminController {
                 var productChild = await Product.findOneAndUpdate(
                     { _id: req.params.id },
                     {
-                        nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                        nameProduct:
+                            req.body.nameProduct || oldProduct[0].nameProduct,
                         nameCategory: req.body.nameCategory,
-                        priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                        priceProduct:
+                            req.body.priceProduct || oldProduct[0].priceProduct,
                         statusProduct: req.body.statusProduct,
-                        inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
-                        descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                        inventoryProduct:
+                            req.body.inventoryProduct ||
+                            oldProduct[0].inventoryProduct,
+                        descriptionProduct:
+                            req.body.descriptionProduct ||
+                            oldProduct[0].descriptionProduct,
                         imageProduct: result_uploadImage.url,
                         cloudinaryId_imageProduct: result_uploadImage.public_id,
                     },
@@ -149,7 +159,7 @@ class AdminController {
 
                 Categories.findOneAndUpdate(
                     { slug: productChild.nameCategory },
-                    { $push: { productchid: productChild } }
+                    { $push: { productChild: productChild } }
                 ).then(() => {
                     res.redirect("/admin/product");
                 });
@@ -159,12 +169,18 @@ class AdminController {
             Product.findOneAndUpdate(
                 { _id: req.params.id },
                 {
-                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameProduct:
+                        req.body.nameProduct || oldProduct[0].nameProduct,
                     nameCategory: req.body.nameCategory,
-                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    priceProduct:
+                        req.body.priceProduct || oldProduct[0].priceProduct,
                     statusProduct: req.body.statusProduct,
-                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
-                    descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                    inventoryProduct:
+                        req.body.inventoryProduct ||
+                        oldProduct[0].inventoryProduct,
+                    descriptionProduct:
+                        req.body.descriptionProduct ||
+                        oldProduct[0].descriptionProduct,
                     imageProduct: result_uploadImage.url,
                     cloudinaryId_imageProduct: result_uploadImage.public_id,
                 },
@@ -173,7 +189,7 @@ class AdminController {
                 .then((productChild) => {
                     return Categories.findOneAndUpdate(
                         { slug: productChild.nameCategory },
-                        { $push: { productchid: productChild } }
+                        { $push: { productChild: productChild } }
                     );
                 })
                 .then(() => {
@@ -187,28 +203,35 @@ class AdminController {
         if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
             await Categories.findOneAndUpdate(
                 {},
-                { $pull: { productchid: { _id: oldProduct[0]._id } } },
+                { $pull: { productChild: { _id: oldProduct[0]._id } } },
                 { multi: true }
             );
 
             var productChild = await Product.findOneAndUpdate(
                 { _id: req.params.id },
                 {
-                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameProduct:
+                        req.body.nameProduct || oldProduct[0].nameProduct,
                     nameCategory: req.body.nameCategory,
-                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    priceProduct:
+                        req.body.priceProduct || oldProduct[0].priceProduct,
                     statusProduct: req.body.statusProduct,
-                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
-                    descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                    inventoryProduct:
+                        req.body.inventoryProduct ||
+                        oldProduct[0].inventoryProduct,
+                    descriptionProduct:
+                        req.body.descriptionProduct ||
+                        oldProduct[0].descriptionProduct,
                     imageProduct: oldProduct[0].imageProduct,
-                    cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
+                    cloudinaryId_imageProduct:
+                        oldProduct[0].cloudinaryId_imageProduct,
                 },
                 { new: true }
             );
 
             Categories.findOneAndUpdate(
                 { slug: productChild.nameCategory },
-                { $push: { productchid: productChild } }
+                { $push: { productChild: productChild } }
             ).then(() => {
                 res.redirect("/admin/product");
             });
@@ -221,19 +244,24 @@ class AdminController {
             {
                 nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
                 nameCategory: req.body.nameCategory,
-                priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                priceProduct:
+                    req.body.priceProduct || oldProduct[0].priceProduct,
                 statusProduct: req.body.statusProduct,
-                inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
-                descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                inventoryProduct:
+                    req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                descriptionProduct:
+                    req.body.descriptionProduct ||
+                    oldProduct[0].descriptionProduct,
                 imageProduct: oldProduct[0].imageProduct,
-                cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
+                cloudinaryId_imageProduct:
+                    oldProduct[0].cloudinaryId_imageProduct,
             },
             { new: true }
         )
             .then((productChild) => {
                 return Categories.findOneAndUpdate(
                     { slug: productChild.nameCategory },
-                    { $push: { productchid: productChild } }
+                    { $push: { productChild: productChild } }
                 );
             })
             .then(() => {
@@ -335,7 +363,7 @@ class AdminController {
 
             Categories.findOneAndUpdate(
                 { slug: newProduct.nameCategory },
-                { $push: { productchid: newProductChild } }
+                { $push: { productChild: newProductChild } }
             ).then((x) => {
                 res.status(201).json(x);
             });

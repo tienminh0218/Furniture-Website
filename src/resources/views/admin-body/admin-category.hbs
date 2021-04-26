@@ -30,7 +30,13 @@
                         <td>{{sum @index 1}}</td>
                         <td>{{this.nameCategory}}</td>
                         <td>{{this.description}}</td>
-                        <td>{{this.productChild}}</td>
+                        {{#each this.productChild}}
+                            <td>
+                                {{this.nameProduct}}
+                            </td>
+                        {{else}}
+                            <td>Chưa có sản phẩm</td>
+                        {{/each}}
                         <td>
 
                             <button class="btn-update">Sửa</button>
