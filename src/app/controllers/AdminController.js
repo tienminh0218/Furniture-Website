@@ -112,24 +112,111 @@ class AdminController {
     // PUT -> /admin/product/update?id=
     async productUpdate(req, res, next) {
         var oldProduct = await Product.find({ _id: req.params.id });
+        var isImageExist = req.file?.path;
 
-        try {
-            await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
-            var result_uploadImage = await cloudinary.uploader.upload(req.file.path);
-        } catch (error) {
-            console.log(error);
+        await Categories.findOneAndUpdate(
+            { slug: oldProduct[0].nameCategory },
+            { $pull: { productchid: { _id: oldProduct[0]._id } } },
+            { multi: true }
+        );
+
+        ////// If image has changed //////
+        if (isImageExist) {
+            /// delete old image and uppload a new image
+            try {
+                await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
+                var result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+            } catch (error) {
+                console.log(error);
+            }
+
+            /// check if nameCategory has changed
+            if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
+                var productChild = await Product.findOneAndUpdate(
+                    { _id: req.params.id },
+                    {
+                        nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                        nameCategory: req.body.nameCategory,
+                        priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                        statusProduct: req.body.statusProduct,
+                        inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                        descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                        imageProduct: result_uploadImage.url,
+                        cloudinaryId_imageProduct: result_uploadImage.public_id,
+                    },
+                    { new: true }
+                );
+
+                Categories.findOneAndUpdate(
+                    { slug: productChild.nameCategory },
+                    { $push: { productchid: productChild } }
+                ).then(() => {
+                    res.redirect("/admin/product");
+                });
+                return;
+            }
+            // if nameCategory have not changed
+            Product.findOneAndUpdate(
+                { _id: req.params.id },
+                {
+                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameCategory: req.body.nameCategory,
+                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    statusProduct: req.body.statusProduct,
+                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                    descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                    imageProduct: result_uploadImage.url,
+                    cloudinaryId_imageProduct: result_uploadImage.public_id,
+                },
+                { new: true }
+            )
+                .then((productChild) => {
+                    return Categories.findOneAndUpdate(
+                        { slug: productChild.nameCategory },
+                        { $push: { productchid: productChild } }
+                    );
+                })
+                .then(() => {
+                    res.redirect("/admin/product");
+                });
+            return;
         }
 
-        /// check if nameCategory is changed
+        ////// if image have not change //////
+        // check if nameCategory has changed
         if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
             await Categories.findOneAndUpdate(
                 {},
                 { $pull: { productchid: { _id: oldProduct[0]._id } } },
                 { multi: true }
             );
+
+            var productChild = await Product.findOneAndUpdate(
+                { _id: req.params.id },
+                {
+                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameCategory: req.body.nameCategory,
+                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    statusProduct: req.body.statusProduct,
+                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                    descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                    imageProduct: oldProduct[0].imageProduct,
+                    cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
+                },
+                { new: true }
+            );
+
+            Categories.findOneAndUpdate(
+                { slug: productChild.nameCategory },
+                { $push: { productchid: productChild } }
+            ).then(() => {
+                res.redirect("/admin/product");
+            });
+            return;
         }
 
-        var productChild = await Product.findOneAndUpdate(
+        // if nameCategory have not changed
+        Product.findOneAndUpdate(
             { _id: req.params.id },
             {
                 nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
@@ -138,18 +225,20 @@ class AdminController {
                 statusProduct: req.body.statusProduct,
                 inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
                 descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
-                imageProduct: result_uploadImage.url,
-                cloudinaryId_imageProduct: result_uploadImage.public_id,
+                imageProduct: oldProduct[0].imageProduct,
+                cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
             },
-            /// ko có thằng đĩ này thì nó trả về thằng củ nên mới ko thay đổi
             { new: true }
-        );
-
-        Categories.findOneAndUpdate({ slug: productChild.nameCategory }, { $push: { productchid: productChild } }).then(
-            () => {
-                res.json("ok");
-            }
-        );
+        )
+            .then((productChild) => {
+                return Categories.findOneAndUpdate(
+                    { slug: productChild.nameCategory },
+                    { $push: { productchid: productChild } }
+                );
+            })
+            .then(() => {
+                res.redirect("/admin/product");
+            });
     }
 
     // GET -> /admin/product/bin

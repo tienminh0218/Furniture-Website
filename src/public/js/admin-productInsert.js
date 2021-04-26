@@ -30,8 +30,7 @@ function showErrorMessage(error, form, errorFormServer) {
             data.message.forEach((err) => {
                 let inputError = form.querySelector(`input[name=${err.path[0]}]`);
                 inputError.style.borderColor = "red";
-                inputError.closest(".form-group").querySelector(".error-message").innerHTML =
-                    err.message;
+                inputError.closest(".form-group").querySelector(".error-message").innerHTML = err.message;
             });
         } else {
             errorFormServer.style.color = "red";
@@ -48,6 +47,7 @@ if (formProductInsert) {
     var btnSubmitProduct = formProductInsert.querySelector('input[type="submit"]');
     var inputTypeFile = formProductInsert.querySelector('input[type="file"]');
     var errorFromServer = formProductInsert.querySelector(".error-FromServer");
+    var loadingScreen = document.querySelector(".modal-overplay-loading");
 
     // get nodeElement select in productInsertForm
     var selectProductForm = formProductInsert.querySelectorAll(".form-select");
@@ -59,6 +59,9 @@ if (formProductInsert) {
 
     function insertProduct(e) {
         e.preventDefault();
+
+        /// loading screen
+        loadingScreen.classList.add("displayBlock");
 
         /// check message
         clearErrorMessage(formProductInsert);
@@ -83,9 +86,11 @@ if (formProductInsert) {
             headers: { "Content-Type": "multipart/form-data" },
         })
             .then((response) => {
+                loadingScreen.classList.remove("displayBlock");
                 location.reload();
             })
             .catch((error) => {
+                loadingScreen.classList.remove("displayBlock");
                 showErrorMessage(error, formProductInsert, errorFromServer);
             });
     }
