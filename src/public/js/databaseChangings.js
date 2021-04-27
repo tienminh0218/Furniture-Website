@@ -4,15 +4,13 @@ function databaseChangings(form, url, btn, method) {
     var btnSubmit = containerForm.querySelector(btn);
     method = method.toUpperCase();
     /// do something :)))
-    btnSubmit.addEventListener("click", () =>
-        submitRequest(containerForm, elementForm, method, url)
-    );
+    btnSubmit.addEventListener("click", () => submitRequest(containerForm, elementForm, method, url));
 }
 
 function submitRequest(form, elementForm, method, url) {
     var dataArr = [];
 
-    var inputChecked = form.querySelectorAll("input[name='deleteCategory']:checked");
+    var inputChecked = form.querySelectorAll("input[name='itemCheck']:checked");
     inputChecked.forEach((input) => {
         dataArr.push(input.getAttribute("idDatabase"));
     });
