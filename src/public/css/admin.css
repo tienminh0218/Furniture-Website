@@ -355,7 +355,11 @@ nav ul {
             margin-right: 2px; }
         .content .products-container .form-container .form-group .error-FromServer, .content .products-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
-          color: var(--red-color); }
+          display: none;
+          padding: 16px;
+          color: #842029;
+          border: 1px solid transparent;
+          border-radius: 4px; }
       .content .products-container .form-container .form-group-image .label-image {
         display: block;
         width: 180px;
@@ -462,7 +466,11 @@ nav ul {
             margin-right: 2px; }
         .content .categoryProducts-container .form-container .form-group .error-FromServer, .content .categoryProducts-container .form-container .form-group-image .error-FromServer {
           font-size: 1.4rem;
-          color: var(--red-color); }
+          display: none;
+          padding: 16px;
+          color: #842029;
+          border: 1px solid transparent;
+          border-radius: 4px; }
       .content .categoryProducts-container .form-container .form-group-image .label-image {
         display: block;
         width: 180px;

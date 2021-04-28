@@ -205,7 +205,11 @@ html {
             }
             .error-FromServer {
                 font-size: 1.4rem;
-                color: var(--red-color);
+                display: none;
+                padding: 16px;
+                color: #842029;
+                border: 1px solid transparent;
+                border-radius: 4px;
             }
         }
 
