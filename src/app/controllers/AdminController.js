@@ -43,8 +43,7 @@ class AdminController {
 
     /// PUT -> /admin/category/update
     async categoryUpdate(req, res, next) {
-        var oldCategory = await Categories.find({ _id: req.params.id });
-        console.log(req.body.nameCategory);
+        var oldCategory = await Categories.findOne({ _id: req.body.id });
     }
 
     /// Post -> /admin/category/insert
