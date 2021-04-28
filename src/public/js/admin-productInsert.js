@@ -30,7 +30,8 @@ function showErrorMessage(error, form, errorFormServer) {
             data.message.forEach((err) => {
                 let inputError = form.querySelector(`input[name=${err.path[0]}]`);
                 inputError.style.borderColor = "red";
-                inputError.closest(".form-group").querySelector(".error-message").innerHTML = err.message;
+                inputError.closest(".form-group").querySelector(".error-message").innerHTML =
+                    err.message;
             });
         } else {
             errorFormServer.style.color = "red";
@@ -87,7 +88,7 @@ if (formProductInsert) {
         })
             .then((response) => {
                 loadingScreen.classList.remove("displayBlock");
-                location.reload();
+                window.location.href = "/admin/product";
             })
             .catch((error) => {
                 loadingScreen.classList.remove("displayBlock");

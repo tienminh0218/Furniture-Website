@@ -133,27 +133,15 @@
         </div>
     </body>
     <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
-    {{!-- <script>
-        var dataClassicEditor;
+    <script>
         ClassicEditor
-                .create( document.querySelector( '#editor' ) )
-                .then( editor => {
-                    dataClassicEditor = editor;
-                        //console.log( editor );
-                } )
-                .catch( error => {
-                        console.error( error );
-                } );
-                //get data from CKEditor
-        function getDataFromTheEditor() {
-            return dataClassicEditor.getData();
-        }
-        //listen input submit
-        document.getElementById('getDataCK').addEventListener('click', () => {
-            var getData = getDataFromTheEditor();
-            console.log(getData);
-        });
-    </script> --}}
+            .create( document.querySelector( '#editor' ) )
+            .then(editor => dataCkedit = editor)
+            .catch( error => {
+                console.error( error );
+            } );
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/admin.js"></script> 
     <script src="../js/admin-category.js"></script> 

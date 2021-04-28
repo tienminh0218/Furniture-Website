@@ -30,7 +30,7 @@ app.use(express.json());
 db.connect();
 
 // HTTP logger
-// app.use(morgan('combined'));
+app.use(morgan("combined"));
 app.use(methodOverride("_method"));
 
 // Template engine

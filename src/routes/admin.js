@@ -5,6 +5,8 @@ const upload = require("../util/multer");
 
 /// Categories
 route.get("/category/insert", AdminController.categoryAdd);
+route.get("/category/update", AdminController.categoryUpdateView);
+route.put("/category/update/:id", AdminController.categoryUpdate);
 route.post("/category/insert", AdminController.categoryInsert);
 route.get("/category", AdminController.category);
 route.get("/category/bin", AdminController.categoryBin);

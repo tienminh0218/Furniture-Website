@@ -29,7 +29,7 @@
                         <td> <input type="checkbox" name="itemCheck" idDatabase="{{this._id}}"> </td>
                         <td>{{sum @index 1}}</td>
                         <td>{{this.nameCategory}}</td>
-                        <td>{{this.description}}</td>
+                        <td>{{{this.description}}}</td>
                         {{#each this.productChild}}
                             <td>
                                 {{this.nameProduct}}
@@ -38,8 +38,9 @@
                             <td>Chưa có sản phẩm</td>
                         {{/each}}
                         <td>
-
-                            <button class="btn-update">Sửa</button>
+                            <a href="/admin/category/update?id={{this._id}}">
+                                <button class="btn-update">Sửa</button>
+                            </a>
                         </td>
                     
                     </tr>
