@@ -1,7 +1,13 @@
 function clearErrorMessage(form) {
     let errMessNotify = form.querySelectorAll(".error-message");
     let inputs = form.querySelectorAll("input");
-    form.querySelector(".error-FromServer").innerHTML = "";
+
+    /// clear err from server
+    let errFromServer = form.querySelector(".error-FromServer");
+    errFromServer.innerHTML = "";
+    errFromServer.style.display = "none";
+
+    /// clear err message
     inputs.forEach((input) => {
         input.style.borderColor = "#ccc";
     });
@@ -21,7 +27,11 @@ function showErrorMessage(error, form, errorFromServer) {
                     err.message;
             });
         } else {
-            errorFromServer.style.color = "red";
+            Object.assign(errorFromServer.style, {
+                color: "red",
+                display: "block",
+                backgroundColor: "#f8d7da",
+            });
             errorFromServer.innerHTML = data.message;
         }
     }
@@ -30,6 +40,7 @@ function showErrorMessage(error, form, errorFromServer) {
 var formCategoryInsert = document.querySelector(".categoryProducts-container");
 var btnSubmitCategory = document.querySelector('input[type="submit"]');
 var errorFromServer = formCategoryInsert.querySelector(".error-FromServer");
+
 btnSubmitCategory.addEventListener("click", () => {
     clearErrorMessage(formCategoryInsert);
 
@@ -43,11 +54,14 @@ btnSubmitCategory.addEventListener("click", () => {
         headers: { "Content-Type": "application/json" },
     })
         .then((response) => {
-            errorFromServer.style.color = "green";
+            Object.assign(errorFromServer.style, {
+                color: "#0f5132",
+                display: "block",
+                backgroundColor: "#d1e7dd",
+            });
             errorFromServer.innerHTML = response.data.message;
         })
         .catch((error) => {
-            // loadingScreen.classList.remove("displayBlock");
             showErrorMessage(error, formCategoryInsert, errorFromServer);
         });
 });
