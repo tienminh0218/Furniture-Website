@@ -12,10 +12,13 @@ function databaseChangings(form, url, btn, method) {
 function submitRequest(form, elementForm, method, url) {
     var dataArr = [];
 
-    var inputChecked = form.querySelectorAll("input[name='deleteCategory']:checked");
+    var inputChecked = form.querySelectorAll(
+        "input[name='deleteCategory']:checked"
+    );
     inputChecked.forEach((input) => {
         dataArr.push(input.getAttribute("idDatabase"));
     });
+    console.log(dataArr);
     elementForm.action = `/admin/${url}/${dataArr}?_method=${method}`;
     elementForm.submit();
 }
