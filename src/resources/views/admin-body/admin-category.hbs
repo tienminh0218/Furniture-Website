@@ -23,20 +23,21 @@
             <th></th>
             </tr>
                 {{#each categories}} 
-
-                    <tr>
                         
                         <td> <input type="checkbox" name="itemCheck" idDatabase="{{this._id}}"> </td>
                         <td>{{sum @index 1}}</td>
                         <td>{{this.nameCategory}}</td>
-                        <td>{{{this.description}}}</td>
-                        {{#each this.productChild}}
-                            <td>
-                                {{this.nameProduct}}
-                            </td>
-                        {{else}}
-                            <td>Chưa có sản phẩm</td>
-                        {{/each}}
+                        <td>{{{this.description}}}</td> 
+                        <td>
+                            <ul style="list-style: none">
+                                {{#each this.productChild}}
+                                    <li>{{this.nameProduct}}</li>
+                                
+                                {{else}}
+                                    Chưa có sản phẩm
+                                {{/each}}
+                            </ul>
+                        </td>
                         <td>
                             <a href="/admin/category/update?id={{this._id}}">
                                 <button class="btn-update">Sửa</button>

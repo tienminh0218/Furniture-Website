@@ -4,6 +4,7 @@ var { multipleToObject, toObject } = require("../../util/toObj");
 
 /// schema validate
 const joiSchemaProduct = require("../../util/joi-validate/validateProduct");
+const joiSchemaCategory = require("../../util/joi-validate/validateCategory");
 const Joi = require("joi");
 
 /// upload file
@@ -44,15 +45,47 @@ class AdminController {
     /// PUT -> /admin/category/update
     async categoryUpdate(req, res, next) {
         var oldCategory = await Categories.find({ _id: req.params.id });
-        console.log(req.body.nameCategory);
+        /// Validate form product insert
+        const checked = await joiSchemaCategory.schemaCategory.validate(
+            {
+                nameCategory: req.body.nameCategory,
+                description: req.body.description,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
+
+        if (error) {
+            res.status(409).json({ message: error.details });
+            return;
+        }
     }
 
     /// Post -> /admin/category/insert
     async categoryInsert(req, res, next) {
         // if nameCategory is exist
-        var nameCategoryCheck = await Categories.findOne({ nameCategory: req.body.nameCategory });
+        var nameCategoryCheck = await Categories.findOne({
+            nameCategory: req.body.nameCategory,
+        });
         if (nameCategoryCheck) {
-            res.status(400).json({ message: "Your name category has already exists" });
+            res.status(400).json({
+                message: "Name category has already exists",
+            });
+            return;
+        }
+
+        /// Validate form product insert
+        const checked = await joiSchemaCategory.schemaCategory.validate(
+            {
+                nameCategory: req.body.nameCategory,
+                description: req.body.description,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
+
+        if (error) {
+            res.status(409).json({ message: error.details });
             return;
         }
 
@@ -60,7 +93,9 @@ class AdminController {
         newCategory
             .save()
             .then(() => {
-                res.status(201).json({ message: "Created category successfully" });
+                res.status(201).json({
+                    message: "Created category successfully",
+                });
             })
             .catch((error) => {
                 console.log(error);
@@ -120,19 +155,37 @@ class AdminController {
     async productUpdateView(req, res, next) {
         var idProduct = req.query.id;
 
-        Promise.all([Product.find({ _id: idProduct }), Categories.find({})]).then(
-            ([product, categories]) => {
-                res.render("admin-body/admin-productUpdate", {
-                    layout: "admin",
-                    product: multipleToObject(product),
-                    categories: multipleToObject(categories),
-                });
-            }
-        );
+        Promise.all([
+            Product.find({ _id: idProduct }),
+            Categories.find({}),
+        ]).then(([product, categories]) => {
+            res.render("admin-body/admin-productUpdate", {
+                layout: "admin",
+                product: multipleToObject(product),
+                categories: multipleToObject(categories),
+            });
+        });
     }
 
     // PUT -> /admin/product/update?id=
     async productUpdate(req, res, next) {
+        // /// Validate form product insert
+        // const checked = await joiSchemaProduct.schemaInsertProduct.validate(
+        //     {
+        //         nameProduct: req.body.nameProduct,
+        //         priceProduct: req.body.priceProduct,
+        //         descriptionProduct: req.body.descriptionProduct,
+        //         inventoryProduct: req.body.inventoryProduct,
+        //     },
+        //     { abortEarly: false }
+        // );
+        // var { error } = checked;
+
+        // if (error) {
+        //     res.status(409).json({ message: error.details });
+        //     return;
+        // }
+
         var oldProduct = await Product.find({ _id: req.params.id });
 
         /// Check product isExist
@@ -161,8 +214,12 @@ class AdminController {
         if (isImageExist) {
             /// delete old image and uppload a new image
             try {
-                await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
-                var result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+                await cloudinary.uploader.destroy(
+                    oldProduct[0].cloudinaryId_imageProduct
+                );
+                var result_uploadImage = await cloudinary.uploader.upload(
+                    req.file.path
+                );
             } catch (error) {
                 console.log(error);
             }
@@ -172,14 +229,18 @@ class AdminController {
                 var productChild = await Product.findOneAndUpdate(
                     { _id: req.params.id },
                     {
-                        nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                        nameProduct:
+                            req.body.nameProduct || oldProduct[0].nameProduct,
                         nameCategory: req.body.nameCategory,
-                        priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                        priceProduct:
+                            req.body.priceProduct || oldProduct[0].priceProduct,
                         statusProduct: req.body.statusProduct,
                         inventoryProduct:
-                            req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                            req.body.inventoryProduct ||
+                            oldProduct[0].inventoryProduct,
                         descriptionProduct:
-                            req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                            req.body.descriptionProduct ||
+                            oldProduct[0].descriptionProduct,
                         imageProduct: result_uploadImage.url,
                         cloudinaryId_imageProduct: result_uploadImage.public_id,
                     },
@@ -198,13 +259,18 @@ class AdminController {
             Product.findOneAndUpdate(
                 { _id: req.params.id },
                 {
-                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameProduct:
+                        req.body.nameProduct || oldProduct[0].nameProduct,
                     nameCategory: req.body.nameCategory,
-                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    priceProduct:
+                        req.body.priceProduct || oldProduct[0].priceProduct,
                     statusProduct: req.body.statusProduct,
-                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                    inventoryProduct:
+                        req.body.inventoryProduct ||
+                        oldProduct[0].inventoryProduct,
                     descriptionProduct:
-                        req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                        req.body.descriptionProduct ||
+                        oldProduct[0].descriptionProduct,
                     imageProduct: result_uploadImage.url,
                     cloudinaryId_imageProduct: result_uploadImage.public_id,
                 },
@@ -234,15 +300,21 @@ class AdminController {
             var productChild = await Product.findOneAndUpdate(
                 { _id: req.params.id },
                 {
-                    nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
+                    nameProduct:
+                        req.body.nameProduct || oldProduct[0].nameProduct,
                     nameCategory: req.body.nameCategory,
-                    priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                    priceProduct:
+                        req.body.priceProduct || oldProduct[0].priceProduct,
                     statusProduct: req.body.statusProduct,
-                    inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                    inventoryProduct:
+                        req.body.inventoryProduct ||
+                        oldProduct[0].inventoryProduct,
                     descriptionProduct:
-                        req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                        req.body.descriptionProduct ||
+                        oldProduct[0].descriptionProduct,
                     imageProduct: oldProduct[0].imageProduct,
-                    cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
+                    cloudinaryId_imageProduct:
+                        oldProduct[0].cloudinaryId_imageProduct,
                 },
                 { new: true }
             );
@@ -262,12 +334,17 @@ class AdminController {
             {
                 nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
                 nameCategory: req.body.nameCategory,
-                priceProduct: req.body.priceProduct || oldProduct[0].priceProduct,
+                priceProduct:
+                    req.body.priceProduct || oldProduct[0].priceProduct,
                 statusProduct: req.body.statusProduct,
-                inventoryProduct: req.body.inventoryProduct || oldProduct[0].inventoryProduct,
-                descriptionProduct: req.body.descriptionProduct || oldProduct[0].descriptionProduct,
+                inventoryProduct:
+                    req.body.inventoryProduct || oldProduct[0].inventoryProduct,
+                descriptionProduct:
+                    req.body.descriptionProduct ||
+                    oldProduct[0].descriptionProduct,
                 imageProduct: oldProduct[0].imageProduct,
-                cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
+                cloudinaryId_imageProduct:
+                    oldProduct[0].cloudinaryId_imageProduct,
             },
             { new: true }
         )
@@ -349,13 +426,16 @@ class AdminController {
         /// check if user dont have any category
         if (!req.body.nameCategory) {
             res.status(400).json({
-                message: "You don't have any category, please insert your category first",
+                message:
+                    "You don't have any category, please insert your category first",
             });
         }
 
         try {
             /// Upload image to cloudinary
-            const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+            const result_uploadImage = await cloudinary.uploader.upload(
+                req.file.path
+            );
 
             /// Create a new product
             var newProduct = new Product({
