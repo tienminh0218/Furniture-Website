@@ -1,5 +1,5 @@
 {{#each category}}
-    <form method="POST" action="/admin/category/update/{{this._id}}?_method=PUT">
+    <form method="POST" action="" class="formCategory">
         <div class="categoryProducts-container">
             <h3 class="title">Sửa danh mục</h3>
             
@@ -12,7 +12,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div id="editor" name="description"></div>
+                        <input id="editor" name="description"></input>
+                         <div class="errorBox">
+                            <span class="error-message"></span>
+                        </div>
                     </div>
 
 

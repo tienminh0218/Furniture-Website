@@ -1,5 +1,5 @@
 {{#each product}}
-    <form method="POST" action="/admin/product/update/{{this._id}}?_method=PUT" enctype = "multipart/form-data" >
+    <form method="POST"class="" enctype = "multipart/form-data" >
         <div class="products-container">
             <h3 class="title">Sửa sản phẩm</h3>
             <div class="form-container">
@@ -57,7 +57,7 @@
                     <div class="preview-image">
                         <img src="{{this.imageProduct}}" >
                     </div>
-                    <input type="file" id="image-product" name="imageProduct" class="form-control-typeFile" >
+                    <input type="file" id="image-product" class="form-control-typeFile" >
                     <div class="errorBox">
                         <span class="error-message"></span>
                     </div>
@@ -72,15 +72,16 @@
                 </div>
 
                 <div class="form-group">
-                    <span class="error-FromServer">
-                    </span>
+                    <span class="error-FromServer"></span>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn-submit" value="Thêm">
+                    <input type="submit" class="btn-submit" value="Sửa">
                 </div>
 
             </div>
         </div>
     </form>
 {{/each}}
+
+<script src="../js/admin-productUpdate.js"></script>

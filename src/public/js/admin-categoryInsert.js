@@ -40,8 +40,10 @@ function showErrorMessage(error, form, errorFromServer) {
 var formCategoryInsert = document.querySelector(".categoryProducts-container");
 var btnSubmitCategory = document.querySelector('input[type="submit"]');
 var errorFromServer = formCategoryInsert.querySelector(".error-FromServer");
+var nodeCkedit = formCategoryInsert.querySelector(".ck-content p");
 
-btnSubmitCategory.addEventListener("click", () => {
+btnSubmitCategory.addEventListener("click", (e) => {
+    e.preventDefault();
     clearErrorMessage(formCategoryInsert);
 
     axios({
@@ -54,6 +56,8 @@ btnSubmitCategory.addEventListener("click", () => {
         headers: { "Content-Type": "application/json" },
     })
         .then((response) => {
+            formCategoryInsert.closest(".formCategory").reset();
+            nodeCkedit.innerHTML = "";
             Object.assign(errorFromServer.style, {
                 color: "#0f5132",
                 display: "block",

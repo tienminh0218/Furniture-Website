@@ -4,7 +4,9 @@ function databaseChangings(form, url, btn, method) {
     var btnSubmit = containerForm.querySelector(btn);
     method = method.toUpperCase();
     /// do something :)))
-    btnSubmit.addEventListener("click", () => submitRequest(containerForm, elementForm, method, url));
+    btnSubmit.addEventListener("click", () =>
+        submitRequest(containerForm, elementForm, method, url)
+    );
 }
 
 function submitRequest(form, elementForm, method, url) {
@@ -14,6 +16,7 @@ function submitRequest(form, elementForm, method, url) {
     inputChecked.forEach((input) => {
         dataArr.push(input.getAttribute("idDatabase"));
     });
+    console.log(dataArr);
     elementForm.action = `/admin/${url}/${dataArr}?_method=${method}`;
     elementForm.submit();
 }

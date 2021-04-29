@@ -218,7 +218,6 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
 .header__bot-list .header__bot-item .header__bot-list-sub {
   min-width: 182px;
   list-style: none;
-  min-height: 100px;
   margin-top: 15px;
   visibility: hidden;
   position: absolute;
@@ -241,6 +240,8 @@ header .header__bot .header__bot-container .header__bot-list .header__bot-item-l
   opacity: 1;
   animation: slowShow linear 0.4s;
   -webkit-animation: slowShow linear 0.4s; }
+  .header__bot-list li.header__bot-item:hover .header__bot-list-sub li:last-child a {
+    border: none; }
 
 .header__bot-item .header__bot-list-sub li a:hover {
   color: #adc1f0; }

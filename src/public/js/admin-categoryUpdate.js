@@ -42,6 +42,7 @@ var btnSubmit = formCategoryUpdate.querySelector('input[type="submit"]');
 var params = new URLSearchParams(window.location.search);
 var idCategory = params.get("id");
 var errorFromServer = formCategoryUpdate.querySelector(".error-FromServer");
+var nodeCkedit = formCategoryInsert.querySelector(".ck-content p");
 
 // event submit
 btnSubmit.addEventListener("click", UpdateCategory);
@@ -49,6 +50,7 @@ btnSubmit.addEventListener("click", UpdateCategory);
 function UpdateCategory(e) {
     e.preventDefault();
     clearErrorMessage(formCategoryUpdate);
+    console.log("okokok");
 
     axios({
         method: "put",
@@ -61,6 +63,8 @@ function UpdateCategory(e) {
         headers: { "Content-Type": "application/json" },
     })
         .then((response) => {
+            formCategoryUpdate.closest(".formCategory").reset();
+            nodeCkedit.innerHTML = "";
             Object.assign(errorFromServer.style, {
                 color: "#0f5132",
                 display: "block",

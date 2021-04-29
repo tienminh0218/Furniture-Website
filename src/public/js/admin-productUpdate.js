@@ -36,36 +36,37 @@ function showErrorMessage(error, form, errorFromServer) {
         }
     }
 }
-
 /// When user want to insert a new product
-var formProductInsert = document.querySelector(".products-container");
-
-/// Check if formProductInsert not null
-if (formProductInsert) {
-    var btnSubmitProduct = formProductInsert.querySelector('input[type="submit"]');
-    var inputTypeFile = formProductInsert.querySelector('input[type="file"]');
-    var errorFromServer = formProductInsert.querySelector(".error-FromServer");
+var formProductUpdate = document.querySelector(".products-container");
+var params = new URLSearchParams(window.location.search);
+var idProduct = params.get("id");
+/// Check if formProductUpdate not null
+if (formProductUpdate) {
+    var btnSubmitProduct = formProductUpdate.querySelector('input[type="submit"]');
+    var inputTypeFile = formProductUpdate.querySelector('input[type="file"]');
+    var errorFromServer = formProductUpdate.querySelector(".error-FromServer");
     var loadingScreen = document.querySelector(".modal-overplay-loading");
 
     // get nodeElement select in productInsertForm
-    var selectProductForm = formProductInsert.querySelectorAll(".form-select");
+    var selectProductForm = formProductUpdate.querySelectorAll(".form-select");
 
     // get nodeElement input in productInsertForm
-    var inputProductForm = formProductInsert.querySelectorAll("input[name]");
+    var inputProductForm = formProductUpdate.querySelectorAll("input[name]");
 
-    btnSubmitProduct.addEventListener("click", insertProduct);
+    btnSubmitProduct.addEventListener("click", updateProduct);
 
-    function insertProduct(e) {
+    function updateProduct(e) {
         e.preventDefault();
 
         /// loading screen
         loadingScreen.classList.add("displayBlock");
 
         /// check message
-        clearErrorMessage(formProductInsert);
+        clearErrorMessage(formProductUpdate);
 
         const formData = new FormData();
         formData.append("imageProduct", inputTypeFile.files[0]);
+        formData.append("id", idProduct);
 
         /// get value select and add to dataProductForm
         selectProductForm.forEach((select) => {
@@ -76,20 +77,26 @@ if (formProductInsert) {
         inputProductForm.forEach((input) => {
             formData.append(input.name, input.value.trim());
         });
-
         axios({
-            method: "post",
-            url: `http://localhost:3001/admin/product/insert`,
+            method: "put",
+            url: `http://localhost:3001/admin/product/update`,
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
         })
             .then((response) => {
                 loadingScreen.classList.remove("displayBlock");
-                window.location.href = "/admin/product";
+                // formProductUpdate.closest(".formCategory").reset();
+                //  nodeCkedit.innerHTML = "";
+                Object.assign(errorFromServer.style, {
+                    color: "#0f5132",
+                    display: "block",
+                    backgroundColor: "#d1e7dd",
+                });
+                errorFromServer.innerHTML = response.data.message;
             })
             .catch((error) => {
                 loadingScreen.classList.remove("displayBlock");
-                showErrorMessage(error, formProductInsert, errorFromServer);
+                showErrorMessage(error, formProductUpdate, errorFromServer);
             });
     }
 }

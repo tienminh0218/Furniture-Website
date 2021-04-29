@@ -4,6 +4,7 @@ var { multipleToObject, toObject } = require("../../util/toObj");
 
 /// schema validate
 const joiSchemaProduct = require("../../util/joi-validate/validateProduct");
+const joiSchemaCategory = require("../../util/joi-validate/validateCategory");
 const Joi = require("joi");
 
 /// upload file
@@ -43,15 +44,70 @@ class AdminController {
 
     /// PUT -> /admin/category/update
     async categoryUpdate(req, res, next) {
-        var oldCategory = await Categories.findOne({ _id: req.body.id });
+        /// Validate form Category update
+        const checked = await joiSchemaCategory.schemaCategory.validate(
+            {
+                nameCategory: req.body.nameCategory,
+                description: req.body.description,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
+
+        if (error) {
+            res.status(409).json({ message: error.details });
+            return;
+        }
+
+        // check name category is exists
+        var [checkNameCategory, oldCategory] = await Promise.all([
+            Categories.findOne({ nameCategory: req.body.nameCategory }),
+            Categories.findOne({ _id: req.body.id }),
+        ]);
+        if (checkNameCategory && !(oldCategory.nameCategory === checkNameCategory.nameCategory)) {
+            return res.status(409).json({ message: "Name category had exists" });
+        }
+
+        /// save
+        Categories.findOneAndUpdate(
+            { _id: req.body.id },
+            {
+                nameCategory: req.body.nameCategory,
+                description: req.body.description,
+            },
+            {
+                new: true,
+            }
+        ).then((newCategory) => {
+            res.status(200).json({ message: "Updated successfully" });
+        });
     }
 
     /// Post -> /admin/category/insert
     async categoryInsert(req, res, next) {
         // if nameCategory is exist
-        var nameCategoryCheck = await Categories.findOne({ nameCategory: req.body.nameCategory });
+        var nameCategoryCheck = await Categories.findOne({
+            nameCategory: req.body.nameCategory,
+        });
         if (nameCategoryCheck) {
-            res.status(400).json({ message: "Your name category has already exists" });
+            res.status(400).json({
+                message: "Name category has already exists",
+            });
+            return;
+        }
+
+        /// Validate form product insert
+        const checked = await joiSchemaCategory.schemaCategory.validate(
+            {
+                nameCategory: req.body.nameCategory,
+                description: req.body.description,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
+
+        if (error) {
+            res.status(409).json({ message: error.details });
             return;
         }
 
@@ -59,7 +115,9 @@ class AdminController {
         newCategory
             .save()
             .then(() => {
-                res.status(201).json({ message: "Created category successfully" });
+                res.status(201).json({
+                    message: "Created category successfully",
+                });
             })
             .catch((error) => {
                 console.log(error);
@@ -129,23 +187,34 @@ class AdminController {
             }
         );
     }
-
-    // PUT -> /admin/product/update?id=
+    // PUT -> /admin/product/update
     async productUpdate(req, res, next) {
-        var oldProduct = await Product.find({ _id: req.params.id });
-
-        /// Check product isExist
-        if (oldProduct[0].nameProduct !== req.body.nameProduct) {
-            var isExistProduct = await Product.findOne({
+        /// Validate form product update
+        const checked = await joiSchemaProduct.schemaInsertProduct.validate(
+            {
                 nameProduct: req.body.nameProduct,
-            });
+                priceProduct: req.body.priceProduct,
+                descriptionProduct: req.body.descriptionProduct,
+                inventoryProduct: req.body.inventoryProduct,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
 
-            if (isExistProduct) {
-                res.status(409).json({
-                    message: "Product already exist",
-                });
-                return;
-            }
+        if (error) {
+            res.status(409).json({ message: error.details });
+            return;
+        }
+
+        // check name category is exists
+        var [isExistProduct, oldProduct] = await Promise.all([
+            Product.findOne({
+                nameProduct: req.body.nameProduct,
+            }),
+            Product.find({ _id: req.body.id }),
+        ]);
+        if (isExistProduct && !(oldProduct[0].nameProduct === isExistProduct.nameProduct)) {
+            return res.status(409).json({ message: "Name product had exists" });
         }
 
         var isImageExist = req.file?.path;
@@ -168,8 +237,8 @@ class AdminController {
 
             /// check if nameCategory has changed
             if (!(oldProduct[0].nameCategory === req.body.nameCategory)) {
-                var productChild = await Product.findOneAndUpdate(
-                    { _id: req.params.id },
+                Product.findOneAndUpdate(
+                    { _id: req.body.id },
                     {
                         nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
                         nameCategory: req.body.nameCategory,
@@ -183,19 +252,24 @@ class AdminController {
                         cloudinaryId_imageProduct: result_uploadImage.public_id,
                     },
                     { new: true }
-                );
-
-                Categories.findOneAndUpdate(
-                    { slug: productChild.nameCategory },
-                    { $push: { productChild: productChild } }
-                ).then(() => {
-                    res.redirect("/admin/product");
-                });
+                )
+                    .then((productChild) => {
+                        return Categories.findOneAndUpdate(
+                            { slug: productChild.nameCategory },
+                            { $push: { productChild: productChild } }
+                        );
+                    })
+                    .then(() => {
+                        res.status(200).json({ message: "Updated Successfully" });
+                    })
+                    .catch((err) => {
+                        console.log(`${err} 1`);
+                    });
                 return;
             }
             // if nameCategory have not changed
             Product.findOneAndUpdate(
-                { _id: req.params.id },
+                { _id: req.body.id },
                 {
                     nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
                     nameCategory: req.body.nameCategory,
@@ -216,7 +290,10 @@ class AdminController {
                     );
                 })
                 .then(() => {
-                    res.redirect("/admin/product");
+                    res.status(200).json({ message: "Updated Successfully" });
+                })
+                .catch((err) => {
+                    console.log(`${err} 2`);
                 });
             return;
         }
@@ -230,8 +307,8 @@ class AdminController {
                 { multi: true }
             );
 
-            var productChild = await Product.findOneAndUpdate(
-                { _id: req.params.id },
+            Product.findOneAndUpdate(
+                { _id: req.body.id },
                 {
                     nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
                     nameCategory: req.body.nameCategory,
@@ -244,20 +321,25 @@ class AdminController {
                     cloudinaryId_imageProduct: oldProduct[0].cloudinaryId_imageProduct,
                 },
                 { new: true }
-            );
-
-            Categories.findOneAndUpdate(
-                { slug: productChild.nameCategory },
-                { $push: { productChild: productChild } }
-            ).then(() => {
-                res.redirect("/admin/product");
-            });
+            )
+                .then((productChild) => {
+                    return Categories.findOneAndUpdate(
+                        { slug: productChild.nameCategory },
+                        { $push: { productChild: productChild } }
+                    );
+                })
+                .then(() => {
+                    res.status(200).json({ message: "Updated Successfully" });
+                })
+                .catch((err) => {
+                    console.log(`${err} 3`);
+                });
             return;
         }
 
         // if nameCategory have not changed
         Product.findOneAndUpdate(
-            { _id: req.params.id },
+            { _id: req.body.id },
             {
                 nameProduct: req.body.nameProduct || oldProduct[0].nameProduct,
                 nameCategory: req.body.nameCategory,
@@ -277,7 +359,10 @@ class AdminController {
                 );
             })
             .then(() => {
-                res.redirect("/admin/product");
+                res.status(200).json({ message: "Updated Successfully" });
+            })
+            .catch((err) => {
+                console.log(`${err} 4`);
             });
     }
 
@@ -313,6 +398,9 @@ class AdminController {
 
     // POST -> /admin/product/insert
     async productInsert(req, res, next) {
+        // check user upload image
+        if (!req.file?.path) return res.status(400).json({ message: "Your image is empty" });
+
         /// Check product isExist
         try {
             var isExistProduct = await Product.findOne({
