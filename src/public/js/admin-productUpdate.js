@@ -39,6 +39,7 @@ function showErrorMessage(error, form, errorFromServer) {
 /// When user want to insert a new product
 var formProductUpdate = document.querySelector(".products-container");
 var params = new URLSearchParams(window.location.search);
+var nodeCkedit = formProductUpdate.querySelector(".ck-content p");
 var idProduct = params.get("id");
 /// Check if formProductUpdate not null
 if (formProductUpdate) {
@@ -67,6 +68,7 @@ if (formProductUpdate) {
         const formData = new FormData();
         formData.append("imageProduct", inputTypeFile.files[0]);
         formData.append("id", idProduct);
+        formData.append("descriptionProduct", dataCkedit.getData());
 
         /// get value select and add to dataProductForm
         selectProductForm.forEach((select) => {
@@ -75,7 +77,8 @@ if (formProductUpdate) {
 
         /// get value input type name and add to dataProductForm
         inputProductForm.forEach((input) => {
-            formData.append(input.name, input.value.trim());
+            if (input.name !== "descriptionProduct")
+                formData.append(input.name, input.value.trim());
         });
         axios({
             method: "put",
@@ -92,6 +95,7 @@ if (formProductUpdate) {
                     display: "block",
                     backgroundColor: "#d1e7dd",
                 });
+                nodeCkedit.innerHTML = "";
                 errorFromServer.innerHTML = response.data.message;
             })
             .catch((error) => {

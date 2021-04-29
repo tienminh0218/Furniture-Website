@@ -190,15 +190,18 @@ class AdminController {
     // PUT -> /admin/product/update
     async productUpdate(req, res, next) {
         /// Validate form product update
-        const checked = await joiSchemaProduct.schemaInsertProduct.validate(
-            {
-                nameProduct: req.body.nameProduct,
-                priceProduct: req.body.priceProduct,
-                descriptionProduct: req.body.descriptionProduct,
-                inventoryProduct: req.body.inventoryProduct,
-            },
-            { abortEarly: false }
-        );
+        try {
+            var checked = await joiSchemaProduct.schemaUpdateProduct.validate(
+                {
+                    nameProduct: req.body.nameProduct,
+                    priceProduct: req.body.priceProduct,
+                    inventoryProduct: req.body.inventoryProduct,
+                },
+                { abortEarly: false }
+            );
+        } catch (error) {
+            console.log(error);
+        }
         var { error } = checked;
 
         if (error) {

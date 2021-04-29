@@ -1,21 +1,22 @@
+
 <div class="container">
             <div class="detail__main">
                 <div class="detail__img">
                     <div class="detail__img-left">
-                        <img style="border: 1px solid black;" id="imgSlideone" onclick="slideImgRight()" src="./img/img-products/banxepgonnhetb01-2.webp" alt="">
-                        <img id="imgSlidetwo" onclick="slideImgLeft()" src="./img/img-products/banxepgonnhetb01.webp" alt="">
+                        <img style="border: 1px solid black;" id="imgSlideone" onclick="slideImgRight()" src="" alt="">
+                        <img id="imgSlidetwo" onclick="slideImgLeft()" src="{{product.imageProduct}}" alt="">
                     </div>
                     <div class="detail__img-right">
                         <div id="detail-slideimg">
-                            <img src="./img/img-products/banxepgonnhetb01.webp" alt="">
-                            <img src="./img/img-products/banxepgonnhetb01-2.webp" alt="">
+                            <img src="{{product.imageProduct}}" alt="">
+                            <img src="" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="detail__info">
-                    <h1>Bàn xếp gọn nhẹ TB01</h1>
+                    <h1>{{product.nameProduct}}</h1>
                     <hr>
-                    <span>1,300,000đ</span>
+                    <span>{{product.priceProduct}}</span>
                     <div class="btn-cart">
                         <div class="input-cart">
                             <input type="button" value="-" id="min-btncart" onclick="decreaseCart()">
@@ -35,21 +36,7 @@
                             <hr>
                             
                         <div class="content__derc" id="active">
-                            <p>Dòng sản phẩm xuất khẩu được sản xuất tại Nhà Máy Việt Nam theo tiêu chuẩn Châu Âu. Nguồn gốc nguyên vật liệu cũng như chất lượng, độ bền sản phẩm đã được kiểm chứng bởi các nhà nhập khẩu Âu Mỹ</p>
-                            <p>CHẤT LIỆU</p>
-                            <p>Khung sườn: gỗ dầu (Việt Nam) đã xử lý mối mọt theo tiêu chuẩn xuất khẩu Châu Âu</p>
-                            <p>Nệm mút: nhập khẩu từ Malaysia</p>
-                            <p>Chỉ may: nhập khẩu từ Anh Quốc</p>
-                            <p>Da/ PVC/ Vải: Da Bò nhập khẩu từ Ý/ PVC nhập khẩu từ Thái Lan/ Vải nhập khẩu từ Hàn Quốc</p>
-                            <p>Hướng dẫn bảo quản</p>
-                            <ul>
-                                <li>Tránh để đồ quá nóng hoặc quá lạnh trực tiếp lên bề mặt gỗ, hãy dùng miếng lót bên dưới</li>
-                                <li>Sử dụng vải khô để làm sạch bề mặt gỗ ngay khi bị bẩn</li>
-                                <li>Đối với đồ nội thất làm từ gỗ, chúng tôi khuyến nghị nên dùng sáp và xi bóng gỗ để chà sạch và làm mới ít nhất 6 tháng một lần</li>
-                                <li>Đồ nội thất bằng gỗ sẽ có sự khác nhau về vân gỗ hoặc những tì vết tự nhiên mà không làm ảnh hưởng đến chất lượng và tính thẩm mỹ của sản phẩm</li>
-                                <li>Chất liệu cao cấp, sử dụng lâu bền</li>
-                                <li>Chân ghế được làm từ chất liệu thép mạ chrome bền đẹp, ít bị hoen gỉ qua thời gian sử dụng. 5 bánh xe dưới các thanh đỡ giúp bạn dễ dàng xoay và di chuyển ghế một cách dễ dàng. Ghế có thể điều chỉnh độ cao cho phù hợp với người sử dụng nhờ bộ piston khí nén. Sản phẩm chịu được trọng lượng cao mà vẫn đảm bảo độ bền qua thời gian sử dụng. </li>
-                            </ul>
+                            {{{product.descriptionProduct}}}
                         </div>
 
                         <div class="content__derc" id="active2">
@@ -88,3 +75,4 @@
                 </div>
             </div>
         </div>
+

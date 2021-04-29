@@ -63,9 +63,9 @@ if (formProductInsert) {
 
         /// check message
         clearErrorMessage(formProductInsert);
-
         const formData = new FormData();
         formData.append("imageProduct", inputTypeFile.files[0]);
+        formData.append("descriptionProduct", dataCkedit.getData());
 
         /// get value select and add to dataProductForm
         selectProductForm.forEach((select) => {
@@ -74,7 +74,8 @@ if (formProductInsert) {
 
         /// get value input type name and add to dataProductForm
         inputProductForm.forEach((input) => {
-            formData.append(input.name, input.value.trim());
+            if (input.name !== "descriptionProduct")
+                formData.append(input.name, input.value.trim());
         });
 
         axios({
