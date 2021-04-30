@@ -19,7 +19,7 @@ const Categories = new Schema(
                 slug: { type: String },
             },
         ],
-        slug: { type: String, slug: "nameCategory", unique: true },
+        slug: { type: String, slug: "_id", unique: true },
     },
     {
         timestamps: true,
