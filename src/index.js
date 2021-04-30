@@ -17,6 +17,34 @@ var Handlebars = require("handlebars");
 var NumeralHelper = require("handlebars.numeral");
 NumeralHelper.registerHelpers(Handlebars);
 
+// if logical hbs
+Handlebars.registerHelper("ifLogic", function (v1, operator, v2, options) {
+    switch (operator) {
+        case "==":
+            return v1 == v2 ? options.fn(this) : options.inverse(this);
+        case "===":
+            return v1 === v2 ? options.fn(this) : options.inverse(this);
+        case "!=":
+            return v1 != v2 ? options.fn(this) : options.inverse(this);
+        case "!==":
+            return v1 !== v2 ? options.fn(this) : options.inverse(this);
+        case "<":
+            return v1 < v2 ? options.fn(this) : options.inverse(this);
+        case "<=":
+            return v1 <= v2 ? options.fn(this) : options.inverse(this);
+        case ">":
+            return v1 > v2 ? options.fn(this) : options.inverse(this);
+        case ">=":
+            return v1 >= v2 ? options.fn(this) : options.inverse(this);
+        case "&&":
+            return v1 && v2 ? options.fn(this) : options.inverse(this);
+        case "||":
+            return v1 || v2 ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+});
+
 // Static File
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/admin", express.static(path.join(__dirname, "public")));

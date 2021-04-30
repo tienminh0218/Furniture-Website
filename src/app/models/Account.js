@@ -11,6 +11,7 @@ const Account = new Schema(
         phonenumber: { type: Number },
         gender: { type: String },
         address: { type: String },
+        role: { type: String },
     },
 
     {

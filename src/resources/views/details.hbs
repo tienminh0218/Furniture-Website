@@ -16,7 +16,21 @@
                 <div class="detail__info">
                     <h1>{{product.nameProduct}}</h1>
                     <hr>
-                    <span>{{number product.priceProduct}} VNĐ</span>
+                    <span>Giá:  {{number product.priceProduct}} VNĐ</span>
+                    <div class="status-product">
+                        {{#ifLogic product.statusProduct '==' 1}}
+                            <span class="status">Tình Trạng:   <span class="status available">   Còn hàng</span></span>   
+                        {{/ifLogic}}
+
+                        {{#ifLogic product.statusProduct '==' 2}}
+                            <span  class="status">Tình Trạng:   <span class="status unavailable">   Hết hàng</span></span>   
+                        {{/ifLogic}}
+                        {{#ifLogic product.statusProduct '==' 3}} 
+                            <span  class="status">Tình Trạng:   <span class="status unavailable">   Ngừng kinh doanh</span></span>   
+                        {{/ifLogic}}
+                    </div>
+                    
+
                     <div class="btn-cart">
                         <div class="input-cart">
                             <input type="button" value="-" id="min-btncart" onclick="decreaseCart()">

@@ -54,6 +54,9 @@ class AccountController {
     }
     // POST -> /account/register
     async register(req, res, next) {
+        //set role user
+        req.body?.role ? req.body.role : (req.body.role = 1);
+
         /// Check username account is exist
         var isExistAccount = await Account.findOne({
             username: req.body.username,
@@ -95,6 +98,7 @@ class AccountController {
             phonenumber: req.body.phonenumber,
             gender: req.body.gender,
             address: req.body.address,
+            role: req.body.role,
         });
 
         // Create a new account

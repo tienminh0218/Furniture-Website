@@ -54,10 +54,12 @@
                                         <i class="fas fa-user"></i>
                                         Thông tin tài khoản
                                     </div>
-                                    <div class="item-user adminUser">
-                                        <i class="fas fa-user-shield"></i>
-                                        Admin
-                                    </div>
+                                    {{#ifLogic user.role '==' 2}} 
+                                         <div class="item-user adminUser">
+                                            <i class="fas fa-user-shield"></i>
+                                            Admin
+                                        </div>
+                                    {{/ifLogic}} 
                                     <div class="item-user logoutUser">
                                         <i class="fas fa-sign-out-alt"></i>
                                         Đăng xuất

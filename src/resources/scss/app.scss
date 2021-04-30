@@ -337,7 +337,7 @@ header .header__mid .header__mid-right {
                 display: block;
                 position: absolute;
                 width: 100%;
-                height: 10%;
+                height: 20px;
                 top: -12px;
             }
         }
@@ -1804,7 +1804,24 @@ input#cart-quantity {
         }
     }
 }
+///
+.status-product {
+    margin-bottom: 14px;
+    span.status {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--black-color);
+        display: inline;
+        &.available {
+            color: var(--main-color);
+        }
+        &.unavailable {
+            color: red;
+        }
+    }
+}
 
+////
 .path {
     width: 75%;
     margin: auto;

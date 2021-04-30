@@ -153,7 +153,7 @@ header .header__mid .header__mid-right {
       display: block;
       position: absolute;
       width: 100%;
-      height: 10%;
+      height: 20px;
       top: -12px; }
   .header__mid-right .header__mid-box-icon .header__mid_right-text:hover {
     color: var(--main-color); }
@@ -1298,6 +1298,18 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
       margin-bottom: 5rem; }
     .footer__bot .footer__bot-content.ftb3 {
       width: 100%; } }
+
+.status-product {
+  margin-bottom: 14px; }
+  .status-product span.status {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--black-color);
+    display: inline; }
+    .status-product span.status.available {
+      color: var(--main-color); }
+    .status-product span.status.unavailable {
+      color: red; }
 
 .path {
   width: 75%;
