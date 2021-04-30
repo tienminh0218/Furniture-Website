@@ -7,7 +7,7 @@ const Categories = require("../models/Category");
 const { multipleToObject } = require("../../util/toObj");
 class HomeController {
     /// Get -> /
-    async islogin(req, res, next) {
+    async show(req, res, next) {
         var categories = await Categories.find({});
 
         var cookie = req.cookies;

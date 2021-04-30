@@ -1804,3 +1804,93 @@ input#cart-quantity {
         }
     }
 }
+
+.path {
+    width: 75%;
+    margin: auto;
+    font-size: 1.3rem;
+    padding: 14px 0;
+
+    a {
+        text-decoration: none;
+        color: var(--text-color);
+
+        &:hover {
+            color: #6d91e4;
+        }
+    }
+
+    span {
+        margin: 0 2px;
+    }
+}
+
+.banner-allProduct {
+    img {
+        width: 100%;
+    }
+}
+
+.headingTitle-allProduct {
+    width: 75%;
+    margin: 0 auto 20px;
+    padding: 23px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .filter-product {
+        width: 25%;
+        font-weight: 500;
+        font-size: 1.4rem;
+    }
+    .title-allProduct {
+        text-align: center;
+        width: 50%;
+        font-size: 2.6rem;
+        color: var(--main-color);
+    }
+}
+
+.contailer-allProduct {
+    width: 75%;
+    margin: auto;
+    background-color: var(--white-color);
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #e1e3e4;
+    border-left: 1px solid #e1e3e4;
+
+    .card-itemProduct {
+        width: 20%;
+        padding: 8px;
+        font-size: 1.4rem;
+        border-right: 1px solid #e1e3e4;
+        border-bottom: 1px solid #e1e3e4;
+
+        .img-product {
+            img {
+                width: 100%;
+            }
+        }
+
+        .information-product {
+            padding: 8px;
+            margin-bottom: 24px;
+            .name-product {
+                margin: 12px 0;
+                a {
+                    display: block;
+                    text-decoration: none;
+                    &:hover {
+                        color: #6d91e4;
+                    }
+                }
+            }
+
+            .price-product {
+                color: var(--red-color);
+            }
+        }
+    }
+}

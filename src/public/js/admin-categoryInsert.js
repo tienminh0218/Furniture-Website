@@ -41,10 +41,14 @@ var formCategoryInsert = document.querySelector(".categoryProducts-container");
 var btnSubmitCategory = document.querySelector('input[type="submit"]');
 var errorFromServer = formCategoryInsert.querySelector(".error-FromServer");
 var nodeCkedit = formCategoryInsert.querySelector(".ck-content p");
+var loadingScreen = document.querySelector(".modal-overplay-loading");
 
 btnSubmitCategory.addEventListener("click", (e) => {
     e.preventDefault();
     clearErrorMessage(formCategoryInsert);
+
+    /// loading screen
+    loadingScreen.classList.add("displayBlock");
 
     axios({
         method: "post",
@@ -56,6 +60,7 @@ btnSubmitCategory.addEventListener("click", (e) => {
         headers: { "Content-Type": "application/json" },
     })
         .then((response) => {
+            loadingScreen.classList.remove("displayBlock");
             formCategoryInsert.closest(".formCategory").reset();
             nodeCkedit.innerHTML = "";
             Object.assign(errorFromServer.style, {
@@ -66,6 +71,7 @@ btnSubmitCategory.addEventListener("click", (e) => {
             errorFromServer.innerHTML = response.data.message;
         })
         .catch((error) => {
+            loadingScreen.classList.remove("displayBlock");
             showErrorMessage(error, formCategoryInsert, errorFromServer);
         });
 });

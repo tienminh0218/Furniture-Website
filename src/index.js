@@ -12,6 +12,11 @@ const port = process.env.PORT;
 
 const axios = require("axios").default;
 
+/// number format hbs
+var Handlebars = require("handlebars");
+var NumeralHelper = require("handlebars.numeral");
+NumeralHelper.registerHelpers(Handlebars);
+
 // Static File
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/admin", express.static(path.join(__dirname, "public")));

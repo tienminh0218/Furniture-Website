@@ -1,0 +1,44 @@
+<div class="path">
+    <a href="/">Trang chủ</a> 
+    <span> / </span>
+    <a href="#">Danh Mục</a>    
+    <span> / </span>
+    <a href="/all">Tất cả sản phẩm</a>
+</div>
+
+<div class="banner-allProduct">
+    <img src="../img/img-banner-home/collection_banner.jpg" alt="">
+</div>
+
+<div class="headingTitle-allProduct">
+    <div class="filter-product">
+        <i class="bi bi-funnel"></i>
+        Bộ lọc
+    </div>
+    <h3 class="title-allProduct">Tất cả sản phẩm</h3>
+    <div class="filter-product"></div>
+</div>
+
+<div class="contailer-allProduct">
+    {{#each product}}
+        <div class="card-itemProduct">
+            <a href="/detail?id={{this._id}}">
+                <div class="img-product">
+                    <img src="{{this.imageProduct}}" alt="">
+                </div>
+            </a>
+            <div class="information-product">
+                <div class="name-product">
+                    <a href="/detail?id={{this._id}}">
+                       {{this.nameProduct}}
+                    </a>
+                </div>
+                <div class="price-product">
+                       {{number this.priceProduct}} VNĐ
+                </div>
+            </div>
+        </div>
+
+    {{/each }}
+
+</div>

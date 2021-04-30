@@ -232,8 +232,10 @@ class AdminController {
         if (isImageExist) {
             /// delete old image and uppload a new image
             try {
-                await cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct);
-                var result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+                var [result_uploadImage] = await Promise.all([
+                    cloudinary.uploader.upload(req.file.path),
+                    cloudinary.uploader.destroy(oldProduct[0].cloudinaryId_imageProduct),
+                ]);
             } catch (error) {
                 console.log(error);
             }

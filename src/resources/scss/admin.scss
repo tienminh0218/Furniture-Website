@@ -35,13 +35,16 @@ html {
 * {
     margin: 0;
     padding: 0;
-    user-select: none;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
 .displayBlock {
     display: block !important;
+}
+
+.padding40 {
+    padding: 40px !important;
 }
 
 @mixin btn(
@@ -103,9 +106,9 @@ html {
         font-size: 2rem;
         padding: 15px;
         text-align: center;
-        max-width: 200px;
         overflow-wrap: break-word;
         line-height: 2.2rem;
+        max-height: 200px;
 
         .image-product {
             width: 100px;
@@ -117,6 +120,11 @@ html {
         .btn-update {
             @include btn(40px, 6px 30px, var(--white-color), #28a745, 1.6rem);
         }
+    }
+
+    td {
+        height: 200px;
+        overflow: hidden;
     }
 }
 
@@ -312,7 +320,7 @@ html {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100px;
+        width: 220px;
         img {
             width: 100%;
         }
