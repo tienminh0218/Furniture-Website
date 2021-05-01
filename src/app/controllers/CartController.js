@@ -5,7 +5,7 @@ var { multipleToObject, toObject } = require("../../util/toObj");
 
 class CartController {
     // Get -> /cart
-    async CartDetail(req, res, next) {
+    async cartDetail(req, res, next) {
         /// verify token in cookie
         try {
             var secret = process.env.SECRECT;
