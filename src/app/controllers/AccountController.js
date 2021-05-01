@@ -28,13 +28,19 @@ class AccountController {
             username: req.body.username,
         });
 
-        if (!isAccountExist) return res.status(400).json({ message: "Your account not found" });
+        if (!isAccountExist)
+            return res.status(400).json({ message: "Your account not found" });
 
-        var checkPassword = await bcrypt.compare(req.body.password, isAccountExist.password);
+        var checkPassword = await bcrypt.compare(
+            req.body.password,
+            isAccountExist.password
+        );
 
         /// Check password
         if (!checkPassword)
-            return res.status(400).json({ message: "Your password or username is incorrect" });
+            return res
+                .status(400)
+                .json({ message: "Your password or username is incorrect" });
 
         /// Create a token
         var secret = process.env.SECRECT;
@@ -47,10 +53,14 @@ class AccountController {
         );
 
         /// Login success and create a cookie
-        res.status(200).cookie("token", token).json({
-            message: "Wellcome",
-            token,
-        });
+        res.status(200)
+            .cookie("token", token, {
+                expires: new Date(Date.now() + 24 * 3600000),
+            })
+            .json({
+                message: "Wellcome",
+                token,
+            });
     }
     // POST -> /account/register
     async register(req, res, next) {
