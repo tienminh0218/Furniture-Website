@@ -29,8 +29,6 @@ class DetailController {
             return;
         }
 
-        // return res.send("ok");
-
         /// verify token in cookie
         try {
             var secret = process.env.SECRECT;
@@ -50,6 +48,6 @@ class DetailController {
             });
         });
     }
+    addToCart(req, res, next) {}
 }
-
 module.exports = new DetailController();
