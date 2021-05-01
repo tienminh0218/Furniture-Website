@@ -24,6 +24,12 @@ class CartController {
         });
     }
 
+    // Post -> /cart/add
+    addToCart(req, res, next) {
+        // Product.findOne({ _id: req.body.id });
+        // .then(product =>)
+    }
+
     // Delete -> /cart/delete
     cartDelete(req, res, next) {
         console.log("ok");
