@@ -24,7 +24,7 @@ const Cart = new Schema({
             // descriptionProduct: { type: String },
             // statusProduct: { type: String },
             // inventoryProduct: { type: String },
-            quantity: { type: string },
+            quantity: { type: String },
             imageProduct: { type: String },
             // cloudinaryId_imageProduct: { type: String },
             nameCategory: { type: String },

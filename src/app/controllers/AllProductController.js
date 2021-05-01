@@ -1,5 +1,4 @@
 const Account = require("../models/Account");
-const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
 
@@ -13,13 +12,15 @@ class AllProductController {
         /// check is cookie exist
         var cookie = req.cookies;
         if (Object.keys(cookie).length == 0) {
-            Promise.all([Categories.find({}), Product.find({})]).then(([categories, product]) => {
-                res.render("allProducts", {
-                    user: false,
-                    categories: multipleToObject(categories),
-                    product: multipleToObject(product),
-                });
-            });
+            Promise.all([Categories.find({}), Product.find({})]).then(
+                ([categories, product]) => {
+                    res.render("allProducts", {
+                        user: false,
+                        categories: multipleToObject(categories),
+                        product: multipleToObject(product),
+                    });
+                }
+            );
             return;
         }
 
