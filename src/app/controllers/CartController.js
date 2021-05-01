@@ -1,11 +1,14 @@
+const Account = require("../models/Account");
 var Categories = require("../models/Category");
 var Product = require("../models/Product");
 var Cart = require("../models/Cart");
+var jwt = require("jsonwebtoken");
 var { multipleToObject, toObject } = require("../../util/toObj");
 
 class CartController {
     // Get -> /cart
     async cartDetail(req, res, next) {
+        var cookie = req.cookies;
         /// verify token in cookie
         try {
             var secret = process.env.SECRECT;
@@ -15,12 +18,9 @@ class CartController {
         }
         Promise.all([
             Account.findById({ _id: decoded.id_user }),
-            cart.find({ customer: [{ username: decoded.name }] }),
+            Cart.find({ customer: [{ username: decoded.name }] }),
         ]).then(([categories, user, cart]) => {
-            res.render("cart", {
-                user: toObject(user),
-                cart: toObject(cart),
-            });
+            res.render("cart");
         });
     }
 
