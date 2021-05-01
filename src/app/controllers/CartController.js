@@ -23,13 +23,13 @@ class CartController {
             });
         });
     }
+
     // Delete -> /cart/delete
-    CartDelete(req, res, next) {
+    cartDelete(req, res, next) {
         console.log("ok");
     }
+
     // Delete -> /cart/deleteAll
-    CartDeleteAll(req, res, next) {
-        console.log("ok");
-    }
+    cartDeleteAll(req, res, next) {}
 }
 module.exports = new CartController();
