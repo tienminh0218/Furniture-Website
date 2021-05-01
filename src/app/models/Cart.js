@@ -15,7 +15,7 @@ const Cart = new Schema({
         {
             nameProduct: { type: String },
             priceProduct: { type: Number },
-            quantity: { type: string },
+            quantity: { type: String },
             imageProduct: { type: String },
             nameCategory: { type: String },
             slug: { type: String },

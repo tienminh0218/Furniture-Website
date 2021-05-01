@@ -1,5 +1,4 @@
 const Account = require("../models/Account");
-const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
 
@@ -25,7 +24,10 @@ class HomeController {
             return res.send(error);
         }
         Account.findById({ _id: decoded.id_user }).then((user) => {
-            res.render("home", { user: toObject(user), categories: multipleToObject(categories) });
+            res.render("home", {
+                user: toObject(user),
+                categories: multipleToObject(categories),
+            });
         });
     }
 }
