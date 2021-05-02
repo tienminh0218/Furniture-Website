@@ -22,5 +22,6 @@ const Cart = new Schema({
         },
     ],
     totalPrice: { type: Number },
+    totalQuantity: { type: String },
 });
-module.exports = mongoose.model("cart", Cart);
+module.exports = mongoose.model("carts", Cart);

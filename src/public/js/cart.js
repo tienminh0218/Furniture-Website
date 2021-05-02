@@ -1,6 +1,7 @@
 /// add to shopping cart
 var btnAddCart = document.querySelector("#addcart");
 var mesSgLogin = document.querySelector(".modalOverplay-mesSuggesLogin");
+var mesAddSuccess = document.querySelector(".modalOverplay-addCartSuccess");
 var quantityProduct = document.querySelector(".input-cart input[type=number]");
 
 /// when user click btn add to cart
@@ -34,5 +35,12 @@ function addToCart() {
             quantity: quantityProduct.value,
         },
         headers: { "Content-Type": "application/json" },
-    });
+    })
+        .then((data) => {
+            mesAddSuccess.classList.add("active");
+            setTimeout(() => mesAddSuccess.classList.remove("active"), 1000);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }

@@ -9,41 +9,48 @@
         <h3 class="title-cartDetails">
             THÔNG TIN SẢN PHẨM
         </h3>
-
-        <div class="item-cartDetails">
-            <div class="imageItem-cartDetails">
-                <img src="./img/favicon/icon.jpg" alt="">
-            </div>
-            <div class="inforItem-cartDetails">
-                <div class="name-item">
-                    <p>Tên sản phẩm</p>
+    {{#each cart.products}}
+            <div class="item-cartDetails">
+                <div class="imageItem-cartDetails">
+                    <img src="{{this.imageProduct}}" alt="">
                 </div>
-                <div class="price-item">
-                    <div class="priceInput-cartDetails">
-                            <span class="btn-decrease">-</span>
-                            <input class="quantity-cartDetails" type="number" value="1" min="1" id="cart-quantity">
-                            <span class="btn-increase">+</span>
+                <div class="inforItem-cartDetails">
+                    <div class="name-item">
+                        <p>{{this.nameProduct}}</p>
                     </div>
-                    <div class="pricePreItem-cartDetails">
-                        100000 đ
-                    </div>
-                    <div class="deleteItem-cartDetails">
-                        <i class="bi bi-trash"></i> Xoá
+                    <div class="price-item">
+                        <div class="priceInput-cartDetails">
+                                <span class="btn-decrease">-</span>
+                                <input class="quantity-cartDetails" type="number" value="{{this.quantity}}" min="1" id="cart-quantity">
+                                <span class="btn-increase">+</span>
+                        </div>
+                        <div class="pricePreItem-cartDetails">
+                            {{mutiply this.quantity this.priceProduct}} đ
+                        </div>
+                        <div class="deleteItem-cartDetails" idProduct="{{this._id}}">
+                            <i class="bi bi-trash"></i> Xoá
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+    {{/each}}
     </div>
     <div class="information-cartDetails">
             <div class="payment-confirmation">
                 <h3>THÔNG TIN GIỎ HÀNG</h3>
                 <div class="totalQuantity-cartDetails">
-                    <p>Số lượng sản phẩm</p>
-                    <p>10</p>
+                    <p>Số lượng sản phẩm:</p>
+                    <p> 
+                        {{#if cart}}
+                            {{cart.totalQuantity}} 
+                            {{else}}
+                            0
+                        {{/if}}
+                    </p>
                 </div>
                 <div class="totalPrice-cartDetails">
-                    <p>Tổng chi phí</p>
-                    <p>10123123123 đ</p>
+                    <p>Tổng chi phí:</p>
+                    <p>{{number cart.totalPrice}} đ</p>
                 </div>
                 <p class="tax-cartDetails">
                     Đã bao gồm VAT (nếu có)
@@ -76,3 +83,4 @@
     </div>
 </div>
 
+<script src="../js/paymentConfirm.js" defer></script>
