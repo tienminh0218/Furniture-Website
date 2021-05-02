@@ -21,8 +21,8 @@ function getCookie(name) {
 function addToCart() {
     var cookie = getCookie("token");
     if (!cookie) {
-        mesSgLogin.classList.add("showDisplay");
-        setTimeout(() => mesSgLogin.classList.remove("showDisplay"), 1000);
+        mesSgLogin.classList.add("active");
+        setTimeout(() => mesSgLogin.classList.remove("active"), 1000);
         return;
     }
 

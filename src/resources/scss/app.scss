@@ -202,6 +202,11 @@ html {
     }
 }
 
+#addcart.disabledBtn {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 // ================================================================
 
 header {
@@ -1277,26 +1282,27 @@ input#cart-quantity {
 
 // ---- modal ------
 .modalOverplay-mesSuggesLogin {
-    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     z-index: 1;
-    .mesSuggesLogin-box {
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: white;
-        color: var(--red-color);
-        font-size: 1.6rem;
-        padding: 20px 30px;
-        box-shadow: 0px 0px 25px -2px #c7bfc7;
-        i {
-            margin-right: 4px;
-        }
+    top: 12%;
+    right: 0;
+    transform: translateX(20%);
+    background-color: white;
+    color: var(--red-color);
+    font-size: 1.6rem;
+    padding: 20px 30px;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0px 0px 25px -2px #c7bfc7;
+    transition: all 0.5s ease;
+    &.active {
+        right: 6%;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    i {
+        margin-right: 4px;
     }
 }
 

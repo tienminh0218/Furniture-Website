@@ -38,7 +38,11 @@
                             <input type="button" value="+" id="max-btncart">
                         </div>
                         <div class="input-btn">
-                            <button id="addcart" type="button" >Thêm vào giỏ</button>
+                            {{#ifLogic product.statusProduct '==' 1}}
+                                    <button id="addcart" type="button" >Thêm vào giỏ</button>
+                                {{else}}
+                                    {{!-- <button class="disabledBtn"id="addcart" type="button" >Thêm vào giỏ</button> --}}
+                            {{/ifLogic}}
                         </div>
                     </div>
                     <div class="detail__derc" id="tab-content">

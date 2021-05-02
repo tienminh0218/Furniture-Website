@@ -24,6 +24,9 @@ class CartController {
         });
     }
 
+    // Post -> /cart/add
+    addToCart(req, res, next) {}
+
     // Delete -> /cart/delete
     cartDelete(req, res, next) {
         console.log("ok");

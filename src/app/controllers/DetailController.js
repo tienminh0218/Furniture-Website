@@ -12,10 +12,7 @@ class DetailController {
         /// check is cookie exist
         var cookie = req.cookies;
         if (Object.keys(cookie).length == 0) {
-            Promise.all([
-                Categories.find({}),
-                Product.findById({ _id: req.query.id }),
-            ])
+            Promise.all([Categories.find({}), Product.findById({ _id: req.query.id })])
                 .then(([categories, product]) => {
                     res.render("details", {
                         user: false,
@@ -48,6 +45,5 @@ class DetailController {
             });
         });
     }
-    addToCart(req, res, next) {}
 }
 module.exports = new DetailController();
