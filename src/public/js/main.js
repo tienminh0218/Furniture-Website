@@ -39,15 +39,6 @@ function decreaseCart() {
     }
 }
 
-// function addCart() {
-//     var getQuantity = document.getElementById("cart-quantity");
-//     var getQuantityNumber = getQuantity.valueAsNumber;
-//     var getQuantityCart = document.getElementById("numberOnCart");
-//     var sum = getQuantityNumber + Number(getQuantityCart.innerHTML);
-//     getQuantityCart.innerHTML = sum;
-//     // console.log(sum);
-// }
-
 function increaseCart() {
     document.getElementById("cart-quantity").value++;
 }

@@ -84,8 +84,14 @@ class CartController {
                 totalQuantity: req.body.quantity,
             });
 
-            newCart.save();
-            res.status(201).json({ message: "Add to cart successfully" });
+            newCart
+                .save()
+                .then(() => {
+                    res.status(201).json({ message: newCart });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
             return;
         }
 
@@ -120,10 +126,13 @@ class CartController {
                     },
                     totalPrice: oldTotalPrice + totalPricePerProduct,
                     totalQuantity: +oldQuantity + +req.body.quantity,
+                },
+                {
+                    new: true,
                 }
             )
-                .then(() => {
-                    res.status(201).json({ message: "Add to cart successfully" });
+                .then((result) => {
+                    res.status(201).json({ message: result });
                 })
                 .catch((err) => {
                     console.log(err);
@@ -158,10 +167,13 @@ class CartController {
                 },
                 totalPrice: oldTotalPrice + totalPricePerProduct,
                 totalQuantity: +oldQuantity + +req.body.quantity,
+            },
+            {
+                new: true,
             }
         )
-            .then(() => {
-                res.status(201).json({ message: "Add to cart successfully" });
+            .then((result) => {
+                res.status(201).json({ message: result });
             })
             .catch((err) => {
                 console.log(err);
@@ -190,11 +202,14 @@ class CartController {
                     {
                         totalPrice: oldCart.totalPrice - req.body.priceProduct,
                         totalQuantity: oldCart.totalQuantity - req.body.quantityProduct,
+                    },
+                    {
+                        new: true,
                     }
                 );
             })
-            .then(() => {
-                res.status(200).json({ message: "Delete done" });
+            .then((cart) => {
+                res.status(200).json({ message: cart });
             })
             .catch((err) => {
                 console.log(err);

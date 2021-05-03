@@ -55,8 +55,19 @@
                 <p class="tax-cartDetails">
                     Đã bao gồm VAT (nếu có)
                 </p>
-                <button class="btn-confirmOrder">Xác nhận đơn hàng</button>
+
+                 {{#ifLogic cart.totalQuantity "==" 0}}            
+                    <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
+                    {{else}}
+                     <button class="btn-confirmOrder">Xác nhận đơn hàng</button>
+                {{/ifLogic}}
+
+
                 <button class="btn-deleteAllOrder">Xóa giỏ hàng</button>
+                <a href="/all">
+                    <button class="btn-viewOtherProduct">Xem sản phẩm khác</button>
+                </a>
+
 
             </div>
             <div class="policy-cartDetails">

@@ -1333,6 +1333,33 @@ input#cart-quantity {
     }
 }
 
+.modalOverplay-addCartUnsuccess {
+    position: fixed;
+    z-index: 1;
+    top: 12%;
+    right: 0;
+    transform: translateX(20%);
+    background-color: white;
+    color: var(--red-color);
+    font-size: 1.6rem;
+    padding: 20px 30px;
+    opacity: 0;
+    visibility: hidden;
+    min-width: 300px;
+    text-align: center;
+    box-shadow: 0px 0px 25px -2px #c7bfc7;
+    transition: all 0.5s ease;
+    &.active {
+        right: 6%;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    i {
+        margin-right: 4px;
+    }
+}
+
 .modals {
     display: none;
 
@@ -2040,7 +2067,12 @@ input#cart-quantity {
         }
         .cartBox-items {
             height: 166px;
-            overflow-y: auto;
+
+            h3 {
+                text-align: center;
+                font-size: 1.6rem;
+            }
+
             .itemCart {
                 height: 50px;
                 width: 100%;
@@ -2073,6 +2105,9 @@ input#cart-quantity {
                 .priceItem {
                     width: 20%;
                     font-size: 1.4rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                     p {
                         font-weight: 300;
                         line-height: 50px;
@@ -2268,9 +2303,22 @@ input#cart-quantity {
                 @include btn(100%, 12px 30px);
                 font-size: 2rem;
                 margin-bottom: 16px;
+
+                &.disabled-confirmOrder {
+                    background: #979797;
+                    border-color: #979797;
+                    pointer-events: none;
+                }
             }
             .btn-deleteAllOrder {
                 @include btn(100%, 12px 30px, var(--white-color), var(--red-color));
+                font-size: 2rem;
+                margin-bottom: 16px;
+            }
+
+            .btn-viewOtherProduct {
+                @include btn(100%, 12px 30px, var(--main-color), var(--white-color));
+                border: 1px solid var(--main-color);
                 font-size: 2rem;
             }
         }

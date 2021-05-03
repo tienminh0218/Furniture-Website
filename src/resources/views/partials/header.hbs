@@ -82,33 +82,42 @@
                                     <path d="M7.31 5h18.27l-1.44 10H9.78L6.22 0H0"></path>
                                 </g>
                             </svg>
-                                <span class="number-oncart">0</span>
+                                <span class="number-oncart">{{cart.totalQuantity}}</span>
                             </div>
                         </div>
                         <span class="header__mid_right-text">
                             Giỏ hàng
                         </span>
                         
+                        {{!--  box cart  --}}
                         <div class="cart-boxContainer">
                             <p class="cartBox__title">Giỏ hàng</p>
-                            <div class="cartBox-items">
-                                <div class="itemCart">
-                                    <div class="imageItem">
-                                        <img src="./img/favicon/icon.jpg" alt="">
-                                    </div>
-                                    <div class="nameItem">
-                                       <h4>Nam producNam productNam producttproducttproducttproductt</h4>
-                                    </div>
-                                    <div class="priceItem">
-                                        <p>1000 dd</p>
-                                    </div>
-                                </div>
+
+                            <div class="cartBox-items">                            
+                            {{#if cart.products}}
+                                 {{#each cart.products}}
+                                        <div class="itemCart">
+                                            <div class="imageItem">
+                                                <img src="{{this.imageProduct}}" alt="">
+                                            </div>
+                                            <div class="nameItem">
+                                                <h4>{{this.nameProduct}}</h4>
+                                            </div>
+                                            <div class="priceItem">
+                                                <p>{{mutiply this.priceProduct this.quantity }}</p> <span>đ</span>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                            {{else}}
+                                <h3>Chưa có sản phẩm nào</h3>
+                             {{/if}}
+                           
                                 
                             </div>
                             <footer class="cartBox-totals">
                                 <div class="cartBox-totalItem">
                                     <p >TỔNG TIỀN:</p>
-                                    <p >0 VNĐ</p>
+                                    <p >{{number cart.totalPrice}} VNĐ</p>
                                 </div>
                                 <div class="cartBox-totalItem">
                                     <a href="/cart" class="cartBox-totalLink">XEM GIỎ HÀNG</a>
@@ -326,4 +335,9 @@
 <div class="modalOverplay-addCartSuccess">
         <i class="fas fa-check-circle"></i>
         Đã thêm thành công
+</div>
+
+<div class="modalOverplay-addCartUnsuccess">
+        <i class="fas fa-check-circle"></i>
+        Số lượng sản phẩm không hợp lệ
 </div>

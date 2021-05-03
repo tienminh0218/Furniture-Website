@@ -1,6 +1,7 @@
 const Account = require("../models/Account");
 const Categories = require("../models/Category");
 const Product = require("../models/Product");
+const Cart = require("../models/Cart");
 var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
 
@@ -37,11 +38,13 @@ class DetailController {
             Categories.find({}),
             Account.findById({ _id: decoded.id_user }),
             Product.findById({ _id: req.query.id }),
-        ]).then(([categories, user, product]) => {
+            Cart.findOne({ "customer.username": decoded.name }),
+        ]).then(([categories, user, product, cart]) => {
             res.render("details", {
                 user: toObject(user),
                 categories: multipleToObject(categories),
                 product: toObject(product),
+                cart: toObject(cart),
             });
         });
     }
