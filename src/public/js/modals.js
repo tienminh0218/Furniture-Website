@@ -10,7 +10,13 @@ function requestData(url, method = "GET", data) {
 function clearErrorMessage(form) {
     let errMessNotify = form.querySelectorAll(".error-message");
     let inputs = form.querySelectorAll("input");
-    form.querySelector(".error-FromServer").innerHTML = "";
+
+    /// clear err from server
+    let errFromServer = form.querySelector(".error-FromServer");
+    errFromServer.innerHTML = "";
+    errFromServer.style.display = "none";
+
+    /// clear err message
     inputs.forEach((input) => {
         input.style.borderColor = "#ccc";
     });
@@ -19,7 +25,7 @@ function clearErrorMessage(form) {
     });
 }
 
-function showErrorMessage(error, form, errorFormServer) {
+function showErrorMessage(error, form, errorFromServer) {
     if (error.response) {
         var { data } = error.response;
         if (Array.isArray(data.message)) {
@@ -30,8 +36,12 @@ function showErrorMessage(error, form, errorFormServer) {
                     err.message;
             });
         } else {
-            errorFormServer.style.color = "red";
-            errorFormServer.innerHTML = data.message;
+            Object.assign(errorFromServer.style, {
+                color: "#842029",
+                display: "block",
+                backgroundColor: "#f8d7da",
+            });
+            errorFromServer.innerHTML = data.message;
         }
     }
 }

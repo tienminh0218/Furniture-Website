@@ -10,11 +10,15 @@ class HomeController {
     async show(req, res, next) {
         var cookie = req.cookies;
         /// check is cookie exist
-        if (Object.keys(cookie).length == 0)
-            return res.render("home", {
-                user: false,
-                categories: multipleToObject(categories),
+        if (Object.keys(cookie).length == 0) {
+            Categories.find({}).then((categories) => {
+                res.render("home", {
+                    user: false,
+                    categories: multipleToObject(categories),
+                });
             });
+            return;
+        }
 
         /// verify token in cookie
         try {

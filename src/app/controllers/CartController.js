@@ -218,5 +218,89 @@ class CartController {
 
     // Delete -> /cart/deleteAll
     cartDeleteAll(req, res, next) {}
+
+    // Patch -> /cart/
+    async changeQuantity(req, res, next) {
+        var cookie = req.cookies;
+        /// verify token in cookie
+        try {
+            var secret = process.env.SECRECT;
+            var decoded = jwt.verify(cookie.token, secret);
+        } catch (error) {
+            return res.send(error);
+        }
+
+        var oldCart = await Cart.findOne({
+            "customer.username": decoded.name,
+            "products._id": req.body.idProduct,
+        });
+
+        /// increase quantity
+        if (req.body.option === 1) {
+            let { products } = oldCart;
+            let priceProduct;
+
+            /// get price product
+            products.forEach((product) => {
+                if (product._id == req.body.idProduct) priceProduct = product.priceProduct;
+            });
+            Cart.findOneAndUpdate(
+                { "customer.username": decoded.name, "products._id": req.body.idProduct },
+                {
+                    $inc: { "products.$.quantity": 1, totalQuantity: 1 },
+                    totalPrice: oldCart.totalPrice + priceProduct,
+                },
+                {
+                    new: true,
+                }
+            ).then((newCart) => {
+                res.status(200).json({ message: newCart });
+            });
+
+            return;
+        }
+
+        /// decrease quantity
+        let { products } = oldCart;
+        let priceProduct;
+
+        /// get price product
+        products.forEach((product) => {
+            if (product._id == req.body.idProduct) priceProduct = product.priceProduct;
+        });
+        Cart.findOneAndUpdate(
+            { "customer.username": decoded.name, "products._id": req.body.idProduct },
+            {
+                $inc: { "products.$.quantity": -1, totalQuantity: -1 },
+                totalPrice: oldCart.totalPrice - priceProduct,
+            },
+            {
+                new: true,
+            }
+        ).then((newCart) => {
+            let { products: newArrCarts } = newCart;
+            let isPullProduct = false;
+            newArrCarts.forEach((newArrCart) => {
+                if (newArrCart._id == req.body.idProduct) {
+                    if (newArrCart.quantity == 0) {
+                        isPullProduct = true;
+                        Cart.findOneAndUpdate(
+                            { "customer.username": decoded.name },
+                            {
+                                $pull: { products: { _id: req.body.idProduct } },
+                            },
+                            {
+                                new: true,
+                            }
+                        ).then((result) => {
+                            res.status(200).json({ message: result });
+                        });
+                    }
+                }
+            });
+
+            if (!isPullProduct) res.status(200).json({ message: newCart });
+        });
+    }
 }
 module.exports = new CartController();

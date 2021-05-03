@@ -48,7 +48,7 @@
                         </div>
                         {{# if user }}
                             <span class="header__mid_right-text userExist">
-                                Chào {{user.username}}
+                                    {{user.username}}
                                 <div class="container-user">
                                     <div class="item-user">
                                         <i class="fas fa-user"></i>
@@ -82,7 +82,13 @@
                                     <path d="M7.31 5h18.27l-1.44 10H9.78L6.22 0H0"></path>
                                 </g>
                             </svg>
-                                <span class="number-oncart">{{cart.totalQuantity}}</span>
+                                <span class="number-oncart">
+                                    {{#if cart.totalQuantity}}
+                                        {{cart.totalQuantity}}
+                                    {{else}}
+                                        0
+                                    {{/if}}
+                                </span>
                             </div>
                         </div>
                         <span class="header__mid_right-text">

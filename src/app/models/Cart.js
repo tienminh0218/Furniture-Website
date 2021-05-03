@@ -15,13 +15,13 @@ const Cart = new Schema({
         {
             nameProduct: { type: String },
             priceProduct: { type: Number },
-            quantity: { type: String },
+            quantity: { type: Number },
             imageProduct: { type: String },
             nameCategory: { type: String },
             slug: { type: String },
         },
     ],
     totalPrice: { type: Number },
-    totalQuantity: { type: String },
+    totalQuantity: { type: Number },
 });
 module.exports = mongoose.model("carts", Cart);
