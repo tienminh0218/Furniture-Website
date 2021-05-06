@@ -8,6 +8,11 @@ var cartBoxItems = document.querySelector(".cartBox-items");
 var totalPriceInCart = document.querySelector(".cartBox-totalItem p:last-child");
 var confirmOrder = document.querySelector(".btn-confirmOrder");
 
+/// delete all
+var btnDeleteAll = document.querySelector(".btn-deleteAllOrder");
+var ItemInCarts = document.querySelectorAll(".item-cartDetails");
+var arrListItems = [];
+
 var formatter = new Intl.NumberFormat();
 
 // btn increase and decrease
@@ -30,6 +35,9 @@ async function changeQuantity(e, option) {
         .closest(".price-item")
         .querySelector(".pricePreItem-cartDetails");
 
+    // prevent click fast
+    e.target.classList.add("disabled-btn");
+
     if (option === 1) {
         axios({
             method: "patch",
@@ -41,6 +49,9 @@ async function changeQuantity(e, option) {
             headers: { "Content-Type": "application/json" },
         })
             .then((data) => {
+                // remove click fast
+                e.target.classList.remove("disabled-btn");
+
                 inputQuantity.value++;
                 let { message } = data.data;
                 let itemInCart = "";
@@ -78,6 +89,7 @@ async function changeQuantity(e, option) {
             });
         return;
     }
+
     axios({
         method: "patch",
         url: `http://localhost:3001/cart/`,
@@ -88,6 +100,9 @@ async function changeQuantity(e, option) {
         headers: { "Content-Type": "application/json" },
     })
         .then((data) => {
+            // remove click fast
+            e.target.classList.remove("disabled-btn");
+
             inputQuantity.value--;
             let { message } = data.data;
             let itemInCart = "";
@@ -95,7 +110,6 @@ async function changeQuantity(e, option) {
             priceProductUpdated.innerHTML = `${formatter.format(message.totalPrice)} đ`;
             quantityInCart.innerHTML = message.totalQuantity;
             totalPriceInCart.innerHTML = `${formatter.format(message.totalPrice)} VNĐ`;
-            console.log(message);
             if (inputQuantity.value == 0) {
                 inputQuantity.closest(".item-cartDetails").remove();
 
@@ -192,4 +206,37 @@ function deleteProduct(e) {
         .catch((err) => {
             console.log(err);
         });
+}
+
+// delete all items in cart
+btnDeleteAll.addEventListener("click", deleteAll);
+
+function deleteAll() {
+    //add items to list
+    ItemInCarts.forEach((element) => {
+        arrListItems.push(element.getAttribute("id-deleteall"));
+    });
+
+    axios({
+        method: "delete",
+        url: `http://localhost:3001/cart/delete`,
+        data: {
+            arrListItems,
+        },
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((data) => {
+            //delete items in list
+            ItemInCarts.forEach((element) => {
+                element.remove();
+            });
+
+            btnDeleteAll.classList.add("disabled-confirmOrder");
+            cartBoxItems.innerHTML = "<h3>Chưa có sản phẩm nào</h3>";
+            quantityProductUpdated.innerHTML = "0";
+            priceProductUpdated.innerHTML = "0 đ";
+            quantityInCart.innerHTML = "0";
+            totalPriceInCart.innerHTML = "0 VNĐ";
+        })
+        .catch((err) => console.error(err));
 }

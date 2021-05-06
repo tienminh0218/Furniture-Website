@@ -217,7 +217,34 @@ class CartController {
     }
 
     // Delete -> /cart/deleteAll
-    cartDeleteAll(req, res, next) {}
+    cartDeleteAll(req, res, next) {
+        var cookie = req.cookies;
+        /// verify token in cookie
+        try {
+            var secret = process.env.SECRECT;
+            var decoded = jwt.verify(cookie.token, secret);
+        } catch (error) {
+            return res.send(error);
+        }
+
+        Cart.findOneAndUpdate(
+            {
+                "customer.username": decoded.name,
+            },
+            {
+                $pull: { products: { _id: { $in: req.body.arrListItems } } },
+                totalPrice: 0,
+                totalQuantity: 0,
+            },
+            { new: true }
+        )
+            .then((newCart) => {
+                res.status(200).json({ message: newCart });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
     // Patch -> /cart/
     async changeQuantity(req, res, next) {

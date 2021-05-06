@@ -52,6 +52,9 @@ function addToCart() {
         return;
     }
 
+    /// add disable
+    btnAddCart.classList.add("disabledBtn");
+
     axios({
         method: "post",
         url: `http://localhost:3001/cart/add`,
@@ -62,6 +65,9 @@ function addToCart() {
         headers: { "Content-Type": "application/json" },
     })
         .then((data) => {
+            /// remove disable
+            btnAddCart.classList.remove("disabledBtn");
+
             let { message } = data.data;
             let itemInCart = "";
 
@@ -94,5 +100,8 @@ function addToCart() {
         })
         .catch((err) => {
             if (err.response) console.log(err);
+
+            /// remove disable
+            btnAddCart.classList.remove("disabledBtn");
         });
 }

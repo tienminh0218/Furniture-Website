@@ -69,105 +69,18 @@
                 <!-- body product list -->
 
                 <div class="body__product-list">
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href="details"><img src="./img/img-products/amtrainoxkhongghi.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Ấm trà inox không ghỉ</p></a>
-                            <p>890,000₫</p>
-                        </div>
-                    </div>
-                    
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/banxepgonnhetb01.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Bàn xếp gọn nhẹ TB01</p></a>
-                            <p>1,300,000₫</p>
-                        </div>
-                    </div>
 
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/dendebangonnhepetite.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
+                    {{#each products}}
+                        <div class="body__product-list-content">
+                            <div class="product-list-content-img">
+                                <a href="/detail?id={{this._id}}"><img src="{{this.imageProduct}}" alt="{{this.nameProduct}}" title="{{this.nameProduct}}"></a>
+                            </div>
+                            <div class="product-list-content-text">
+                                <a href="#"><p>{{this.nameProduct}}</p></a>
+                                <p>{{number this.priceProduct}}₫</p>
+                            </div>
                         </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Đèn để bàn gọn nhẹ Petite</p></a>
-                            <p>690,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/dentreosangtronghubert.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Đèn treo sang trọng Hubert</p></a>
-                            <p>1,200,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/ghegobapbenhiconic.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Ghế gỗ bập bênh Iconic</p></a>
-                            <p>700,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/ghephongkhacharctander.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Ghế phòng khách Arctander</p></a>
-                            <p>799,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/ghesofagiuongkeoroots.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Ghế sofa giường kéo Roots</p></a>
-                            <p>7,200,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/ghesofaphongkhachs003.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Ghế Sofa phòng khách S003</p></a>
-                            <p>6,800,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/ghetualungphongkhachs004.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Ghế tựa lưng phòng khách S004</p></a>
-                            <p>2,400,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="body__product-list-content">
-                        <div class="product-list-content-img">
-                             <a href=""><img src="./img/img-products/loabluetoothb&obeoplay.webp" alt="Ấm trà inox không ghỉ" title="Ấm trà inox không ghỉ"></a>
-                        </div>
-                        <div class="product-list-content-text">
-                            <a href="#"><p>Loa Bluetooth B&O Beoplay</p></a>
-                            <p>4,445,000₫</p>
-                        </div>
-                    </div>
+                    {{/each}}              
 
                 </div>
 

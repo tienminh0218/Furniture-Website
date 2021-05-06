@@ -207,7 +207,6 @@ html {
 }
 
 #addcart.disabledBtn {
-    opacity: 0.6;
     pointer-events: none;
 }
 
@@ -2139,6 +2138,11 @@ input#cart-quantity {
             background-color: var(--main-color);
             text-decoration: none;
             color: var(--white-color);
+
+            &.disabled-cart {
+                pointer-events: none;
+                background-color: #979797;
+            }
         }
     }
 }
@@ -2213,6 +2217,7 @@ input#cart-quantity {
                         height: 36px;
                         width: 90px;
                         border: 1px solid #ccc;
+                        cursor: pointer;
 
                         .quantity-cartDetails {
                             text-align: center;
@@ -2222,6 +2227,8 @@ input#cart-quantity {
                             font-size: 1.4rem;
                             font-weight: bold;
                             width: 100%;
+                            cursor: pointer;
+                            user-select: none;
                         }
                         .btn-increase {
                             width: 30px;
@@ -2232,6 +2239,11 @@ input#cart-quantity {
                             z-index: 1;
                             font-size: 1.6rem;
                             user-select: none;
+
+                            &.disabled-btn {
+                                pointer-events: none;
+                            }
+
                             &:hover {
                                 background-color: #ccc;
                                 cursor: pointer;
@@ -2245,6 +2257,11 @@ input#cart-quantity {
                             user-select: none;
                             position: absolute;
                             left: 0;
+
+                            &.disabled-btn {
+                                pointer-events: none;
+                            }
+
                             &:hover {
                                 background-color: #ccc;
                                 cursor: pointer;

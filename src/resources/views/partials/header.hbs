@@ -46,7 +46,7 @@
                                 <path d="M10 13c2.82 0 5.33.64 6.98 1.2A3 3 0 0 1 19 17.02V21H1v-3.97a3 3 0 0 1 2.03-2.84A22.35 22.35 0 0 1 10 13zm0 0c-2.76 0-5-3.24-5-6V6a5 5 0 0 1 10 0v1c0 2.76-2.24 6-5 6z" stroke="currentColor" stroke-width="2" fill="none"></path>
                             </svg>
                         </div>
-                        {{# if user }}
+                        {{#if user }}
                             <span class="header__mid_right-text userExist">
                                     {{user.username}}
                                 <div class="container-user">
@@ -126,8 +126,14 @@
                                     <p >{{number cart.totalPrice}} VNĐ</p>
                                 </div>
                                 <div class="cartBox-totalItem">
-                                    <a href="/cart" class="cartBox-totalLink">XEM GIỎ HÀNG</a>
-                                    <a href="" class="cartBox-totalLink">THANH TOÁN</a>    
+                                     {{#if user }}
+                                        <a href="/cart" class="cartBox-totalLink">XEM GIỎ HÀNG</a>
+                                        <a href="" class="cartBox-totalLink">THANH TOÁN</a>   
+                                    {{else}}
+                                         <a href="/cart" class="cartBox-totalLink disabled-cart">XEM GIỎ HÀNG</a>
+                                         <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN</a>   
+                                     {{/if }}
+                                     
                                 </div>
                             </footer>
                         </div>

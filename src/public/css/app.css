@@ -37,7 +37,6 @@ html {
   background-color: #fff; }
 
 #addcart.disabledBtn {
-  opacity: 0.6;
   pointer-events: none; }
 
 header {
@@ -1543,6 +1542,9 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
       background-color: var(--main-color);
       text-decoration: none;
       color: var(--white-color); }
+      .header__mid-right-cart .cart-boxContainer .cartBox-totalLink.disabled-cart {
+        pointer-events: none;
+        background-color: #979797; }
 
 .container-cartDetails {
   width: 75%;
@@ -1600,7 +1602,8 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             position: relative;
             height: 36px;
             width: 90px;
-            border: 1px solid #ccc; }
+            border: 1px solid #ccc;
+            cursor: pointer; }
             .container-cartDetails .items-cartDetails .item-cartDetails .inforItem-cartDetails .price-item .priceInput-cartDetails .quantity-cartDetails {
               text-align: center;
               outline: none;
@@ -1608,7 +1611,9 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
               height: 100%;
               font-size: 1.4rem;
               font-weight: bold;
-              width: 100%; }
+              width: 100%;
+              cursor: pointer;
+              user-select: none; }
             .container-cartDetails .items-cartDetails .item-cartDetails .inforItem-cartDetails .price-item .priceInput-cartDetails .btn-increase {
               width: 30px;
               line-height: 36px;
@@ -1618,6 +1623,8 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
               z-index: 1;
               font-size: 1.6rem;
               user-select: none; }
+              .container-cartDetails .items-cartDetails .item-cartDetails .inforItem-cartDetails .price-item .priceInput-cartDetails .btn-increase.disabled-btn {
+                pointer-events: none; }
               .container-cartDetails .items-cartDetails .item-cartDetails .inforItem-cartDetails .price-item .priceInput-cartDetails .btn-increase:hover {
                 background-color: #ccc;
                 cursor: pointer; }
@@ -1629,6 +1636,8 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
               user-select: none;
               position: absolute;
               left: 0; }
+              .container-cartDetails .items-cartDetails .item-cartDetails .inforItem-cartDetails .price-item .priceInput-cartDetails .btn-decrease.disabled-btn {
+                pointer-events: none; }
               .container-cartDetails .items-cartDetails .item-cartDetails .inforItem-cartDetails .price-item .priceInput-cartDetails .btn-decrease:hover {
                 background-color: #ccc;
                 cursor: pointer; }

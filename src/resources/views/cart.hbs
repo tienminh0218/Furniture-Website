@@ -10,7 +10,7 @@
             THÔNG TIN SẢN PHẨM
         </h3>
     {{#each cart.products}}
-            <div class="item-cartDetails">
+            <div class="item-cartDetails" id-deleteAll="{{this._id}}">
                 <div class="imageItem-cartDetails">
                     <img src="{{this.imageProduct}}" alt="">
                 </div>
@@ -95,3 +95,4 @@
 </div>
 
 <script src="../js/paymentConfirm.js" defer></script>
+<script src="../js/delete-allCart.js" defer></script>
