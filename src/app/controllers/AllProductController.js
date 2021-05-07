@@ -43,6 +43,22 @@ class AllProductController {
             });
         });
     }
+
+    // Get -> /all/search
+    async productSearch(req, res, next) {
+        /// check empty string
+        if (!req.query.keyword) return res.status(200).json({ message: [] });
+
+        let nameProducts = new RegExp(`^${req.query.keyword}`, "i");
+        Product.find({ nameProduct: nameProducts })
+            .limit(6)
+            .then((products) => {
+                res.status(200).json({ message: products });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 }
 
 module.exports = new AllProductController();

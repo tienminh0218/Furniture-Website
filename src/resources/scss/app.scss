@@ -2345,3 +2345,74 @@ input#cart-quantity {
         }
     }
 }
+
+//// sreaching
+
+.container-sreachingItems {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    left: 0;
+    z-index: 1;
+    border: 1px solid #e2e2e2;
+    background-color: #fff;
+    display: none;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -15px;
+        left: 74px;
+        border-right: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-bottom: 15px solid #e2e2e2;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -13px;
+        left: 75px;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-bottom: 14px solid #fff;
+    }
+
+    .card-sreachingItem {
+        display: block;
+        padding: 6px;
+        overflow: hidden;
+        text-decoration: none;
+        border-bottom: 1px solid #e2e2e2;
+
+        &:hover {
+            background-color: #f8f8f8;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .image-sreachingItem {
+            float: left;
+            width: 60px;
+            height: auto;
+            margin-right: 12px;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 6px 0;
+            color: var(--text-color);
+        }
+
+        span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--red-color);
+        }
+    }
+}
