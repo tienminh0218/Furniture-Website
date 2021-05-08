@@ -152,7 +152,7 @@ var dataRegisterForm = {};
 
 /// when user click register btn
 btnRegisterSubmit.addEventListener("click", registerRequest);
-console.log(registerErrorMessage);
+
 /// Request data to register
 function registerRequest(e) {
     /// prevent submit form

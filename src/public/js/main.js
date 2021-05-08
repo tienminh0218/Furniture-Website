@@ -10,21 +10,23 @@ var counter = 1;
 const prevbtn = document.querySelector("#prevbtn");
 const nextbtn = document.querySelector("#nextbtn");
 
-nextbtn.addEventListener("click", () => {
-    document.getElementById("radio" + counter).checked = true;
-    counter++;
-    if (counter > 3) {
-        counter = 1;
-    }
-});
+if (nextbtn) {
+    nextbtn.addEventListener("click", () => {
+        document.getElementById("radio" + counter).checked = true;
+        counter++;
+        if (counter > 3) {
+            counter = 1;
+        }
+    });
 
-prevbtn.addEventListener("click", () => {
-    counter--;
-    if (counter < 1) {
-        counter = 3;
-    }
-    document.getElementById("radio" + counter).checked = true;
-});
+    prevbtn.addEventListener("click", () => {
+        counter--;
+        if (counter < 1) {
+            counter = 3;
+        }
+        document.getElementById("radio" + counter).checked = true;
+    });
+}
 
 document.getElementById("click-bars").addEventListener("click", function () {
     document.getElementById("click-bars").style.color = "cyan";

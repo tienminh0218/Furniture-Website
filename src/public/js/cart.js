@@ -10,6 +10,7 @@ var btnAddCart = document.querySelector("#addcart");
 var cartBoxItems = document.querySelector(".cartBox-items");
 var totalPriceInCart = document.querySelector(".cartBox-totalItem p:last-child");
 var quantityProduct = document.querySelector(".input-cart input[type=number]");
+var paymentInCart = document.querySelector(".cartBox-totalItem a:last-child");
 
 // btn increase, decrease
 var totalQuantityInCart = document.querySelector(".number-oncart");
@@ -67,7 +68,7 @@ function addToCart() {
         .then((data) => {
             /// remove disable
             btnAddCart.classList.remove("disabledBtn");
-
+            paymentInCart.classList.remove("disabled-cart");
             let { message } = data.data;
             let itemInCart = "";
 

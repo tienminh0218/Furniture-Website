@@ -6,6 +6,7 @@ var plusBtns = document.querySelectorAll(".btn-increase");
 var quantityInCart = document.querySelector(".number-oncart");
 var cartBoxItems = document.querySelector(".cartBox-items");
 var totalPriceInCart = document.querySelector(".cartBox-totalItem p:last-child");
+var paymentInCart = document.querySelector(".cartBox-totalItem a:last-child");
 var confirmOrder = document.querySelector(".btn-confirmOrder");
 
 /// delete all
@@ -192,16 +193,50 @@ function deleteProduct(e) {
         method: "delete",
         url: `http://localhost:3001/cart/${id}`,
         data: {
-            priceProduct: +priceProduct.innerHTML.replace("đ", "").replace(/,/g, ""),
+            priceProduct: +priceProduct.innerHTML
+                .replace("đ", "")
+                .replace(/,/g, "")
+                .replace(/\./g, ""),
             quantityProduct: +quantityProduct.value,
         },
         headers: { "Content-Type": "application/json" },
     })
         .then((result) => {
             var { message } = result.data;
-            priceProductUpdated.innerHTML = `${formatter.format(message.totalPrice)} đ`;
+            let itemInCart = "";
+
+            /// shopping cart
+            quantityInCart.innerHTML = message.totalQuantity;
             quantityProductUpdated.innerHTML = message.totalQuantity;
+            priceProductUpdated.innerHTML = `${formatter.format(message.totalPrice)} đ`;
+            totalPriceInCart.innerHTML = `${formatter.format(message.totalPrice)} VNĐ`;
             parent.remove();
+
+            // if dont have as least 1 product
+            if (message.products.length == 0) {
+                cartBoxItems.innerHTML = `<h3>Chưa có sản phẩm nào</h3>`;
+                confirmOrder.classList.add("disabled-confirmOrder");
+                paymentInCart.classList.add("disabled-cart");
+                return;
+            }
+
+            /// get item in cart
+            message.products.forEach((product) => {
+                let totalPricePerProduct = product.priceProduct * +product.quantity;
+                let priceProductFormated = formatter.format(totalPricePerProduct);
+                itemInCart = itemInCart.concat(`<div class="itemCart">
+                                            <div class="imageItem">
+                                                <img src="${product.imageProduct}" alt="">
+                                            </div>
+                                            <div class="nameItem">
+                                                <h4>${product.nameProduct}</h4>
+                                            </div>
+                                            <div class="priceItem">
+                                                <p>${priceProductFormated}</p> <span>đ</span>
+                                            </div>
+                                        </div>`);
+            });
+            cartBoxItems.innerHTML = itemInCart;
         })
         .catch((err) => {
             console.log(err);

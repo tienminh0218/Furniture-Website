@@ -139,7 +139,12 @@
                                 <div class="cartBox-totalItem">
                                      {{#if user }}
                                         <a href="/cart" class="cartBox-totalLink">XEM GIỎ HÀNG</a>
-                                        <a href="" class="cartBox-totalLink">THANH TOÁN</a>   
+                                        {{#ifLogic cart.products.length "===" 0}} 
+                                                <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
+                                            {{else}} 
+                                                <a href="" class="cartBox-totalLink">THANH TOÁN </a>  
+                                            {{/ifLogic}}
+                                        
                                     {{else}}
                                          <a href="/cart" class="cartBox-totalLink disabled-cart">XEM GIỎ HÀNG</a>
                                          <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN</a>   
