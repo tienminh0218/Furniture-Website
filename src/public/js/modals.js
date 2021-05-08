@@ -152,7 +152,7 @@ var dataRegisterForm = {};
 
 /// when user click register btn
 btnRegisterSubmit.addEventListener("click", registerRequest);
-
+console.log(registerErrorMessage);
 /// Request data to register
 function registerRequest(e) {
     /// prevent submit form
@@ -183,9 +183,13 @@ function registerRequest(e) {
         gender: reGender.value,
     })
         .then((result) => {
-            registerErrorMessage.style.color = "#155724";
-            registerErrorMessage.innerHTML = result.data.message;
+            Object.assign(registerErrorMessage.style, {
+                color: "#155724",
+                display: "block",
+                backgroundColor: "#d1e7dd",
+            });
             modalRegisterForm.closest(".registerFormParent").reset();
+            registerErrorMessage.innerHTML = result.data.message;
         })
         /// error form server
         .catch((error) => {

@@ -199,7 +199,7 @@ function deleteProduct(e) {
     })
         .then((result) => {
             var { message } = result.data;
-            priceProductUpdated.innerHTML = `${message.totalPrice} đ`;
+            priceProductUpdated.innerHTML = `${formatter.format(message.totalPrice)} đ`;
             quantityProductUpdated.innerHTML = message.totalQuantity;
             parent.remove();
         })
