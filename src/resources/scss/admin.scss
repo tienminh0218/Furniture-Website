@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
-
 :root {
     --white-color: #fff;
     --black-color: #000;
@@ -47,13 +46,11 @@ html {
     padding: 40px !important;
 }
 
-@mixin btn(
-    $minWidth: 40px,
-    $padBtn: 6px 30px,
-    $colorBtn: var(--white-color),
-    $bgColor: var(--main-color),
-    $fontSize: 1.6rem
-) {
+@mixin btn( $minWidth: 40px,
+$padBtn: 6px 30px,
+$colorBtn: var(--white-color),
+$bgColor: var(--main-color),
+$fontSize: 1.6rem) {
     min-width: $minWidth;
     padding: $padBtn;
     outline: none;
@@ -63,7 +60,6 @@ html {
     background-color: $bgColor;
     font-size: $fontSize;
     cursor: pointer;
-
     &.disabled {
         opacity: 0.6;
         pointer-events: none;
@@ -71,7 +67,8 @@ html {
 }
 
 /// Table form preview
-@mixin templateTableView($fontSizeTitle: 3rem, $colorTitle: var(--main-color)) {
+@mixin templateTableView($fontSizeTitle: 3rem,
+$colorTitle: var(--main-color)) {
     .title-table {
         font-size: $fontSizeTitle;
         color: $colorTitle;
@@ -83,23 +80,33 @@ html {
         a {
             text-decoration: none;
             .btn-delete {
-                @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
+                @include btn(40px,
+                6px 30px,
+                var(--white-color),
+                #dc3545,
+                1.6rem);
             }
             .btn-insert {
-                @include btn(40px, 6px 30px, var(--white-color), var(--main-color), 1.6rem);
+                @include btn(40px,
+                6px 30px,
+                var(--white-color),
+                var(--main-color),
+                1.6rem);
             }
             .btn-update {
-                @include btn(40px, 6px 15px, var(--white-color), #28a745, 1.6rem);
+                @include btn(40px,
+                6px 15px,
+                var(--white-color),
+                #28a745,
+                1.6rem);
                 float: right;
             }
         }
     }
-
     table {
         width: 100%;
         border-collapse: collapse;
     }
-
     th,
     td {
         border: 1px solid black;
@@ -109,19 +116,20 @@ html {
         overflow-wrap: break-word;
         line-height: 2.2rem;
         max-height: 200px;
-
         .image-product {
             width: 100px;
             img {
                 width: 100%;
             }
         }
-
         .btn-update {
-            @include btn(40px, 6px 30px, var(--white-color), #28a745, 1.6rem);
+            @include btn(40px,
+            6px 30px,
+            var(--white-color),
+            #28a745,
+            1.6rem);
         }
     }
-
     td {
         height: 200px;
         overflow: hidden;
@@ -129,37 +137,30 @@ html {
 }
 
 /// Form
-@mixin templateForm(
-    $backgroundColor: var(--white-color),
-    $widthFormContainer: 500px,
-    $fontSize: 1.6rem,
-    $mainColor: var(--main-color),
-    $btnSubmitWidth: 100%
-) {
+@mixin templateForm( $backgroundColor: var(--white-color),
+$widthFormContainer: 500px,
+$fontSize: 1.6rem,
+$mainColor: var(--main-color),
+$btnSubmitWidth: 100%) {
     background: $backgroundColor;
     margin: auto;
     padding: 16px;
     transition: all 0.5s ease;
-
     .title {
         font-size: $fontSize + 1;
         margin: 24px 0;
         text-align: center;
         color: $mainColor;
     }
-
     .form-container {
         width: $widthFormContainer;
-
         .form-group {
             margin-bottom: 20px;
-
             label {
                 font-size: $fontSize;
                 font-weight: bold;
                 color: #333;
             }
-
             .form-control {
                 width: 100%;
                 outline: none;
@@ -170,12 +171,10 @@ html {
                 border: 1px solid #ccc;
                 border-radius: 4px;
             }
-
             .form-select {
                 padding: 0 8px;
                 height: 4rem;
             }
-
             .btn-submit {
                 width: $btnSubmitWidth;
                 padding: 8px;
@@ -187,12 +186,10 @@ html {
                 background-color: $mainColor;
                 cursor: pointer;
             }
-
             .ck-editor__editable_inline {
                 height: 400px;
                 overflow-y: auto;
             }
-
             .errorBox {
                 .error-message {
                     margin-left: 4px;
@@ -201,7 +198,6 @@ html {
                     justify-content: start;
                     color: var(--red-color);
                     font-size: 1.4rem;
-
                     .exclamationMark {
                         background-color: var(--red-color);
                         width: 14px;
@@ -225,10 +221,8 @@ html {
                 border-radius: 4px;
             }
         }
-
         .form-group-image {
             @extend .form-group;
-
             .label-image {
                 display: block;
                 width: 180px;
@@ -240,11 +234,9 @@ html {
                 color: var(--white-color);
                 line-height: 40px;
             }
-
             .form-control-typeFile {
                 display: none;
             }
-
             .preview-image {
                 width: 250px;
                 margin: 10px 0;
@@ -255,40 +247,33 @@ html {
             }
         }
     }
-
     .border-modalForm {
         display: flex;
         align-items: center;
-
         p {
             margin: 0 6px;
             font-size: 1.6rem;
             color: #ccc;
         }
-
         .leftBorder-modal {
             height: 1px;
             width: 100%;
             background-color: #dbdbdb;
         }
-
         .rightBorder-modal {
             @extend .leftBorder-modal;
         }
     }
-
     .text-suggest {
         text-align: center;
         margin-top: 6px;
         font-size: 1.4rem;
         color: #333;
-
         a {
             text-decoration: none;
             color: var(--main-color);
         }
     }
-
     .close-modal {
         position: absolute;
         top: 0;
@@ -296,7 +281,6 @@ html {
         font-size: 2.4rem;
         cursor: pointer;
         padding: 12px;
-
         &:hover {
             background-color: #ccc;
             color: #757575;
@@ -305,7 +289,6 @@ html {
 }
 
 // ================================================
-
 .modal-overplay-loading {
     position: fixed;
     top: 0;
@@ -333,7 +316,6 @@ header {
     height: 60px;
     box-shadow: 0 0 5px 0.5px gray;
     position: fixed;
-
     .header__logo {
         float: left;
         min-width: 250px;
@@ -344,16 +326,14 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 2rem;
+        padding: 0 6rem;
     }
-
     .header__slogan {
         float: left;
         overflow: hidden;
         min-width: calc(100% - 250px);
         height: 100%;
         background-color: #fff;
-
         .bars {
             width: 5%;
             float: left;
@@ -361,7 +341,6 @@ header {
             justify-content: center;
             align-items: center;
             height: 100%;
-
             i {
                 font-size: 1.5rem;
                 opacity: 0.8;
@@ -377,13 +356,11 @@ header {
         transform: rotate(90deg);
         transition: ease-in 0.3s;
     }
-
     .navlink {
         min-width: 40%;
         display: flex;
         justify-content: flex-end;
         height: 100%;
-
         .navlink__user {
             display: flex;
             align-items: center;
@@ -403,7 +380,6 @@ header {
     i:nth-child(2) {
         transform: translateY(-15%);
     }
-
     .showUser i:nth-child(1),
     .showNoti i:nth-child(1) {
         position: relative;
@@ -418,48 +394,39 @@ header {
         min-width: 230px;
         background-color: rgba(0, 0, 0, 0.05);
         display: none;
-
         &.showUsers {
             display: block;
             animation: showUserss linear 0.3s;
         }
     }
-
     .noti-dropdown {
         &.showNotis {
             display: block;
             animation: showUserss linear 0.3s;
         }
-
         position: fixed;
         top: 61.5px;
         right: 100px;
         min-width: 230px;
         display: none;
-
         ul {
             list-style-type: none;
-
             li {
                 padding: 0.5rem 1rem;
                 display: flex;
                 align-items: center;
                 border-bottom: 1px solid gray;
                 background-color: rgba(0, 0, 0, 0.05);
-
                 p {
                     padding-right: 1.5rem;
                     width: 100%;
-
                     &:hover {
                         color: var(--main-color);
                     }
                 }
-
                 i {
                     margin-right: 0.5rem;
                 }
-
                 &:last-child {
                     color: blue;
                     display: flex;
@@ -470,7 +437,6 @@ header {
                     border-bottom: none;
                     cursor: pointer;
                 }
-
                 span {
                     color: red;
                     font-size: 0.8rem;
@@ -478,30 +444,24 @@ header {
             }
         }
     }
-
     .user-dropdown ul {
         list-style: none;
-
         li {
             padding: 0.5rem 1.5rem;
             display: flex;
             align-items: center;
         }
     }
-
     .color {
         color: var(--main-color);
     }
-
     .user-dropdown ul li {
         &:hover {
             color: var(--main-color);
         }
-
         &:nth-child(2) {
             border-bottom: 1px solid black;
         }
-
         i {
             margin-right: 0.5rem;
         }
@@ -512,7 +472,6 @@ header {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -531,11 +490,9 @@ header {
     background: #1b1b1b;
     transition: left 0.4s ease;
     margin-top: 60px;
-
     &.hide {
         left: -250px;
     }
-
     .text {
         color: #3e3e3e;
         font-size: 25px;
@@ -552,15 +509,12 @@ nav ul {
     height: 100%;
     width: 100%;
     list-style: none;
-
     li {
         line-height: 60px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-
         &:last-child {
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         a {
             position: relative;
             color: white;
@@ -572,55 +526,45 @@ nav ul {
             width: 100%;
             border-left: 3px solid transparent;
         }
-
         &.active a {
             color: var(--main-color);
             background: #1e1e1e;
             border-left-color: var(--main-color);
         }
-
         a:hover {
             background: #1e1e1e;
         }
     }
-
     ul {
         position: static;
         display: none;
     }
-
     .chart-show.show {
         display: block;
         animation: showHeight ease 0.5s;
     }
-
     .multi-show.show1 {
         display: block;
         animation: showHeight1 ease 0.5s;
     }
-
     ul li {
         line-height: 42px;
         border-top: none;
-
         a {
             font-size: 14px;
             color: #e6e6e6;
             padding-left: 40px;
         }
     }
-
     li.active ul li a {
         color: white;
         background: #1b1b1b;
         border-left-color: transparent;
     }
-
     ul li a:hover {
         color: var(--main-color) !important;
         background: #1e1e1e !important;
     }
-
     li a span {
         position: absolute;
         top: 50%;
@@ -628,7 +572,6 @@ nav ul {
         transform: translateY(-50%);
         font-size: 15px;
         transition: transform 0.4s;
-
         &.rotate {
             transform: translateY(-50%) rotate(-180deg);
         }
@@ -640,7 +583,6 @@ nav ul {
         opacity: 0;
         height: 0px;
     }
-
     to {
         opacity: 1;
         height: 85px;
@@ -652,7 +594,6 @@ nav ul {
         opacity: 0;
         height: 0px;
     }
-
     to {
         opacity: 1;
         height: 127.5px;
@@ -667,15 +608,21 @@ nav ul {
     margin-top: 60px;
     transition: ease-in 0.5s;
     padding: 50px;
-
     ///// Form insert product
     .products-container {
-        @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 10%);
+        @include templateForm(var(--white-color),
+        100%,
+        1.6rem,
+        var(--main-color),
+        10%);
     }
-
     ///// Form insert category
     .categoryProducts-container {
-        @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 10%);
+        @include templateForm(var(--white-color),
+        100%,
+        1.6rem,
+        var(--main-color),
+        10%);
         .title {
             margin-bottom: 5%;
         }
@@ -686,7 +633,6 @@ nav ul {
                     height: 400px;
                     overflow-y: auto;
                 }
-
                 // .form-control {
                 //     width: 100%;
                 // }
@@ -696,17 +642,14 @@ nav ul {
             }
         }
     }
-
     &.expand-content {
         width: 100%;
         margin-left: 0;
         transition: ease 0.3s;
     }
-
     .header-categories {
         @include templateTableView;
     }
-
     .header-products {
         @include templateTableView;
     }
