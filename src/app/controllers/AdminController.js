@@ -208,7 +208,6 @@ class AdminController {
             res.status(409).json({ message: error.details });
             return;
         }
-
         // check name category is exists
         var [isExistProduct, oldProduct] = await Promise.all([
             Product.findOne({
@@ -397,6 +396,23 @@ class AdminController {
         Product.delete({
             _id: { $in: newArr },
         }).then(() => {
+            res.redirect("back");
+        });
+    }
+
+    // DELETE -> /admin/product/destroy/:id
+    async productDestroy(req, res, next) {
+        var [slugProduct, slugCategory] = req.params.information.split(",");
+
+        Promise.all([
+            Categories.findOneAndUpdate(
+                { slug: slugCategory },
+                { $pull: { productChild: { slug: slugProduct } } }
+            ),
+            Product.deleteOne({
+                slug: slugProduct,
+            }),
+        ]).then(() => {
             res.redirect("back");
         });
     }

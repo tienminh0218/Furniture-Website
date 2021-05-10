@@ -106,7 +106,7 @@ var schemaUpdateProduct = Joi.object({
             return errors;
         }),
     priceProduct: Joi.string()
-        .pattern(/^[A-Z0-9-]/)
+        .pattern(/^[0-9]*$/)
         .required()
         .error((errors) => {
             errors.forEach((err) => {
@@ -125,7 +125,7 @@ var schemaUpdateProduct = Joi.object({
             return errors;
         }),
     inventoryProduct: Joi.string()
-        .pattern(/^[A-Z0-9-]/)
+        .pattern(/^[0-9]*$/)
         .required()
         .error((errors) => {
             errors.forEach((err) => {

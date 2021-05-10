@@ -4,7 +4,6 @@ var Product = require("../models/Product");
 var Cart = require("../models/Cart");
 var jwt = require("jsonwebtoken");
 var { multipleToObject, toObject } = require("../../util/toObj");
-
 class CartController {
     // Get -> /cart
     async cartDetail(req, res, next) {
@@ -180,7 +179,7 @@ class CartController {
             });
     }
 
-    // Delete -> /cart/:id
+    // Delete -> /cart/:slugProduct
     async cartDelete(req, res, next) {
         var cookie = req.cookies;
         /// verify token in cookie
@@ -193,7 +192,7 @@ class CartController {
         Cart.findOneAndUpdate(
             { "customer.username": decoded.name },
             {
-                $pull: { products: { _id: req.params.id } },
+                $pull: { products: { slug: req.params.slugProduct } },
             }
         )
             .then((oldCart) => {

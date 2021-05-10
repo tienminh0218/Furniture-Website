@@ -21,6 +21,7 @@ route.post("/product/insert", upload.single("imageProduct"), AdminController.pro
 route.get("/product", AdminController.product);
 route.get("/product/bin", AdminController.productBin);
 route.patch("/product/:id", AdminController.productBinRestore);
+route.delete("/product/destroy/:information", AdminController.productDestroy);
 route.delete("/product/:id", AdminController.productDelete);
 
 /// Home admin

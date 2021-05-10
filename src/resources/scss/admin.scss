@@ -46,11 +46,13 @@ html {
     padding: 40px !important;
 }
 
-@mixin btn( $minWidth: 40px,
-$padBtn: 6px 30px,
-$colorBtn: var(--white-color),
-$bgColor: var(--main-color),
-$fontSize: 1.6rem) {
+@mixin btn(
+    $minWidth: 40px,
+    $padBtn: 6px 30px,
+    $colorBtn: var(--white-color),
+    $bgColor: var(--main-color),
+    $fontSize: 1.6rem
+) {
     min-width: $minWidth;
     padding: $padBtn;
     outline: none;
@@ -67,8 +69,7 @@ $fontSize: 1.6rem) {
 }
 
 /// Table form preview
-@mixin templateTableView($fontSizeTitle: 3rem,
-$colorTitle: var(--main-color)) {
+@mixin templateTableView($fontSizeTitle: 3rem, $colorTitle: var(--main-color)) {
     .title-table {
         font-size: $fontSizeTitle;
         color: $colorTitle;
@@ -80,25 +81,13 @@ $colorTitle: var(--main-color)) {
         a {
             text-decoration: none;
             .btn-delete {
-                @include btn(40px,
-                6px 30px,
-                var(--white-color),
-                #dc3545,
-                1.6rem);
+                @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
             }
             .btn-insert {
-                @include btn(40px,
-                6px 30px,
-                var(--white-color),
-                var(--main-color),
-                1.6rem);
+                @include btn(40px, 6px 30px, var(--white-color), var(--main-color), 1.6rem);
             }
             .btn-update {
-                @include btn(40px,
-                6px 15px,
-                var(--white-color),
-                #28a745,
-                1.6rem);
+                @include btn(40px, 6px 15px, var(--white-color), #28a745, 1.6rem);
                 float: right;
             }
         }
@@ -123,11 +112,7 @@ $colorTitle: var(--main-color)) {
             }
         }
         .btn-update {
-            @include btn(40px,
-            6px 30px,
-            var(--white-color),
-            #28a745,
-            1.6rem);
+            @include btn(40px, 6px 30px, var(--white-color), #28a745, 1.6rem);
         }
     }
     td {
@@ -137,11 +122,13 @@ $colorTitle: var(--main-color)) {
 }
 
 /// Form
-@mixin templateForm( $backgroundColor: var(--white-color),
-$widthFormContainer: 500px,
-$fontSize: 1.6rem,
-$mainColor: var(--main-color),
-$btnSubmitWidth: 100%) {
+@mixin templateForm(
+    $backgroundColor: var(--white-color),
+    $widthFormContainer: 500px,
+    $fontSize: 1.6rem,
+    $mainColor: var(--main-color),
+    $btnSubmitWidth: 100%
+) {
     background: $backgroundColor;
     margin: auto;
     padding: 16px;
@@ -286,6 +273,10 @@ $btnSubmitWidth: 100%) {
             color: #757575;
         }
     }
+}
+
+.btn-delete {
+    @include btn(40px, 6px 30px, var(--white-color), #dc3545, 1.6rem);
 }
 
 // ================================================
@@ -610,19 +601,11 @@ nav ul {
     padding: 50px;
     ///// Form insert product
     .products-container {
-        @include templateForm(var(--white-color),
-        100%,
-        1.6rem,
-        var(--main-color),
-        10%);
+        @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 10%);
     }
     ///// Form insert category
     .categoryProducts-container {
-        @include templateForm(var(--white-color),
-        100%,
-        1.6rem,
-        var(--main-color),
-        10%);
+        @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 10%);
         .title {
             margin-bottom: 5%;
         }

@@ -6,6 +6,6 @@ route.get("/", CartController.cartDetail);
 route.post("/add", CartController.addToCart);
 route.patch("/", CartController.changeQuantity);
 route.delete("/delete", CartController.cartDeleteAll);
-route.delete("/:id", CartController.cartDelete);
+route.delete("/:slugProduct", CartController.cartDelete);
 
 module.exports = route;

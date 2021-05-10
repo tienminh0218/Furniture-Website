@@ -21,6 +21,7 @@
             <th>Trạng thái</th>
             <th>Tồn kho</th>
             <th>Ảnh</th>
+            <th></th>
             </tr>
                 {{#each productDeleted}} 
 
@@ -31,7 +32,7 @@
                         <td>{{this.nameProduct}}</td>
                         <td>{{this.nameCategory}}</td>
                         <td>{{this.priceProduct}}</td>
-                        <td>{{this.descriptionProduct}}</td>
+                        <td>{{{this.descriptionProduct}}}</td>
                         <td>{{this.statusProduct}}</td>
                         <td>{{this.inventoryProduct}}</td>
                         <td>
@@ -39,23 +40,20 @@
                                 <img src="{{this.imageProduct}}" alt="ảnh sản phẩm">
                             </div>
                         </td>
+                        <td>
+                            <form method="post" action="http://localhost:3001/admin/product/destroy/{{this.slug}},{{this.nameCategory}}?_method=delete">
+                                 <button type="submit" class="btn-delete">Xóa</button>
+                            </form>
+                        </td>
                     
                     </tr>
                     {{else}}
-                    
                     <tr >
                         <td colspan="10">
                             chưa có sản phẩm nèo được xóa :(((( <a  href="/admin/product">Quay lại</a>
                         </td>
-
-
                     </tr>
-                    
-                
             {{/each}}
-
-            
-            
     </table>
 </div>
 
