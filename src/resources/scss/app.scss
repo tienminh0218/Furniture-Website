@@ -44,6 +44,29 @@ html {
     background-color: #fff;
 }
 
+// button
+@mixin btn(
+    $minWidth: 40px,
+    $padBtn: 6px 30px,
+    $colorBtn: var(--white-color),
+    $bgColor: var(--main-color),
+    $fontSize: 1.6rem
+) {
+    min-width: $minWidth;
+    padding: $padBtn;
+    outline: none;
+    color: $colorBtn;
+    border: none;
+    border-radius: 4px;
+    background-color: $bgColor;
+    font-size: $fontSize;
+    cursor: pointer;
+    &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
 /// Form
 @mixin formContainer {
     background: var(--white-color);
@@ -345,6 +368,11 @@ header .header__mid .header__mid-right {
                 padding: 14px 10px;
                 color: var(--text-color);
                 border-bottom: 1px solid #666;
+
+                &:hover {
+                    opacity: 0.8;
+                    background-color: #f8f8f8;
+                }
 
                 i {
                     margin-right: 4px;
@@ -1284,6 +1312,76 @@ input#cart-quantity {
 }
 
 // ---- modal ------
+
+.modalOverplay-paymentConfirm {
+    width: 600px;
+    padding: 4px 20px;
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    color: var(--main-color);
+    background-color: white;
+
+    position: fixed;
+    top: 10%;
+    right: 50%;
+    z-index: 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(50%, -20%);
+    transition: all 0.5s ease;
+
+    &.active {
+        transform: translate(50%, -2%);
+        visibility: visible;
+        opacity: 1;
+    }
+
+    h3 {
+        padding: 16px 0;
+        border-bottom: 1px solid #ccc;
+        color: var(--black-color);
+    }
+    .message-paymentConfirm {
+        padding: 20px 0 40px;
+        border-bottom: 1px solid #ccc;
+        i {
+            margin-right: 4px;
+        }
+    }
+
+    .buttons-paymentConfirm {
+        float: right;
+        margin: 14px 0;
+        .btn {
+            @include btn(40px, 10px 15px, var(--white-color), null, 1.6rem);
+        }
+
+        .btn-close {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+            &:hover {
+                color: #fff;
+                background-color: #5a6268;
+                border-color: #545b62;
+            }
+        }
+        .btn-confirm {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            &:hover {
+                color: #fff;
+                background-color: #0069d9;
+                border-color: #0062cc;
+            }
+        }
+    }
+}
+
 .modalOverplay-mesSuggesLogin {
     position: fixed;
     z-index: 1;
@@ -1402,10 +1500,6 @@ input#cart-quantity {
 
 //// Back to top button /////
 .container-backToTop {
-    &:active {
-        color: var(--main-color);
-    }
-
     .backToTop {
         position: fixed;
         z-index: 1;
@@ -1416,15 +1510,6 @@ input#cart-quantity {
         background-color: var(--main-color);
         display: none;
         transition: all 0.25s ease-in-out;
-
-        &:hover {
-            background-color: var(--white-color);
-            border: 1px solid black;
-        }
-
-        &:hover .icon-backToTop {
-            color: var(--main-color);
-        }
 
         .icon-backToTop {
             font-size: 2.4rem;
@@ -2070,6 +2155,7 @@ input#cart-quantity {
         }
         .cartBox-items {
             height: 166px;
+            overflow-y: auto;
 
             h3 {
                 text-align: center;
@@ -2080,6 +2166,8 @@ input#cart-quantity {
                 height: 50px;
                 width: 100%;
                 display: flex;
+                padding-right: 6px;
+
                 &:hover {
                     background-color: rgb(248, 248, 248);
                     cursor: pointer;

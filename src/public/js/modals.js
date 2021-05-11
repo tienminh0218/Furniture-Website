@@ -161,13 +161,25 @@ function registerRequest(e) {
     // clear error
     clearErrorMessage(modalRegisterForm);
 
-    /// confirm password
-    var isConfirm = rePassword.value !== confirmPassword.value;
+    /// check is empty password
     if (rePassword.value.length == 0) {
+        Object.assign(registerErrorMessage.style, {
+            color: "#842029",
+            display: "block",
+            backgroundColor: "#f8d7da",
+        });
         registerErrorMessage.innerHTML = "Password should not be empty";
         return;
     }
+
+    /// confirm password
+    var isConfirm = rePassword.value !== confirmPassword.value;
     if (isConfirm) {
+        Object.assign(registerErrorMessage.style, {
+            color: "#842029",
+            display: "block",
+            backgroundColor: "#f8d7da",
+        });
         registerErrorMessage.innerHTML = "Your confirm password is incorrect";
         return;
     }

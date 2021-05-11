@@ -178,12 +178,12 @@
                             </ul>
                         </li> 
                         <li class="header__bot-item">
-                        <a class="header__bot-item-link" href="/all">SẢN PHẨM
+                        <a class="header__bot-item-link" href="/products/all">SẢN PHẨM
                             <i class="arrow-down-list fas fa-chevron-down"></i>
                         </a>
                         <ul class="header__bot-list-sub">
                             {{#each categories }}
-                                <li class="header__bot-list-sub-item"><a href="#">{{this.nameCategory}}</a></li>
+                                <li class="header__bot-list-sub-item"><a href="/products/{{this.slug}}">{{this.nameCategory}}</a></li>
                             {{/each}}
 
                         </ul>
@@ -295,6 +295,13 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="emailaddress" class="form-control">
+                        <div class="errorBox">
+                            <span class="error-message"> </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="phonenumber">Số điện thoại</label>
                         <input type="text" id="phonenumber" name="phonenumber" class="form-control">
                         <div class="errorBox">
@@ -368,4 +375,17 @@
 <div class="modalOverplay-addCartUnsuccess">
         <i class="fas fa-check-circle"></i>
         Số lượng sản phẩm không hợp lệ
+</div>
+
+<div class="modalOverplay-paymentConfirm">
+        <h3>Xác nhận đơn hàng</h3>
+
+        <div class="message-paymentConfirm">
+            <i class="fas fa-check-circle"></i>
+            Bạn có chắc muốn mua hàng
+        </div>
+        <div class="buttons-paymentConfirm">
+            <button class="btn btn-close">Đóng</button>
+            <button class="btn btn-confirm">Xác nhận</button>
+        </div>
 </div>

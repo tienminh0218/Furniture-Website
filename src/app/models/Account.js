@@ -7,9 +7,9 @@ const Account = new Schema(
     {
         username: { type: String },
         password: { type: String },
-        emailaddress: { type: String },
         fullname: { type: String },
         phonenumber: { type: Number },
+        emailaddress: { type: String },
         gender: { type: String },
         address: { type: String },
         role: { type: String },

@@ -2,6 +2,8 @@
         <a href="/">Trang chủ</a> 
         <span> / </span>
         <a href="/cart">Chi tiết giỏ hàng</a>
+        <span> / </span>
+        <a href="/checkout-cart">Xác nhận đơn hàng</a>
 </div>
 
 <div class="container-cartDetails">
@@ -9,31 +11,9 @@
         <h3 class="title-cartDetails">
             THÔNG TIN SẢN PHẨM
         </h3>
-    {{#each cart.products}}
-            <div class="item-cartDetails" id-deleteAll="{{this._id}}">
-                <div class="imageItem-cartDetails">
-                    <img src="{{this.imageProduct}}" alt="">
-                </div>
-                <div class="inforItem-cartDetails">
-                    <div class="name-item">
-                        <p>{{this.nameProduct}}</p>
-                    </div>
-                    <div class="price-item">
-                        <div class="priceInput-cartDetails" id-product="{{this._id}}">
-                                <span class="btn-decrease">-</span>
-                                <input class="quantity-cartDetails" type="number" value="{{this.quantity}}" min="1" id="cart-quantity">
-                                <span class="btn-increase">+</span>
-                        </div>
-                        <div class="pricePreItem-cartDetails">
-                            {{mutiply this.quantity this.priceProduct}} đ
-                        </div>
-                        <div class="deleteItem-cartDetails" idProduct="{{this.slug}}">
-                            <i class="bi bi-trash"></i> Xoá
-                        </div>
-                    </div>
-                </div>
-            </div>
-    {{/each}}
+  
+     
+   
     </div>
     <div class="information-cartDetails">
             <div class="payment-confirmation">
@@ -95,3 +75,4 @@
 </div>
 
 <script src="../js/paymentConfirm.js" defer></script>
+<script src="../js/delete-allCart.js" defer></script>

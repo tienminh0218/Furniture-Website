@@ -9,6 +9,11 @@ var totalPriceInCart = document.querySelector(".cartBox-totalItem p:last-child")
 var paymentInCart = document.querySelector(".cartBox-totalItem a:last-child");
 var confirmOrder = document.querySelector(".btn-confirmOrder");
 
+// modal
+var modelConfirm = document.querySelector(".modalOverplay-paymentConfirm");
+var closeModal = modelConfirm.querySelector(".btn-close");
+var acceptPayment = modelConfirm.querySelector(".btn-confirm");
+
 /// delete all
 var btnDeleteAll = document.querySelector(".btn-deleteAllOrder");
 var ItemInCarts = document.querySelectorAll(".item-cartDetails");
@@ -265,8 +270,8 @@ function deleteAll() {
             ItemInCarts.forEach((element) => {
                 element.remove();
             });
-
-            btnDeleteAll.classList.add("disabled-confirmOrder");
+            confirmOrder.classList.add("disabled-confirmOrder");
+            paymentInCart.classList.add("disabled-cart");
             cartBoxItems.innerHTML = "<h3>Chưa có sản phẩm nào</h3>";
             quantityProductUpdated.innerHTML = "0";
             priceProductUpdated.innerHTML = "0 đ";
@@ -274,4 +279,21 @@ function deleteAll() {
             totalPriceInCart.innerHTML = "0 VNĐ";
         })
         .catch((err) => console.error(err));
+}
+
+// Confirm payment
+confirmOrder.addEventListener("click", paymentConfirm);
+
+// denied payment
+closeModal.addEventListener("click", () => {
+    modelConfirm.classList.remove("active");
+});
+
+// accept payment
+acceptPayment.addEventListener("click", () => {
+    window.location.href = "http://localhost:3001/checkout-cart";
+});
+
+function paymentConfirm(e) {
+    modelConfirm.classList.add("active");
 }

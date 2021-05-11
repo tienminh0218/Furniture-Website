@@ -13,7 +13,7 @@ class AllProductController {
         var cookie = req.cookies;
         if (Object.keys(cookie).length == 0) {
             Promise.all([Categories.find({}), Product.find({})]).then(([categories, product]) => {
-                res.render("allProducts", {
+                res.render("products", {
                     user: false,
                     categories: multipleToObject(categories),
                     product: multipleToObject(product),
@@ -35,7 +35,7 @@ class AllProductController {
             Product.find({}),
             Cart.findOne({ "customer.username": decoded.name }),
         ]).then(([categories, user, product, cart]) => {
-            res.render("allProducts", {
+            res.render("products", {
                 user: toObject(user),
                 categories: multipleToObject(categories),
                 product: multipleToObject(product),
@@ -58,6 +58,47 @@ class AllProductController {
             .catch((err) => {
                 console.log(err);
             });
+    }
+
+    // Get -> /all/:slugCategory
+    async productChild(req, res, next) {
+        let slugCategory = req.params.slugCategory;
+
+        /// check is cookie exist
+        var cookie = req.cookies;
+        if (Object.keys(cookie).length == 0) {
+            Promise.all([Categories.find({}), Product.find({ nameCategory: slugCategory })]).then(
+                ([categories, product]) => {
+                    res.render("products", {
+                        user: false,
+                        categories: multipleToObject(categories),
+                        product: multipleToObject(product),
+                    });
+                }
+            );
+            return;
+        }
+
+        /// verify token in cookie
+        try {
+            var secret = process.env.SECRECT;
+            var decoded = jwt.verify(cookie.token, secret);
+        } catch (error) {
+            return res.send(error);
+        }
+        Promise.all([
+            Categories.find({}),
+            Account.findById({ _id: decoded.id_user }),
+            Product.find({ nameCategory: slugCategory }),
+            Cart.findOne({ "customer.username": decoded.name }),
+        ]).then(([categories, user, product, cart]) => {
+            res.render("products", {
+                user: toObject(user),
+                categories: multipleToObject(categories),
+                product: multipleToObject(product),
+                cart: toObject(cart),
+            });
+        });
     }
 }
 

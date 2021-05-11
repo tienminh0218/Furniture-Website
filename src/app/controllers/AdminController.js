@@ -402,7 +402,7 @@ class AdminController {
 
     // DELETE -> /admin/product/destroy/:id
     async productDestroy(req, res, next) {
-        var [slugProduct, slugCategory] = req.params.information.split(",");
+        var [slugProduct, slugCategory, imageId] = req.params.information.split(",");
 
         Promise.all([
             Categories.findOneAndUpdate(
@@ -412,6 +412,7 @@ class AdminController {
             Product.deleteOne({
                 slug: slugProduct,
             }),
+            cloudinary.uploader.destroy(imageId),
         ]).then(() => {
             res.redirect("back");
         });

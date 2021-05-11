@@ -28,19 +28,13 @@ class AccountController {
             username: req.body.username,
         });
 
-        if (!isAccountExist)
-            return res.status(400).json({ message: "Your account not found" });
+        if (!isAccountExist) return res.status(400).json({ message: "Your account not found" });
 
-        var checkPassword = await bcrypt.compare(
-            req.body.password,
-            isAccountExist.password
-        );
+        var checkPassword = await bcrypt.compare(req.body.password, isAccountExist.password);
 
         /// Check password
         if (!checkPassword)
-            return res
-                .status(400)
-                .json({ message: "Your password or username is incorrect" });
+            return res.status(400).json({ message: "Your password or username is incorrect" });
 
         /// Create a token
         var secret = process.env.SECRECT;
@@ -86,6 +80,7 @@ class AccountController {
                 password: req.body.password,
                 fullname: req.body.fullname,
                 phonenumber: req.body.phonenumber,
+                emailaddress: req.body.emailaddress,
                 gender: req.body.gender,
                 address: req.body.address,
             },
@@ -106,6 +101,7 @@ class AccountController {
             password: hashedPassword,
             fullname: req.body.fullname,
             phonenumber: req.body.phonenumber,
+            emailaddress: req.body.emailaddress,
             gender: req.body.gender,
             address: req.body.address,
             role: req.body.role,

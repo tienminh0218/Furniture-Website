@@ -21,7 +21,7 @@ var schemaLoginAccount = Joi.object().keys({
                         err.message = `Username should have at most ${err.local.limit}  characters`;
                         break;
                     case "string.alphanum":
-                        err.message = `Á đù má định hack à`;
+                        err.message = `Invalid your username`;
                         break;
                     default:
                         break;
@@ -50,7 +50,7 @@ var schemaLoginAccount = Joi.object().keys({
                         err.message = `Password should be at most ${err.local.limit} characters`;
                         break;
                     case "string.alphanum":
-                        err.message = `Á đù má định hack à`;
+                        err.message = `Invalid your password`;
                         break;
                     default:
                         break;
@@ -140,8 +140,8 @@ var schemaRegisterAccount = Joi.object().keys({
             return errors;
         }),
     phonenumber: Joi.string()
-        .pattern(/^[A-Z0-9-]/)
-        .min(6)
+        .pattern(/^[0-9]*$/)
+        .min(10)
         .max(11)
         .required()
         .error((errors) => {
@@ -167,6 +167,25 @@ var schemaRegisterAccount = Joi.object().keys({
             return errors;
         }),
     gender: Joi.string().min(1).required(),
+    emailaddress: Joi.string()
+        .pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        .required()
+        .error((errors) => {
+            errors.forEach((err) => {
+                switch (err.code) {
+                    case "string.empty":
+                    case "any.required":
+                        err.message = "Address should not be empty";
+                        break;
+                    case "string.pattern.base":
+                        err.message = "You must entered an valid email address";
+                        break;
+                    default:
+                        break;
+                }
+            });
+            return errors;
+        }),
     address: Joi.string()
         .pattern(/^[a-zA-Z0-9--/,]/)
         .min(6)
