@@ -2606,10 +2606,14 @@ input#cart-quantity {
                 justify-content: flex-end;
                 margin-bottom: 16px;
             }
+
             .btn-confirmOrder {
-                @include btn(100%, 12px 30px);
+                @include btn(100%, 16px 30px);
                 font-size: 2rem;
                 margin-bottom: 16px;
+                display: block;
+                text-decoration: none;
+                text-align: center;
 
                 &.disabled-confirmOrder {
                     background: #979797;

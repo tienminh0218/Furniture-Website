@@ -11,20 +11,25 @@ const Invoice = new Schema(
             gender: { type: String },
             address: { type: String },
         },
-        products: [
+        bills: [
             {
-                nameProduct: { type: String },
-                priceProduct: { type: Number },
-                quantity: { type: Number },
-                imageProduct: { type: String },
-                nameCategory: { type: String },
-                slug: { type: String },
+                products: [
+                    {
+                        nameProduct: { type: String },
+                        priceProduct: { type: Number },
+                        quantity: { type: Number },
+                        imageProduct: { type: String },
+                        nameCategory: { type: String },
+                        slug: { type: String },
+                    },
+                ],
+                paymentOptions: { type: String, default: "COD" },
+                description: { type: String },
+                totalPrice: { type: Number },
+                totalQuantity: { type: Number },
+                time: { type: Date, default: Date.now },
             },
         ],
-        paymentOptions: { type: String },
-        description: { type: String },
-        totalPrice: { type: Number },
-        totalQuantity: { type: Number },
     },
     {
         timestamps: true,

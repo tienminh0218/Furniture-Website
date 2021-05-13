@@ -58,17 +58,17 @@
 
                 {{#if cart}} 
                         {{#ifLogic cart.totalQuantity "==" 0}}
-                        <a href="">
-                            <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
+                        <a class="btn-confirmOrder disabled-confirmOrder" href="/cart/checkout">
+                            Thanh Toán
                         </a>            
                         {{else}}
-                        <a href="/cart/checkout">
-                            <button class="btn-confirmOrder">Xác nhận đơn hàng</button>
+                        <a class="btn-confirmOrder" href="/cart/checkout">
+                           Thanh Toán
                         </a>
                     {{/ifLogic}}
                  {{else}} 
-                    <a href="">
-                        <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
+                    <a class="btn-confirmOrder disabled-confirmOrder" href="/cart/checkout">
+                      Thanh Toán
                     </a>  
                 {{/if}} 
 

@@ -142,19 +142,19 @@
 
                                         {{#if cart}}       
                                             {{#ifLogic cart.products.length "===" 0}} 
-                                                    <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
+                                                    <a href="/cart/checkout" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
                                                 {{else}} 
-                                                    <a href="" class="cartBox-totalLink">THANH TOÁN </a>  
+                                                    <a href="/cart/checkout" class="cartBox-totalLink">THANH TOÁN </a>  
                                             {{/ifLogic}}
                                         {{else}}
-                                                    <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
+                                                    <a href="/cart/checkout" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
                                         {{/if}}
 
                                        
                                         
                                     {{else}}
                                          <a href="/cart" class="cartBox-totalLink disabled-cart">XEM GIỎ HÀNG</a>
-                                         <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN</a>   
+                                         <a href="/cart/checkout" class="cartBox-totalLink disabled-cart">THANH TOÁN</a>   
                                      {{/if }}
                                      
                                 </div>

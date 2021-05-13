@@ -1878,7 +1878,7 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
         margin-bottom: 16px; }
       .container-cartDetails .information-cartDetails .payment-confirmation .btn-confirmOrder {
         min-width: 100%;
-        padding: 12px 30px;
+        padding: 16px 30px;
         outline: none;
         color: var(--white-color);
         border: none;
@@ -1887,7 +1887,10 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
         font-size: 1.6rem;
         cursor: pointer;
         font-size: 2rem;
-        margin-bottom: 16px; }
+        margin-bottom: 16px;
+        display: block;
+        text-decoration: none;
+        text-align: center; }
         .container-cartDetails .information-cartDetails .payment-confirmation .btn-confirmOrder.disabled {
           opacity: 0.6;
           pointer-events: none; }

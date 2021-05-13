@@ -56,12 +56,17 @@ class CartController {
             return res.send(error);
         }
 
-        Promise.all([
-            Categories.find({}),
-            Account.findById({ _id: decoded.id_user }),
-            Cart.findOne({ "customer.username": decoded.name }),
-        ])
-            .then(([categories, user, cart]) => {
+        let cart = await Cart.findOne({ "customer.username": decoded.name }).catch((err) =>
+            console.log(err)
+        );
+        // check empty products
+        let isEmpty = cart.products.length == 0 ? true : false;
+        if (isEmpty) {
+            return res.redirect("back");
+        }
+
+        Promise.all([Categories.find({}), Account.findById({ _id: decoded.id_user })])
+            .then(([categories, user]) => {
                 res.render("checkoutCart", {
                     user: toObject(user),
                     categories: multipleToObject(categories),
@@ -84,28 +89,59 @@ class CartController {
             console.log(error);
         }
 
-        let { customer, products, totalPrice, totalQuantity } = await Cart.findOne({
-            "customer.username": decoded.name,
-        }).catch((err) => console.log(err));
+        let [{ customer, products, totalPrice, totalQuantity }, existInvoice] = await Promise.all([
+            Cart.findOne({
+                "customer.username": decoded.name,
+            }),
+            Invoice.findOne({ "customer.username": decoded.name }),
+        ]).catch((err) => console.log(err));
 
-        /// create a new invoice
-        let newInvoice = new Invoice({
-            customer: {
-                fullname: req.body.fullname || customer.fullname,
-                emailaddress: req.body.emailaddress || customer.emailaddress,
-                phonenumber: req.body.phonenumber || customer.emailaddress,
-                gender: customer.gender || customer.emailaddress,
-                address: req.body.address || customer.emailaddress,
-            },
+        // remove cart
+        await Cart.deleteOne({ "customer.username": decoded.name }).catch((err) =>
+            console.log(err)
+        );
+
+        let bill = {
             products,
             description: req.body.descriptionOrder || "",
             totalPrice,
             totalQuantity,
-        });
+        };
 
-        Promise.all([Cart.deleteOne({ "customer.username": decoded.name }), newInvoice.save()])
-            .then(([]) => {
-                res.status(201).json({ message: "Payment successfull and thank for buying" });
+        // first time payment
+        if (!existInvoice) {
+            /// create a new invoice
+            let newInvoice = new Invoice({
+                customer: {
+                    username: decoded.name,
+                    fullname: req.body.fullname || customer.fullname,
+                    emailaddress: req.body.emailaddress || customer.emailaddress,
+                    phonenumber: req.body.phonenumber || customer.emailaddress,
+                    gender: customer.gender || customer.emailaddress,
+                    address: req.body.address || customer.emailaddress,
+                },
+                bills: [bill],
+            });
+
+            await newInvoice.save().then(() => {
+                res.status(201).json({ message: "Payment Successfully" });
+            });
+            return;
+        }
+
+        // invoice is already exist;
+        Invoice.findOneAndUpdate(
+            {
+                "customer.username": decoded.name,
+            },
+            {
+                $push: {
+                    bills: bill,
+                },
+            }
+        )
+            .then(() => {
+                res.status(201).json({ message: "Payment Successfully" });
             })
             .catch((err) => console.log(err));
     }
