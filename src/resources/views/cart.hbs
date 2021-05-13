@@ -56,15 +56,27 @@
                     Đã bao gồm VAT (nếu có)
                 </p>
 
-                 {{#ifLogic cart.totalQuantity "==" 0}}            
-                    <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
-                    {{else}}
-                     <button class="btn-confirmOrder">Xác nhận đơn hàng</button>
-                {{/ifLogic}}
+                {{#if cart}} 
+                        {{#ifLogic cart.totalQuantity "==" 0}}
+                        <a href="">
+                            <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
+                        </a>            
+                        {{else}}
+                        <a href="/cart/checkout">
+                            <button class="btn-confirmOrder">Xác nhận đơn hàng</button>
+                        </a>
+                    {{/ifLogic}}
+                 {{else}} 
+                    <a href="">
+                        <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
+                    </a>  
+                {{/if}} 
+
+                
 
 
                 <button class="btn-deleteAllOrder">Xóa giỏ hàng</button>
-                <a href="/all">
+                <a href="/products/all">
                     <button class="btn-viewOtherProduct">Xem sản phẩm khác</button>
                 </a>
 

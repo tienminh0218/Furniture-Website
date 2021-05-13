@@ -2,6 +2,7 @@ const Account = require("../models/Account");
 var Categories = require("../models/Category");
 var Product = require("../models/Product");
 var Cart = require("../models/Cart");
+var Invoice = require("../models/Invoice");
 var jwt = require("jsonwebtoken");
 var { multipleToObject, toObject } = require("../../util/toObj");
 class CartController {
@@ -36,6 +37,77 @@ class CartController {
             .catch((err) => {
                 console.log(err);
             });
+    }
+
+    // Get -> /cart/checkout
+    async checkoutCart(req, res, next) {
+        /// check is cookie exist
+        var cookie = req.cookies;
+        if (Object.keys(cookie).length == 0) {
+            res.redirect("back");
+            return;
+        }
+
+        /// verify token in cookie
+        try {
+            var secret = process.env.SECRECT;
+            var decoded = jwt.verify(cookie.token, secret);
+        } catch (error) {
+            return res.send(error);
+        }
+
+        Promise.all([
+            Categories.find({}),
+            Account.findById({ _id: decoded.id_user }),
+            Cart.findOne({ "customer.username": decoded.name }),
+        ])
+            .then(([categories, user, cart]) => {
+                res.render("checkoutCart", {
+                    user: toObject(user),
+                    categories: multipleToObject(categories),
+                    cart: toObject(cart),
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    // Post -> /cart/checkoutOrder
+    async checkoutOrder(req, res, next) {
+        /// verify token in cookie
+        try {
+            var cookie = req.cookies;
+            var secret = process.env.SECRECT;
+            var decoded = jwt.verify(cookie.token, secret);
+        } catch (error) {
+            console.log(error);
+        }
+
+        let { customer, products, totalPrice, totalQuantity } = await Cart.findOne({
+            "customer.username": decoded.name,
+        }).catch((err) => console.log(err));
+
+        /// create a new invoice
+        let newInvoice = new Invoice({
+            customer: {
+                fullname: req.body.fullname || customer.fullname,
+                emailaddress: req.body.emailaddress || customer.emailaddress,
+                phonenumber: req.body.phonenumber || customer.emailaddress,
+                gender: customer.gender || customer.emailaddress,
+                address: req.body.address || customer.emailaddress,
+            },
+            products,
+            description: req.body.descriptionOrder || "",
+            totalPrice,
+            totalQuantity,
+        });
+
+        Promise.all([Cart.deleteOne({ "customer.username": decoded.name }), newInvoice.save()])
+            .then(([]) => {
+                res.status(201).json({ message: "Payment successfull and thank for buying" });
+            })
+            .catch((err) => console.log(err));
     }
 
     // Post -> /cart/add

@@ -68,6 +68,160 @@ html {
 }
 
 /// Form
+@mixin templateForm(
+    $backgroundColor: var(--white-color),
+    $widthFormContainer: 500px,
+    $fontSize: 1.6rem,
+    $mainColor: var(--main-color),
+    $btnSubmitWidth: 100%
+) {
+    background: $backgroundColor;
+    margin: auto;
+    padding: 16px;
+    transition: all 0.5s ease;
+    .title {
+        font-size: $fontSize + 1;
+        margin: 24px 0;
+        text-align: center;
+        color: $mainColor;
+    }
+    .form-container {
+        width: $widthFormContainer;
+        .form-group {
+            margin-bottom: 20px;
+            label {
+                font-size: $fontSize;
+                font-weight: bold;
+                color: #333;
+            }
+            .form-control {
+                width: 100%;
+                outline: none;
+                height: 30px;
+                font-size: 1.4rem;
+                padding: 18px 8px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            .form-select {
+                padding: 0 8px;
+                height: 4rem;
+            }
+            .btn-submit {
+                width: $btnSubmitWidth;
+                padding: 8px;
+                font-size: $fontSize;
+                outline: none;
+                border: none;
+                color: var(--white-color);
+                border-radius: 4px;
+                background-color: $mainColor;
+                cursor: pointer;
+            }
+            .ck-editor__editable_inline {
+                height: 400px;
+                overflow-y: auto;
+            }
+            .errorBox {
+                .error-message {
+                    margin-left: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    color: var(--red-color);
+                    font-size: 1.4rem;
+                    .exclamationMark {
+                        background-color: var(--red-color);
+                        width: 14px;
+                        height: 14px;
+                        border-radius: 50%;
+                        color: var(--white-color);
+                        font-size: 1.4rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: 2px;
+                    }
+                }
+            }
+            .error-FromServer {
+                font-size: 1.4rem;
+                display: none;
+                padding: 16px;
+                color: #842029;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+        }
+        .form-group-image {
+            @extend .form-group;
+            .label-image {
+                display: block;
+                width: 180px;
+                height: 40px;
+                text-align: center;
+                background: var(--main-color);
+                cursor: pointer;
+                border-radius: 6px;
+                color: var(--white-color);
+                line-height: 40px;
+            }
+            .form-control-typeFile {
+                display: none;
+            }
+            .preview-image {
+                width: 250px;
+                margin: 10px 0;
+                img {
+                    width: 100%;
+                    // display: none;
+                }
+            }
+        }
+    }
+    .border-modalForm {
+        display: flex;
+        align-items: center;
+        p {
+            margin: 0 6px;
+            font-size: 1.6rem;
+            color: #ccc;
+        }
+        .leftBorder-modal {
+            height: 1px;
+            width: 100%;
+            background-color: #dbdbdb;
+        }
+        .rightBorder-modal {
+            @extend .leftBorder-modal;
+        }
+    }
+    .text-suggest {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 1.4rem;
+        color: #333;
+        a {
+            text-decoration: none;
+            color: var(--main-color);
+        }
+    }
+    .close-modal {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2.4rem;
+        cursor: pointer;
+        padding: 12px;
+        &:hover {
+            background-color: #ccc;
+            color: #757575;
+        }
+    }
+}
+
+/// Form
 @mixin formContainer {
     background: var(--white-color);
     margin: auto;
@@ -1313,6 +1467,33 @@ input#cart-quantity {
 
 // ---- modal ------
 
+.modalOverplay-successfulPayment {
+    width: 600px;
+    padding: 20px;
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    color: var(--main-color);
+    background-color: white;
+
+    position: fixed;
+    top: 10%;
+    right: 50%;
+    z-index: 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(50%, -20%);
+    transition: all 0.5s ease;
+
+    &.active {
+        transform: translate(50%, -2%);
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
 .modalOverplay-paymentConfirm {
     width: 600px;
     padding: 4px 20px;
@@ -1377,6 +1558,10 @@ input#cart-quantity {
                 color: #fff;
                 background-color: #0069d9;
                 border-color: #0062cc;
+            }
+
+            &.disabled {
+                pointer-events: none;
             }
         }
     }
@@ -2250,6 +2435,18 @@ input#cart-quantity {
             margin: 20px 10px;
         }
 
+        .container-inforCustomer {
+            @include templateForm(var(--white-color), 100%, 1.6rem, var(--main-color), 100%);
+
+            .form-container {
+                .form-group {
+                    textarea.form-control {
+                        height: 90px;
+                    }
+                }
+            }
+        }
+
         .item-cartDetails {
             width: 100%;
             border: 1px solid #ccc;
@@ -2389,6 +2586,7 @@ input#cart-quantity {
                 justify-content: space-between;
                 margin-bottom: 16px;
             }
+
             .totalPrice-cartDetails {
                 font-weight: 500;
                 font-size: 16px;
@@ -2429,6 +2627,29 @@ input#cart-quantity {
                 @include btn(100%, 12px 30px, var(--main-color), var(--white-color));
                 border: 1px solid var(--main-color);
                 font-size: 2rem;
+            }
+
+            .detailsCart-checkout {
+                margin-top: 20px;
+
+                .item-checkout {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 20px;
+                    border-top: 1px solid #ccc;
+                    padding-top: 24px;
+
+                    h3 {
+                        color: var(--main-color);
+                    }
+
+                    p {
+                        align-self: flex-end;
+                        font-size: 1.4rem;
+                        font-weight: 700;
+                        margin-bottom: 4px;
+                    }
+                }
             }
         }
     }

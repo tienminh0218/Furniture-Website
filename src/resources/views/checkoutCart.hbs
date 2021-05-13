@@ -3,21 +3,69 @@
         <span> / </span>
         <a href="/cart">Chi tiết giỏ hàng</a>
         <span> / </span>
-        <a href="/checkout-cart">Xác nhận đơn hàng</a>
+        <a href="/cart/checkout">Xác nhận đơn hàng</a>
 </div>
 
 <div class="container-cartDetails">
     <div class="items-cartDetails">
         <h3 class="title-cartDetails">
-            THÔNG TIN SẢN PHẨM
+            THÔNG TIN KHÁCH HÀNG
         </h3>
+
+        <div class="container-inforCustomer">
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <label >Họ và tên quý khách</label>
+                    <input type="text"  name="fullname" value="{{user.fullname}}" class="form-control" autocomplete="on">
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Địa chỉ email</label>
+                    <input type="text" name="emailaddress" value="{{user.emailaddress}}" class="form-control" autocomplete="on">
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" name="phonenumber" value="{{user.phonenumber}}" class="form-control" autocomplete="on">
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Địa chỉ thưởng trú</label>
+                    <input type="text" name="address" value="{{user.address}}" class="form-control" autocomplete="on">
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ghi chú</label>
+                    <textarea type="text" name="descriptionOrder"  class="form-control" ></textarea>
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+
+                
+            </div>
+     
+        </div>
   
      
    
     </div>
     <div class="information-cartDetails">
             <div class="payment-confirmation">
-                <h3>THÔNG TIN GIỎ HÀNG</h3>
+                <h3>THÔNG TIN ĐƠN HÀNG</h3>
                 <div class="totalQuantity-cartDetails">
                     <p>Số lượng sản phẩm:</p>
                     <p> 
@@ -35,19 +83,21 @@
                 <p class="tax-cartDetails">
                     Đã bao gồm VAT (nếu có)
                 </p>
+                <button class="btn-confirmOrder confirm-checkoutCart">Xác nhận mua hàng</button>
 
-                 {{#ifLogic cart.totalQuantity "==" 0}}            
-                    <button class="btn-confirmOrder disabled-confirmOrder">Xác nhận đơn hàng</button>
-                    {{else}}
-                     <button class="btn-confirmOrder">Xác nhận đơn hàng</button>
-                {{/ifLogic}}
+            <div class="detailsCart-checkout">
 
-
-                <button class="btn-deleteAllOrder">Xóa giỏ hàng</button>
-                <a href="/all">
-                    <button class="btn-viewOtherProduct">Xem sản phẩm khác</button>
-                </a>
-
+                {{#each cart.products}}
+                    <div class="item-checkout">
+                        <h3>{{this.nameProduct}}</h3>
+                        <p>SL: {{this.quantity}}</p>
+                        <p>{{mutiply this.quantity this.priceProduct}}</p>
+                    </div>
+                
+                {{/each}}
+       
+          
+            </div>
 
             </div>
             <div class="policy-cartDetails">
@@ -74,5 +124,4 @@
     </div>
 </div>
 
-<script src="../js/paymentConfirm.js" defer></script>
-<script src="../js/delete-allCart.js" defer></script>
+<script src="../js/checkoutCart.js" defer></script>

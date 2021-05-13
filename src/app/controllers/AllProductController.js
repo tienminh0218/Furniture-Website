@@ -44,7 +44,7 @@ class AllProductController {
         });
     }
 
-    // Get -> /all/search
+    // Get -> /products/search
     async productSearch(req, res, next) {
         /// check empty string
         if (!req.query.keyword) return res.status(200).json({ message: [] });

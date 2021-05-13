@@ -8,7 +8,7 @@ function sreachProducts(e) {
     containerSearch.style.display = "none";
     axios({
         method: "get",
-        url: `http://localhost:3001/all/search?keyword=${this.value.trim()}`,
+        url: `http://localhost:3001/products/search?keyword=${this.value.trim()}`,
     })
         .then((response) => {
             let { message } = response.data;

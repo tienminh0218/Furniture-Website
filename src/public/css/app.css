@@ -804,6 +804,27 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
   -webkit-appearance: none;
   margin: 0; }
 
+.modalOverplay-successfulPayment {
+  width: 600px;
+  padding: 20px;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: var(--main-color);
+  background-color: white;
+  position: fixed;
+  top: 10%;
+  right: 50%;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(50%, -20%);
+  transition: all 0.5s ease; }
+  .modalOverplay-successfulPayment.active {
+    transform: translate(50%, -2%);
+    visibility: visible;
+    opacity: 1; }
+
 .modalOverplay-paymentConfirm {
   width: 600px;
   padding: 4px 20px;
@@ -864,6 +885,8 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
         color: #fff;
         background-color: #0069d9;
         border-color: #0062cc; }
+      .modalOverplay-paymentConfirm .buttons-paymentConfirm .btn-confirm.disabled {
+        pointer-events: none; }
 
 .modalOverplay-mesSuggesLogin {
   position: fixed;
@@ -963,13 +986,13 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
         color: var(--main-color); }
       .modals .modal-container .modal-loginForm .form-container {
         width: 400px; }
-        .modals .modal-container .modal-loginForm .form-container .form-group {
+        .modals .modal-container .modal-loginForm .form-container .form-group, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image {
           margin-bottom: 20px; }
-          .modals .modal-container .modal-loginForm .form-container .form-group label {
+          .modals .modal-container .modal-loginForm .form-container .form-group label, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image label, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image label {
             font-size: 1.6rem;
             font-weight: bold;
             color: #333; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .form-control {
+          .modals .modal-container .modal-loginForm .form-container .form-group .form-control, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-control, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image .form-control {
             width: 100%;
             outline: none;
             height: 30px;
@@ -978,10 +1001,10 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 4px; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .form-select {
+          .modals .modal-container .modal-loginForm .form-container .form-group .form-select, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-select, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image .form-select {
             padding: 0 8px;
             height: 4rem; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .btn-submit {
+          .modals .modal-container .modal-loginForm .form-container .form-group .btn-submit, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .btn-submit, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image .btn-submit {
             width: 100%;
             padding: 8px;
             font-size: 1.8rem;
@@ -991,14 +1014,14 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             border-radius: 4px;
             background-color: var(--main-color);
             cursor: pointer; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message {
+          .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .errorBox .error-message, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image .errorBox .error-message {
             margin-left: 4px;
             display: flex;
             align-items: center;
             justify-content: start;
             color: var(--red-color);
             font-size: 1.4rem; }
-            .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark {
+            .modals .modal-container .modal-loginForm .form-container .form-group .errorBox .error-message .exclamationMark, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .errorBox .error-message .exclamationMark, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image .errorBox .error-message .exclamationMark {
               background-color: var(--red-color);
               width: 14px;
               height: 14px;
@@ -1009,7 +1032,7 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
               align-items: center;
               justify-content: center;
               margin-right: 2px; }
-          .modals .modal-container .modal-loginForm .form-container .form-group .error-FromServer {
+          .modals .modal-container .modal-loginForm .form-container .form-group .error-FromServer, .modals .modal-container .modal-loginForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .error-FromServer, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-loginForm .form-container .form-group-image .error-FromServer {
             font-size: 1.4rem;
             display: none;
             padding: 16px;
@@ -1058,13 +1081,13 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
         color: var(--main-color); }
       .modals .modal-container .modal-registerForm .form-container {
         width: 400px; }
-        .modals .modal-container .modal-registerForm .form-container .form-group {
+        .modals .modal-container .modal-registerForm .form-container .form-group, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image {
           margin-bottom: 20px; }
-          .modals .modal-container .modal-registerForm .form-container .form-group label {
+          .modals .modal-container .modal-registerForm .form-container .form-group label, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image label, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image label {
             font-size: 1.6rem;
             font-weight: bold;
             color: #333; }
-          .modals .modal-container .modal-registerForm .form-container .form-group .form-control {
+          .modals .modal-container .modal-registerForm .form-container .form-group .form-control, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-control, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image .form-control {
             width: 100%;
             outline: none;
             height: 30px;
@@ -1073,10 +1096,10 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 4px; }
-          .modals .modal-container .modal-registerForm .form-container .form-group .form-select {
+          .modals .modal-container .modal-registerForm .form-container .form-group .form-select, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-select, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image .form-select {
             padding: 0 8px;
             height: 4rem; }
-          .modals .modal-container .modal-registerForm .form-container .form-group .btn-submit {
+          .modals .modal-container .modal-registerForm .form-container .form-group .btn-submit, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .btn-submit, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image .btn-submit {
             width: 100%;
             padding: 8px;
             font-size: 1.8rem;
@@ -1086,14 +1109,14 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
             border-radius: 4px;
             background-color: var(--main-color);
             cursor: pointer; }
-          .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message {
+          .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .errorBox .error-message, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image .errorBox .error-message {
             margin-left: 4px;
             display: flex;
             align-items: center;
             justify-content: start;
             color: var(--red-color);
             font-size: 1.4rem; }
-            .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message .exclamationMark {
+            .modals .modal-container .modal-registerForm .form-container .form-group .errorBox .error-message .exclamationMark, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .errorBox .error-message .exclamationMark, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image .errorBox .error-message .exclamationMark {
               background-color: var(--red-color);
               width: 14px;
               height: 14px;
@@ -1104,7 +1127,7 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
               align-items: center;
               justify-content: center;
               margin-right: 2px; }
-          .modals .modal-container .modal-registerForm .form-container .form-group .error-FromServer {
+          .modals .modal-container .modal-registerForm .form-container .form-group .error-FromServer, .modals .modal-container .modal-registerForm .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .error-FromServer, .container-cartDetails .items-cartDetails .container-inforCustomer .modals .modal-container .modal-registerForm .form-container .form-group-image .error-FromServer {
             font-size: 1.4rem;
             display: none;
             padding: 16px;
@@ -1157,7 +1180,7 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
     font-size: 2.4rem;
     color: var(--white-color); }
 
-.form-group.existError .errorBox {
+.form-group.existError .errorBox, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .existError.form-group-image .errorBox {
   display: block !important; }
 
 /* PC */
@@ -1616,6 +1639,122 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
     .container-cartDetails .items-cartDetails .title-cartDetails {
       font-size: 2rem;
       margin: 20px 10px; }
+    .container-cartDetails .items-cartDetails .container-inforCustomer {
+      background: var(--white-color);
+      margin: auto;
+      padding: 16px;
+      transition: all 0.5s ease; }
+      .container-cartDetails .items-cartDetails .container-inforCustomer .title {
+        font-size: 2.6rem;
+        margin: 24px 0;
+        text-align: center;
+        color: var(--main-color); }
+      .container-cartDetails .items-cartDetails .container-inforCustomer .form-container {
+        width: 100%; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image {
+          margin-bottom: 20px; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group label, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image label {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #333; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .form-control, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-control {
+            width: 100%;
+            outline: none;
+            height: 30px;
+            font-size: 1.4rem;
+            padding: 18px 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .form-select, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-select {
+            padding: 0 8px;
+            height: 4rem; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .btn-submit, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .btn-submit {
+            width: 100%;
+            padding: 8px;
+            font-size: 1.6rem;
+            outline: none;
+            border: none;
+            color: var(--white-color);
+            border-radius: 4px;
+            background-color: var(--main-color);
+            cursor: pointer; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .ck-editor__editable_inline, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .ck-editor__editable_inline {
+            height: 400px;
+            overflow-y: auto; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .errorBox .error-message, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .errorBox .error-message {
+            margin-left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: var(--red-color);
+            font-size: 1.4rem; }
+            .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .errorBox .error-message .exclamationMark, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .errorBox .error-message .exclamationMark {
+              background-color: var(--red-color);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              color: var(--white-color);
+              font-size: 1.4rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 2px; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group .error-FromServer, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .error-FromServer {
+            font-size: 1.4rem;
+            display: none;
+            padding: 16px;
+            color: #842029;
+            border: 1px solid transparent;
+            border-radius: 4px; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .label-image {
+          display: block;
+          width: 180px;
+          height: 40px;
+          text-align: center;
+          background: var(--main-color);
+          cursor: pointer;
+          border-radius: 6px;
+          color: var(--white-color);
+          line-height: 40px; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .form-control-typeFile {
+          display: none; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .preview-image {
+          width: 250px;
+          margin: 10px 0; }
+          .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image .preview-image img {
+            width: 100%; }
+      .container-cartDetails .items-cartDetails .container-inforCustomer .border-modalForm {
+        display: flex;
+        align-items: center; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .border-modalForm p {
+          margin: 0 6px;
+          font-size: 1.6rem;
+          color: #ccc; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .border-modalForm .leftBorder-modal, .container-cartDetails .items-cartDetails .container-inforCustomer .border-modalForm .rightBorder-modal {
+          height: 1px;
+          width: 100%;
+          background-color: #dbdbdb; }
+      .container-cartDetails .items-cartDetails .container-inforCustomer .text-suggest {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 1.4rem;
+        color: #333; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .text-suggest a {
+          text-decoration: none;
+          color: var(--main-color); }
+      .container-cartDetails .items-cartDetails .container-inforCustomer .close-modal {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2.4rem;
+        cursor: pointer;
+        padding: 12px; }
+        .container-cartDetails .items-cartDetails .container-inforCustomer .close-modal:hover {
+          background-color: #ccc;
+          color: #757575; }
+      .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group textarea.form-control, .container-cartDetails .items-cartDetails .container-inforCustomer .form-container .form-group-image textarea.form-control {
+        height: 90px; }
     .container-cartDetails .items-cartDetails .item-cartDetails {
       width: 100%;
       border: 1px solid #ccc;
@@ -1786,6 +1925,21 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
         .container-cartDetails .information-cartDetails .payment-confirmation .btn-viewOtherProduct.disabled {
           opacity: 0.6;
           pointer-events: none; }
+      .container-cartDetails .information-cartDetails .payment-confirmation .detailsCart-checkout {
+        margin-top: 20px; }
+        .container-cartDetails .information-cartDetails .payment-confirmation .detailsCart-checkout .item-checkout {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          border-top: 1px solid #ccc;
+          padding-top: 24px; }
+          .container-cartDetails .information-cartDetails .payment-confirmation .detailsCart-checkout .item-checkout h3 {
+            color: var(--main-color); }
+          .container-cartDetails .information-cartDetails .payment-confirmation .detailsCart-checkout .item-checkout p {
+            align-self: flex-end;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px; }
 
 .container-sreachingItems {
   position: absolute;

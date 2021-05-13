@@ -139,11 +139,18 @@
                                 <div class="cartBox-totalItem">
                                      {{#if user }}
                                         <a href="/cart" class="cartBox-totalLink">XEM GIỎ HÀNG</a>
-                                        {{#ifLogic cart.products.length "===" 0}} 
-                                                <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
-                                            {{else}} 
-                                                <a href="" class="cartBox-totalLink">THANH TOÁN </a>  
+
+                                        {{#if cart}}       
+                                            {{#ifLogic cart.products.length "===" 0}} 
+                                                    <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
+                                                {{else}} 
+                                                    <a href="" class="cartBox-totalLink">THANH TOÁN </a>  
                                             {{/ifLogic}}
+                                        {{else}}
+                                                    <a href="" class="cartBox-totalLink disabled-cart">THANH TOÁN </a>  
+                                        {{/if}}
+
+                                       
                                         
                                     {{else}}
                                          <a href="/cart" class="cartBox-totalLink disabled-cart">XEM GIỎ HÀNG</a>
@@ -388,4 +395,9 @@
             <button class="btn btn-close">Đóng</button>
             <button class="btn btn-confirm">Xác nhận</button>
         </div>
+</div>
+
+<div class="modalOverplay-successfulPayment">
+        <i class="fas fa-check-circle"></i>
+        Thanh toán thành công, hóa đơn sẽ gửi vào email của khách hàng
 </div>
