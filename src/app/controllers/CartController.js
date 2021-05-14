@@ -59,9 +59,10 @@ class CartController {
         let cart = await Cart.findOne({ "customer.username": decoded.name }).catch((err) =>
             console.log(err)
         );
+
         // check empty products
-        let isEmpty = cart.products.length == 0 ? true : false;
-        if (isEmpty) {
+        let isEmpty = cart?.products.length;
+        if (!isEmpty) {
             return res.redirect("back");
         }
 

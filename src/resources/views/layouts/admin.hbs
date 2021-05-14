@@ -100,6 +100,7 @@
                     <li class=""><a href="/">Shop</a></li>
                     <li class=""><a href="/admin">Trang chủ</a></li>
                     <li><a href="/admin/category">Danh mục sản phẩm</a></li>
+                    <li><a href="/admin/customers">Hóa đơn</a></li>
                     <li>
                         <a href="#" class="charts-btn">
                             Elements
@@ -136,6 +137,8 @@
     </body>
     <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
     <script>
+        let isCkexist = document.querySelector( '#editor' );
+        if (isCkexist) 
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
             .then(editor => dataCkedit = editor)

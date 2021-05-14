@@ -5,6 +5,7 @@ var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
 const Categories = require("../models/Category");
 const { multipleToObject } = require("../../util/toObj");
+const escapeRegex = require("../../util/fuzzyRegex");
 
 class AllProductController {
     // Get -> /all
@@ -49,7 +50,8 @@ class AllProductController {
         /// check empty string
         if (!req.query.keyword) return res.status(200).json({ message: [] });
 
-        let nameProducts = new RegExp(`^${req.query.keyword}`, "i");
+        // let nameProducts = new RegExp(`^${req.query.keyword}`, "i");
+        let nameProducts = new RegExp(escapeRegex(req.query.keyword), "gi");
         Product.find({ nameProduct: nameProducts })
             .limit(6)
             .then((products) => {

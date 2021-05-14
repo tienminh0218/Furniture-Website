@@ -28,6 +28,7 @@ const Invoice = new Schema(
                 totalPrice: { type: Number },
                 totalQuantity: { type: Number },
                 time: { type: Date, default: Date.now },
+                status: { type: Boolean, default: false },
             },
         ],
     },

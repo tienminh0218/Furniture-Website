@@ -1,0 +1,49 @@
+<div class="container-listCarts">
+    <h3 class="title-table">Đơn hàng của {{invoice.customer.fullname}}</h3>
+    <div class="button-function">
+        <a href="/admin/customers">
+            <button class="btn-update">
+                <i class="bi bi-backspace"></i>
+            </button>
+        </a>
+    </div>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Mã hóa đơn</th>
+            <th>Tống tiền</th>
+            <th>Số lượng</th>
+            <th>Thời gian</th>
+            <th>Trạng thái</th>
+            <th></th>
+            <th></th>
+        </tr>
+              
+    {{#each invoice.bills}}       
+         <tr>
+            <td>{{sum @index 1}}</td>
+            <td>{{this._id}}</td>
+            <td>{{number this.totalPrice}} đ</td>
+            <td>{{number this.totalQuantity}}</td>
+            <td>{{formatDate this.time}}</td>
+            {{#if this.status}}
+                <td style="color:var(--main-color)">Đã duyệt</td>
+                {{else}}
+                <td style="color:red">Chưa duyệt</td>
+            {{/if}}
+            <td class="button-function">
+                <button class="btn-insert">Chi tiết hóa đơn</button>
+            </td>
+            <td><button>Gửi</button></td>
+         </tr>
+    {{/each}}                            
+    </table>
+</div>
+
+
+  
+
+      
+ <script >
+    
+ </script> 

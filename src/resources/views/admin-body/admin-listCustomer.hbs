@@ -1,0 +1,52 @@
+<div class="container-listCarts">
+    <h3 class="title-table">Danh sách khách hàng</h3>
+    <div class="searching-customer">
+        <h3>Nhập tên hoặc username:</h3> 
+        <input type="text" name="" id="">
+
+        {{!-- -sreach --}}
+        <div class="container-sreachingItems">
+            <a href="#" class="card-sreachingItem">
+                <img class="image-sreachingItem" src="http://res.cloudinary.com/tengicungduocditme/image/upload/v1620271689/lpc3ki2fuemsit3canbw.webp" alt="">
+                <h3>ten</h3>
+                <span>id</span>
+            </a>
+
+            
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Tên khách hàng</th>
+            <th>Username</th>
+            <th>Tống tiền</th>
+            <th>Số lượng</th>
+            <th>Ảnh</th>
+            <th></th>
+        </tr>
+              
+    {{#each invoices}}       
+         <tr>
+            <td>{{sum @index 1}}</td>
+            <td>{{this.customer.fullname}}</td>
+            <td>{{this.customer.username}}</td>
+            <td>{{number this.userTotalPrice}} đ</td>
+            <td>{{number this.userTotalQuantity}}</td>
+            <td>{{this.customer.fullname}}</td>
+            <td class="button-function">
+                <a href="customer/{{this.customer.username}}">
+                    <button class="btn-insert">Xem chi tiết</button>
+                </a>
+            </td>
+         </tr>
+    {{/each}}                   
+                
+         
+
+            
+            
+    </table>
+</div>
+
+<script src="../js/admin-searchingCustomer.js" defer></script>

@@ -3,18 +3,17 @@ const app = express();
 const path = require("path");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
-var cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const db = require("./config/db");
 const route = require("./routes");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv").config({ path: path.join(__dirname, ".env") });
 const port = process.env.PORT;
-
 const axios = require("axios").default;
 
 /// number format hbs
-var Handlebars = require("handlebars");
-var NumeralHelper = require("handlebars.numeral");
+const Handlebars = require("handlebars");
+const NumeralHelper = require("handlebars.numeral");
 NumeralHelper.registerHelpers(Handlebars);
 
 // if logical hbs
@@ -76,6 +75,12 @@ app.engine(
         helpers: {
             sum: (a, b) => a + b,
             mutiply: (a, b) => a * b,
+            formatDate: (timestamp) => {
+                let day = new Date(timestamp).getDate();
+                let month = new Date(timestamp).getMonth();
+                let year = new Date(timestamp).getFullYear();
+                return `${day}-${month + 1}-${year}`;
+            },
         },
     })
 );

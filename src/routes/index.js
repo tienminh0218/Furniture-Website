@@ -8,7 +8,8 @@ const { checkAdmin } = require("../app/middleware/middleware.js");
 
 function route(app, express, path) {
     app.use("/account", accounts);
-    app.use("/admin", checkAdmin, admin);
+    // app.use("/admin", checkAdmin, admin);
+    app.use("/admin", admin);
     app.use("/detail", detail);
     app.use("/products", products);
     app.use("/cart", cart);
