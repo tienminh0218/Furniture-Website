@@ -32,18 +32,21 @@
                 <td style="color:red">Chưa duyệt</td>
             {{/if}}
             <td class="button-function">
-                <button class="btn-insert">Chi tiết hóa đơn</button>
+                <a target="_blank" href="/admin/customer/invoice?id={{this._id}},{{../invoice._id}}">
+                    <button class="btn-insert">Chi tiết hóa đơn</button>
+                </a>
             </td>
-            <td><button>Gửi</button></td>
+            <td class="button-function">
+                    <button id-bill="{{this._id}},{{../invoice._id}}"  class="btn-insert send-mail">Gửi</button>
+            </td>
          </tr>
     {{/each}}                            
     </table>
 </div>
 
-
   
-
+<form method="post"></form>
       
- <script >
+ <script src="../js/send-email.js" defer>
     
  </script> 

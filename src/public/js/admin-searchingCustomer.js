@@ -22,7 +22,6 @@ function sreachProducts(e) {
             let innerCustomers = "";
             customers.forEach((element) => {
                 innerCustomers = innerCustomers.concat(`<a href="/admin/customer/${element.customer.username}" class="card-sreachingItem">
-                                        <img class="image-sreachingItem" src="https://www.gravatar.com/avatar/e6663eec8c18cab0016a5032268bcdab?s=32&d=identicon&r=PG" alt="">
                                         <h3>${element.customer.fullname}</h3>
                                         <span>${element.customer.username}</span>
                                     </a>`);

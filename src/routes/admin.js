@@ -29,8 +29,9 @@ route.delete("/product/:id", AdminProductController.productDelete);
 
 /// Invoice routes
 route.get("/customers", AdminInvoiceController.listCustomers);
+route.get("/customer/invoice", AdminInvoiceController.getInvoiceCustomer);
 route.get("/customer/search", AdminInvoiceController.searchUser);
-route.post("/customer/email/:username", AdminInvoiceController.sendMail);
+route.post("/customer/email/:id", AdminInvoiceController.sendMail);
 route.get("/customer/:username", AdminInvoiceController.detailInvoice);
 
 /// Home admin

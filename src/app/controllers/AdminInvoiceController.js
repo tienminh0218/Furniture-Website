@@ -25,31 +25,24 @@ let transporter = nodemailer.createTransport({
 transporter.use(
     "compile",
     hbs({
-        // viewEngine: "express-handlebars",
         viewPath: path.resolve(__dirname, "../../resources/views"),
-
         viewEngine: {
             partialsDir: path.resolve(__dirname, "../../resources/views"),
             defaultLayout: false,
+            helpers: {
+                sum: (a, b) => a + b,
+                mutiply: (a, b) => a * b,
+                formatDate: (timestamp) => {
+                    let day = new Date(timestamp).getDate();
+                    let month = new Date(timestamp).getMonth();
+                    let year = new Date(timestamp).getFullYear();
+                    return `${day}-${month + 1}-${year}`;
+                },
+            },
         },
-
         extName: ".hbs",
     })
 );
-// console.log(p);
-// set mail options
-let mailOptions = {
-    from: "ngtienminh0218@gmail.com",
-    to: "tienminh0218@gmail.com",
-    subject: "Hóa đơn mua hàng FAQ Shop",
-    text: "",
-    template: "email",
-    context: {
-        name: "Accime Esterling",
-    },
-};
-
-////
 
 class AdminInvoiceController {
     /// GET -> /admin/customers
@@ -137,14 +130,73 @@ class AdminInvoiceController {
             });
     }
 
-    /// POST /admin/customer/email/:username
-    sendMail(req, res) {
+    /// GET -> /customer/invoice?id=
+    getInvoiceCustomer(req, res) {
+        let [idBill, idInvoice] = req.query.id.split(",");
+        Invoices.findOne({ _id: idInvoice, bills: { $elemMatch: { _id: idBill } } }).then(
+            (invoice) => {
+                invoice = toObject(invoice);
+                let newBill = [];
+
+                invoice.bills.forEach((bill) => {
+                    if (bill._id == idBill) newBill.push(bill);
+
+                    bill.products.forEach((product) => {
+                        product.priceProduct = product.priceProduct * product.quantity;
+                    });
+                });
+                invoice.bills = newBill;
+
+                res.render("email", { layout: false, invoice });
+            }
+        );
+    }
+
+    /// POST /admin/customer/email/:id
+    async sendMail(req, res) {
+        let [idBill, idInvoice] = req.params.id.split(",");
+        let invoice = await Invoices.findOneAndUpdate(
+            {
+                _id: idInvoice,
+                bills: { $elemMatch: { _id: idBill } },
+            },
+            {
+                $set: { "bills.$.status": true },
+            }
+        ).catch((err) => console.log(err));
+
+        // format bill
+        invoice = toObject(invoice);
+        let newBill = [];
+
+        invoice.bills.forEach((bill) => {
+            if (bill._id == idBill) newBill.push(bill);
+
+            bill.products.forEach((product) => {
+                product.priceProduct = product.priceProduct * product.quantity;
+            });
+        });
+        invoice.bills = newBill;
+
+        // set mail options
+        let mailOptions = {
+            from: "ngtienminh0218@gmail.com",
+            to: invoice.customer.emailaddress,
+            subject: "Hóa đơn mua hàng FAQ Shop",
+            text: "",
+            template: "email",
+            context: {
+                invoice,
+            },
+        };
+
         // send mail
         transporter.sendMail(mailOptions, (err, data) => {
             if (err) {
-                return console.log(`Error: ${err}`);
+                console.log(`Error: ${err}`);
+                return res.redirect("back");
             }
-            return console.log("Email sent!!!");
+            return res.redirect("back");
         });
     }
 }

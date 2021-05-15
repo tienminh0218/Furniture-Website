@@ -53,7 +53,7 @@
                                                                                     alt="Epic Games"
                                                                                     border="0"
                                                                                     hspace="0"
-                                                                                    src="https://ci3.googleusercontent.com/proxy/eP4FFa-mqn0IZZSJgV9B1kEGaN-q4Na_OUBLG7ag4iLWQRamiZ84Ua3VRnZdBgTmlV2LrY1XFivTF2lwG3KQcUMZovbZ3UDUedWetGmgORBvm3A5X9uWklzvU4PVjc3iu-5Y5qoJA4t9xgRKuPeHOt9c9l6GaK8xgHlTDapJdbX8djsngrugJ1ZILklNZ0vkkg=s0-d-e1-ft#http://images.harmony.epsilon.com/ContentHandler/images/61a7fbcf-9940-4c13-ad82-1cc8d60d33bf/RTM_Images/EML_EPICGAMES_LOGO.png"
+                                                                                    src="https://res.cloudinary.com/tengicungduocditme/image/upload/v1621062759/daicabodoi/icon_zbe9rd.png"
                                                                                     style="
                                                                                         max-width: 70px;
                                                                                         height: auto;
@@ -218,22 +218,24 @@
                                                                             style="font-size: 18px"
                                                                         >
                                                                             <strong
-                                                                                >Hi tien!</strong
+                                                                                >Hi {{invoice.customer.fullname}}</strong
                                                                             >
                                                                         </span>
                                                                         <br />
                                                                         Thanks for your purchase
-                                                                        from Epic Games
-                                                                        International S.à r.l..<br /><br />
+                                                                        from FaQ Shop<br /><br />
 
                                                                         <span
                                                                             style="
                                                                                 font-size: 35px;
                                                                                 line-height: 45px;
                                                                             "
-                                                                            ><strong
-                                                                                >INVOICE ID:<br />
-                                                                                F870023006</strong
+                                                                            >
+                                                                        
+                                                                            <strong>INVOICE ID: {{invoice._id}}<br />
+                                                                                    </strong
+                                                                           
+
                                                                             ></span
                                                                         ><br />
 
@@ -427,17 +429,17 @@
                                                                                             line-height: 24px;
                                                                                         "
                                                                                     >
+                                                                                {{#each invoice.bills}}
                                                                                         <strong
                                                                                             >Order
-                                                                                            ID:</strong
-                                                                                        ><br />
-                                                                                        F2104020543421236<br /><br />
-                                                                                        <strong
-                                                                                            >Order
+                                                                                            ID:
+                                                                                    </strong><br />{{this._id}}<br /><br /><strong>
+                                                                                        Order
                                                                                             Date:</strong
                                                                                         ><br />
-                                                                                        April 2,
-                                                                                        2021<br />
+                                                                                          {{formatDate this.time}}  <br />
+                                                                                  {{/each}}      
+
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -472,13 +474,12 @@
                                                                                         <a
                                                                                             href="mailto:tienminh0218@gmail.com"
                                                                                             target="_blank"
-                                                                                            >tienminh0218@gmail.com</a
+                                                                                            >{{invoice.customer.emailaddress}}</a
                                                                                         ><br /><br />
                                                                                         <strong
                                                                                             >Source:</strong
                                                                                         ><br />
-                                                                                        Epic Games
-                                                                                        Store<br />
+                                                                                        FaQ Shop<br />
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -659,7 +660,7 @@
                                                                                                         "
                                                                                                     >
                                                                                                         <strong
-                                                                                                            >Description:</strong
+                                                                                                            >Name:</strong
                                                                                                         >
                                                                                                     </div>
                                                                                                 </td>
@@ -687,7 +688,7 @@
                                                                                                         "
                                                                                                     >
                                                                                                         <strong
-                                                                                                            >Publisher:</strong
+                                                                                                            >Quantity:</strong
                                                                                                         >
                                                                                                     </div>
                                                                                                 </td>
@@ -751,6 +752,11 @@
                         </tbody>
                     </table>
 
+
+        {{!-- --------- detail products --------------------  --}}
+
+        {{#each invoice.bills}}
+                {{#each this.products}}
                     <table
                         width="100%"
                         style="min-width: 600px"
@@ -823,8 +829,7 @@
                                                                                                 0;
                                                                                         "
                                                                                     >
-                                                                                        Tales of the
-                                                                                        Neon Sea
+                                                                                        {{this.nameProduct}}
                                                                                     </div>
                                                                                 </td>
                                                                                 <td
@@ -850,8 +855,7 @@
                                                                                                 0;
                                                                                         "
                                                                                     >
-                                                                                        Thermite
-                                                                                        Games
+                                                                                        {{this.quantity}}
                                                                                     </div>
                                                                                 </td>
                                                                                 <td
@@ -877,7 +881,9 @@
                                                                                                 0;
                                                                                         "
                                                                                     >
-                                                                                        USD $ 0.00
+                                                                                         
+
+                                                                                        {{number  this.priceProduct}} đ
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -930,6 +936,14 @@
                             </tr>
                         </tbody>
                     </table>
+
+                {{/each}}
+
+        {{/each}}
+
+        {{!-- ---------  --------------------  --}}
+
+                    
 
                     <table
                         width="100%"
@@ -996,7 +1010,7 @@
                                                                                             line-height: 26px;
                                                                                         "
                                                                                     >
-                                                                                        TOTAL [ USD
+                                                                                        TOTAL [ VNĐ
                                                                                         ]:<br />
                                                                                     </div>
                                                                                 </td>
@@ -1025,7 +1039,10 @@
                                                                                             line-height: 26px;
                                                                                         "
                                                                                     >
-                                                                                        $ 0.00<br />
+                                                                                        {{#each invoice.bills}}
+                                                                                            {{number this.totalPrice}}
+                                                                                        {{/each }}<br />
+
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -1235,7 +1252,7 @@
                                                                                                 color: #313131;
                                                                                             "
                                                                                         >
-                                                                                            [USD]:</span
+                                                                                            [VNĐ]:</span
                                                                                         ><br />
                                                                                     </div>
                                                                                 </td>
@@ -1265,7 +1282,11 @@
                                                                                             line-height: 26px;
                                                                                         "
                                                                                     >
-                                                                                        $ 0<br />
+                                                                                        
+                                                                                        {{#each invoice.bills}}
+                                                                                            {{number this.totalPrice}}
+                                                                                        {{/each }}
+                                                                                        <br />
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -1325,8 +1346,8 @@
                                                                             width: 540px;
                                                                         "
                                                                     >
-                                                                        Any game purchased on the
-                                                                        Epic Games Store is eligible
+                                                                        Any products purchased on the
+                                                                        FaQ Store is eligible
                                                                         for refund within 14 days of
                                                                         purchase (or for
                                                                         prepurchases, 14 days from
@@ -1387,13 +1408,10 @@
                                                                         "
                                                                     >
                                                                         <strong
-                                                                            >Epic Games
-                                                                            International S.à
+                                                                            >FaQ Shop S.à
                                                                             r.l.</strong
                                                                         ><br />
-                                                                        Luxembourg-Bertrange, Swiss
-                                                                        Branch, Platz 3, 6039 Root,
-                                                                        Switzerland<br />
+                                                                       Gan An Cu, Ninh Kieu, Can Tho, VietNam, Earth,  Solar system<br />
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -1527,17 +1545,17 @@
                                                                         "
                                                                     >
                                                                         <p>
-                                                                            © 2021, Epic Games, Inc.
+                                                                            © 2021, FaQ, Inc.
                                                                             All rights reserved.
-                                                                            Epic, Epic Games, the
-                                                                            Epic Games logo, Unreal,
+                                                                            Epic, FaQ, the
+                                                                            FaQ logo, Unreal,
                                                                             Unreal Engine, the
                                                                             Unreal Engine logo, Epic
                                                                             Games Store, and the
-                                                                            Epic Games Store logo
+                                                                            FaQ Store logo
                                                                             are trademarks or
                                                                             registered trademarks of
-                                                                            Epic Games, Inc. in the
+                                                                            FaQ, Inc. in the
                                                                             USA and elsewhere. All
                                                                             other trademarks are the
                                                                             property of their
@@ -1614,3 +1632,5 @@
         </tr>
     </tbody>
 </table>
+
+
