@@ -81,7 +81,8 @@ var schemaRegisterAccount = Joi.object().keys({
                         err.message = `Account should have at most ${err.local.limit} characters`;
                         break;
                     case "string.alphanum":
-                        err.message = "Đừng hack em anh ơi";
+                        err.message =
+                            "Account can not contain special characters";
                         break;
                     default:
                         break;
@@ -90,7 +91,6 @@ var schemaRegisterAccount = Joi.object().keys({
             return errors;
         }),
     password: Joi.string()
-        .alphanum()
         .min(6)
         .max(30)
         .required()
@@ -168,7 +168,9 @@ var schemaRegisterAccount = Joi.object().keys({
         }),
     gender: Joi.string().min(1).required(),
     emailaddress: Joi.string()
-        .pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        .pattern(
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        )
         .required()
         .error((errors) => {
             errors.forEach((err) => {
@@ -205,7 +207,8 @@ var schemaRegisterAccount = Joi.object().keys({
                         err.message = `Address should have at most ${err.local.limit} characters`;
                         break;
                     case "string.pattern.base":
-                        err.message = "Ghi đúng địa chỉ anh ơi";
+                        err.message =
+                            "Address can not contain special characters";
                         break;
                     default:
                         break;
