@@ -183,6 +183,7 @@ btnDeletes.forEach((btnDelete) => {
 });
 
 var parentNode = document.querySelector(".items-cartDetails");
+
 function deleteProduct(e) {
     var id = e.target.getAttribute("idproduct");
     var parent = e.target.closest(".item-cartDetails");
@@ -244,6 +245,8 @@ function deleteProduct(e) {
 }
 
 // delete all items in cart
+let messDeleteItemsSuccess = document.querySelector(".modalOverplay-deleteProductsSuccess");
+
 btnDeleteAll.addEventListener("click", deleteAll);
 
 function deleteAll() {
@@ -261,6 +264,10 @@ function deleteAll() {
         headers: { "Content-Type": "application/json" },
     })
         .then((data) => {
+            /// show message delete success
+            messDeleteItemsSuccess.classList.add("active");
+            setTimeout(() => messDeleteItemsSuccess.classList.remove("active"), 1000);
+
             //delete items in list
             ItemInCarts.forEach((element) => {
                 element.remove();

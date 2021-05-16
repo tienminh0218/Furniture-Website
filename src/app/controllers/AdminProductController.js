@@ -67,6 +67,7 @@ class AdminProductController {
             res.status(409).json({ message: error.details });
             return;
         }
+
         // check name category is exists
         var [isExistProduct, oldProduct] = await Promise.all([
             Product.findOne({

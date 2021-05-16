@@ -209,3 +209,11 @@ function registerRequest(e) {
             showErrorMessage(error, modalRegisterForm, registerErrorMessage);
         });
 }
+
+/// assign link
+let viewProfile = document.querySelector(".item-user");
+
+if (viewProfile)
+    viewProfile.addEventListener("click", () => {
+        location.href = "http://localhost:3001/account/profile";
+    });

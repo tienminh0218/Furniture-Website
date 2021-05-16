@@ -50,6 +50,7 @@ app.use("/admin", express.static(path.join(__dirname, "public")));
 app.use("/details", express.static(path.join(__dirname, "public")));
 app.use("/products", express.static(path.join(__dirname, "public")));
 app.use("/cart", express.static(path.join(__dirname, "public")));
+app.use("/account", express.static(path.join(__dirname, "public")));
 
 // Midddleware
 app.use(cookieParser());

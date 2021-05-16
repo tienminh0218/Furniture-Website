@@ -24,5 +24,5 @@ function toggleDialog(e) {
 function eraseCookie() {
     console.log(logoutUser);
     document.cookie = "token" + "=; Max-Age=0";
-    location.reload();
+    location.href = " http://localhost:3001";
 }
