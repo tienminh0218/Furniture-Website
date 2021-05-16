@@ -1,14 +1,16 @@
 var inputSearch = document.querySelector(".header__mid-left-input");
+var btnSearch = document.querySelector(".fa-search");
 var containerSearch = document.querySelector(".container-sreachingItems");
 var formatter = new Intl.NumberFormat();
 
 inputSearch.addEventListener("keyup", sreachProducts);
+btnSearch.addEventListener("click", sreachProducts);
 
 function sreachProducts(e) {
     containerSearch.style.display = "none";
     axios({
         method: "get",
-        url: `http://localhost:3001/products/search?keyword=${this.value.trim()}`,
+        url: `http://localhost:3001/products/search?keyword=${inputSearch.value.trim()}`,
     })
         .then((response) => {
             let { message } = response.data;

@@ -42,15 +42,18 @@ var btnSubmit = formCategoryUpdate.querySelector('input[type="submit"]');
 var params = new URLSearchParams(window.location.search);
 var idCategory = params.get("id");
 var errorFromServer = formCategoryUpdate.querySelector(".error-FromServer");
-var nodeCkedit = formCategoryInsert.querySelector(".ck-content p");
+var nodeCkedit = formCategoryUpdate.querySelector(".ck-content p");
+
+console.log(formCategoryUpdate);
 
 // event submit
 btnSubmit.addEventListener("click", UpdateCategory);
 
 function UpdateCategory(e) {
     e.preventDefault();
+
+    /// clear
     clearErrorMessage(formCategoryUpdate);
-    console.log("okokok");
 
     axios({
         method: "put",

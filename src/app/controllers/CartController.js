@@ -319,24 +319,30 @@ class CartController {
         } catch (error) {
             return res.send(error);
         }
+
         Cart.findOneAndUpdate(
             { "customer.username": decoded.name },
             {
                 $pull: { products: { slug: req.params.slugProduct } },
-            }
+                $inc: {
+                    totalPrice: -req.body.priceProduct,
+                    totalQuantity: -req.body.quantityProduct,
+                },
+            },
+            { new: true }
         )
-            .then((oldCart) => {
-                return Cart.findOneAndUpdate(
-                    { "customer.username": decoded.name },
-                    {
-                        totalPrice: oldCart.totalPrice - req.body.priceProduct,
-                        totalQuantity: oldCart.totalQuantity - req.body.quantityProduct,
-                    },
-                    {
-                        new: true,
-                    }
-                );
-            })
+            // .then((oldCart) => {
+            //     return Cart.findOneAndUpdate(
+            //         { "customer.username": decoded.name },
+            //         {
+            //             totalPrice: oldCart.totalPrice - req.body.priceProduct,
+            //             totalQuantity: oldCart.totalQuantity - req.body.quantityProduct,
+            //         },
+            //         {
+            //             new: true,
+            //         }
+            //     );
+            // })
             .then((cart) => {
                 res.status(200).json({ message: cart });
             })
