@@ -1,10 +1,13 @@
 const Account = require("../models/Account");
-var Categories = require("../models/Category");
-var Product = require("../models/Product");
-var Cart = require("../models/Cart");
-var Invoice = require("../models/Invoice");
-var jwt = require("jsonwebtoken");
-var { multipleToObject, toObject } = require("../../util/toObj");
+const Categories = require("../models/Category");
+const Product = require("../models/Product");
+const Cart = require("../models/Cart");
+const Invoice = require("../models/Invoice");
+
+const jwt = require("jsonwebtoken");
+const { multipleToObject, toObject } = require("../../util/toObj");
+const { schemaPaymentConfirm } = require("../../util/joi-validate/validatePayment");
+
 class CartController {
     // Get -> /cart
     async cartDetail(req, res, next) {
@@ -81,6 +84,24 @@ class CartController {
 
     // Post -> /cart/checkoutOrder
     async checkoutOrder(req, res, next) {
+        /// validate form data
+        const checked = await schemaPaymentConfirm.validate(
+            {
+                fullname: req.body.fullname,
+                phonenumber: req.body.phonenumber,
+                emailaddress: req.body.emailaddress,
+                address: req.body.address,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
+        if (error) {
+            res.status(400).json({
+                message: error.details,
+            });
+            return;
+        }
+
         /// verify token in cookie
         try {
             var cookie = req.cookies;
@@ -298,24 +319,30 @@ class CartController {
         } catch (error) {
             return res.send(error);
         }
+
         Cart.findOneAndUpdate(
             { "customer.username": decoded.name },
             {
                 $pull: { products: { slug: req.params.slugProduct } },
-            }
+                $inc: {
+                    totalPrice: -req.body.priceProduct,
+                    totalQuantity: -req.body.quantityProduct,
+                },
+            },
+            { new: true }
         )
-            .then((oldCart) => {
-                return Cart.findOneAndUpdate(
-                    { "customer.username": decoded.name },
-                    {
-                        totalPrice: oldCart.totalPrice - req.body.priceProduct,
-                        totalQuantity: oldCart.totalQuantity - req.body.quantityProduct,
-                    },
-                    {
-                        new: true,
-                    }
-                );
-            })
+            // .then((oldCart) => {
+            //     return Cart.findOneAndUpdate(
+            //         { "customer.username": decoded.name },
+            //         {
+            //             totalPrice: oldCart.totalPrice - req.body.priceProduct,
+            //             totalQuantity: oldCart.totalQuantity - req.body.quantityProduct,
+            //         },
+            //         {
+            //             new: true,
+            //         }
+            //     );
+            // })
             .then((cart) => {
                 res.status(200).json({ message: cart });
             })

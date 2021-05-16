@@ -1,14 +1,21 @@
 const Account = require("../models/Account");
+const Product = require("../models/Product");
+const Cart = require("../models/Cart");
+const Categories = require("../models/Category");
+
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 var jwt = require("jsonwebtoken");
+
+var { toObject } = require("../../util/toObj");
+const { multipleToObject } = require("../../util/toObj");
 
 /// schema validate
 var JoiSchemaAccount = require("../../util/joi-validate/validateAccount");
 
 class AccountController {
     // POST -> /account/login
-    async login(req, res, next) {
+    async login(req, res) {
         /// Validate form
         const checked = await JoiSchemaAccount.schemaLoginAccount.validate(
             {
@@ -56,8 +63,9 @@ class AccountController {
                 token,
             });
     }
+
     // POST -> /account/register
-    async register(req, res, next) {
+    async register(req, res) {
         //set role user
         req.body?.role ? req.body.role : (req.body.role = 1);
 
@@ -117,6 +125,51 @@ class AccountController {
                 });
             })
             .catch(next);
+    }
+
+    //GET -> /account/profile
+    profileUser(req, res) {
+        Promise.all([
+            Categories.find({}),
+            Cart.findOne({ "customer.username": req.user.username }),
+            Product.find({}).sort({ _id: -1 }).limit(10),
+        ]).then(([categories, cart, products]) => {
+            res.render("user-profile", {
+                user: toObject(req.user),
+                categories: multipleToObject(categories),
+                cart: toObject(cart),
+                products: multipleToObject(products),
+            });
+        });
+    }
+
+    //PATCH -> /account/profile
+    async updateProfile(req, res) {
+        /// Validate form
+        const checked = await JoiSchemaAccount.schemaUpdateAccount.validate(
+            {
+                password: req.body.password,
+                fullname: req.body.fullname,
+                phonenumber: req.body.phonenumber,
+                emailaddress: req.body.emailaddress,
+                gender: req.body.gender,
+                address: req.body.address,
+            },
+            { abortEarly: false }
+        );
+        var { error } = checked;
+        if (error) {
+            res.status(400).json({
+                message: error.details,
+            });
+            return;
+        }
+
+        // check user upload image
+        if (!req.file?.path) return res.status(400).json({ message: "Your image is empty" });
+
+        /// update account
+        console.log(req.user);
     }
 }
 

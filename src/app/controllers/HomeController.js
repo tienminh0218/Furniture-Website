@@ -1,10 +1,10 @@
 const Account = require("../models/Account");
 const Product = require("../models/Product");
 const Cart = require("../models/Cart");
+const Categories = require("../models/Category");
+
 var jwt = require("jsonwebtoken");
 var { toObject } = require("../../util/toObj");
-
-const Categories = require("../models/Category");
 const { multipleToObject } = require("../../util/toObj");
 class HomeController {
     /// Get -> /

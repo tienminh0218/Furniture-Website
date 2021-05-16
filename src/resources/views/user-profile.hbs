@@ -1,0 +1,99 @@
+<div class="container-profileUser">
+    <div class="card-bodyView">
+        <div class="img-card">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+        </div>
+        <div class="details-infor">
+            <h3>Tên</h3>
+            <p>email@mgial.com</p>
+        </div>
+
+        <div class="upload-image">
+                <label class="label-image" for="image-product">Chọn ảnh</label>
+                <div class="preview-image">
+                    <img src="">
+                </div>
+                <input id="image-product" type="file" class="form-control-typeFile" required="">
+                <div class="errorBox">
+                    <span class="error-message"></span>
+                </div>
+            </div>
+    </div>
+    <div class="card-bodyInput">
+
+        <form action="">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="fullname-profileUser">Họ và tên</label>
+                    <input type="text" id="fullname-profileUser" rules="require" name="fullname" value="{{user.fullname}}" class="form-control"  >
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="RegisterPassword-profileUser">Mật khẩu</label>
+                    <input type="password" id="RegisterPassword-profileUser" name="password" value="" class="form-control"  autocomplete="on">
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reRegisterPassword-profileUser">Nhập lại mật khẩu</label>
+                    <input type="password" id="reRegisterPassword-profileUser" name="confirmPassword" value="" class="form-control"  autocomplete="on">
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email-profileUser">Email</label>
+                    <input type="text" id="email-profileUser" name="emailaddress" value="{{user.emailaddress}}" class="form-control" >
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber-profileUser">Số điện thoại</label>
+                    <input type="text" id="phonenumber-profileUser" name="phonenumber" value="{{user.phonenumber}}" class="form-control" >
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender-profileUser">Giới tính</label>
+                    <select class="form-control form-select">
+
+                        {{#ifLogic user.gender '==='  'Nam'}} 
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        {{else}}
+                            <option value="Nữ">Nữ</option>
+                            <option value="Nam">Nam</option>
+                        {{/ifLogic}}
+
+                        
+                    </select>
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address-profileUser">Địa chỉ</label>
+                    <input type="text" id="address-profileUser" name="address" value="{{user.fullname}}" class="form-control" >
+                    <div class="errorBox">
+                        <span class="error-message"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn-submit" value="Thay đổi">
+                </div>
+                <div class="form-group">
+                        <span class="error-FromServer"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="./js/previewImg.js"></script>
+<script src="./js/update-profile.js" defer></script>

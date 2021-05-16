@@ -47,6 +47,7 @@ function addToCart() {
         return;
     }
 
+    /// show message add to cart unsuccess
     if (!(+quantityProduct.value > 0)) {
         mesAddUnsuccess.classList.add("active");
         setTimeout(() => mesAddUnsuccess.classList.remove("active"), 1000);
