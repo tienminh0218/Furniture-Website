@@ -55,7 +55,9 @@ var schemaPaymentConfirm = Joi.object().keys({
         }),
 
     emailaddress: Joi.string()
-        .pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        .pattern(
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+        )
         .required()
         .error((errors) => {
             errors.forEach((err) => {
@@ -93,7 +95,8 @@ var schemaPaymentConfirm = Joi.object().keys({
                         err.message = `Address should have at most ${err.local.limit} characters`;
                         break;
                     case "string.pattern.base":
-                        err.message = "Address can not contain special characters";
+                        err.message =
+                            "Address can not contain special characters";
                         break;
                     default:
                         break;
