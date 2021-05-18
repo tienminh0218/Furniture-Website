@@ -12,6 +12,10 @@ const Account = new Schema(
         emailaddress: { type: String },
         gender: { type: String },
         address: { type: String },
+        imageUser: {
+            link: { type: String, default: "https://bootdey.com/img/Content/avatar/avatar7.png" },
+            id: { type: String },
+        },
         role: { type: String },
     },
 

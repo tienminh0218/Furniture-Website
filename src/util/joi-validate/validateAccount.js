@@ -216,32 +216,6 @@ var schemaRegisterAccount = Joi.object().keys({
 
 /// Schema account update form
 var schemaUpdateAccount = Joi.object().keys({
-    password: Joi.string()
-        .min(6)
-        .max(30)
-        .required()
-        .error((errors) => {
-            errors.forEach((err) => {
-                switch (err.code) {
-                    case "string.empty":
-                    case "any.required":
-                        err.message = "Password should not be empty";
-                        break;
-                    case "string.min":
-                        err.message = `Password should have at least ${err.local.limit} characters`;
-                        break;
-                    case "string.max":
-                        err.message = `Password should have at most ${err.local.limit} characters`;
-                        break;
-                    case "string.alphanum":
-                        err.message = "Đừng hack em anh ơi";
-                        break;
-                    default:
-                        break;
-                }
-            });
-            return errors;
-        }),
     fullname: Joi.string()
         .min(6)
         .max(50)

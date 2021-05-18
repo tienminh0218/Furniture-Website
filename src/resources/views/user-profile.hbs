@@ -1,7 +1,7 @@
 <div class="container-profileUser">
     <div class="card-bodyView">
         <div class="img-card">
-            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+            <img src="{{user.imageUser.link}}" alt="">
         </div>
         <div class="details-infor">
             <h3>Tên</h3>
@@ -26,21 +26,6 @@
                 <div class="form-group">
                     <label for="fullname-profileUser">Họ và tên</label>
                     <input type="text" id="fullname-profileUser" rules="require" name="fullname" value="{{user.fullname}}" class="form-control"  >
-                    <div class="errorBox">
-                        <span class="error-message"> </span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="RegisterPassword-profileUser">Mật khẩu</label>
-                    <input type="password" id="RegisterPassword-profileUser" name="password" value="" class="form-control"  autocomplete="on">
-                    <div class="errorBox">
-                        <span class="error-message"> </span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="reRegisterPassword-profileUser">Nhập lại mật khẩu</label>
-                    <input type="password" id="reRegisterPassword-profileUser" name="confirmPassword" value="" class="form-control"  autocomplete="on">
                     <div class="errorBox">
                         <span class="error-message"> </span>
                     </div>
@@ -79,7 +64,7 @@
                 </div>
                 <div class="form-group">
                     <label for="address-profileUser">Địa chỉ</label>
-                    <input type="text" id="address-profileUser" name="address" value="{{user.fullname}}" class="form-control" >
+                    <input type="text" id="address-profileUser" name="address" value="{{user.address}}" class="form-control" >
                     <div class="errorBox">
                         <span class="error-message"> </span>
                     </div>

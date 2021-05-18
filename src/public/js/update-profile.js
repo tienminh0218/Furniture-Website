@@ -45,6 +45,7 @@ var confirmPasswordProfile = profileContainer.querySelector("input[name='confirm
 var genderProfile = profileContainer.querySelector(".form-select");
 var profileErrorMessage = profileContainer.querySelector(".error-FromServer");
 var inputTypeFile = document.querySelector("#image-product");
+var loadingScreen = document.querySelector(".modal-overplay-loading");
 
 // get nodeElement input in loginForm
 var inputProfileForm = profileContainer.querySelectorAll("input[name]");
@@ -57,6 +58,9 @@ function updateProfileUser(e) {
     /// prevent submit form
     e.preventDefault();
 
+    /// loading screen
+    loadingScreen.classList.add("showDisplay");
+
     // clear error
     clearErrorMessage(profileContainer);
 
@@ -64,35 +68,10 @@ function updateProfileUser(e) {
     formData.append("imageUser", inputTypeFile.files[0]);
     formData.append("gender", genderProfile.value);
 
-    /// check is empty password
-    if (passwordProfile.value.length == 0) {
-        Object.assign(profileErrorMessage.style, {
-            color: "#842029",
-            display: "block",
-            backgroundColor: "#f8d7da",
-        });
-        profileErrorMessage.innerHTML = "Password should not be empty";
-        return;
-    }
-
-    /// confirm password
-    var isConfirm = passwordProfile.value !== confirmPasswordProfile.value;
-    if (isConfirm) {
-        Object.assign(profileErrorMessage.style, {
-            color: "#842029",
-            display: "block",
-            backgroundColor: "#f8d7da",
-        });
-        profileErrorMessage.innerHTML = "Your confirm password is incorrect";
-        return;
-    }
-
     /// Get value form input registerForm
     inputProfileForm.forEach((input) => {
-        if (input.name !== "confirmPassword") formData.append(input.name, input.value.trim());
+        formData.append(input.name, input.value.trim());
     });
-    // console.log(inputProfileForm);
-    // console.log(dataProfileForm);
 
     /// Request data to register
     axios({
@@ -102,20 +81,12 @@ function updateProfileUser(e) {
         headers: { "Content-Type": "multipart/form-data" },
     })
         .then((result) => {
-            Object.assign(profileErrorMessage.style, {
-                color: "#155724",
-                display: "block",
-                backgroundColor: "#d1e7dd",
-            });
-            console.log(result);
-            profileContainer.closest(".registerFormParent").reset();
-            profileErrorMessage.innerHTML = result.data.message;
+            loadingScreen.classList.remove("showDisplay");
+            location.reload();
         })
         /// error form server
         .catch((error) => {
-            var { data } = error.response;
-            console.log(data);
-
+            loadingScreen.classList.remove("showDisplay");
             /// check if isError
             showErrorMessage(error, profileContainer, profileErrorMessage);
         });

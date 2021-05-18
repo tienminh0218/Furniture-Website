@@ -804,6 +804,24 @@ input#cart-quantity::-webkit-outer-spin-button, input#cart-quantity::-webkit-inn
   -webkit-appearance: none;
   margin: 0; }
 
+.modal-overplay-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  display: none; }
+  .modal-overplay-loading .modal-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px; }
+    .modal-overplay-loading .modal-loading img {
+      width: 100%; }
+
 .modalOverplay-deleteProductsSuccess {
   position: fixed;
   z-index: 1;

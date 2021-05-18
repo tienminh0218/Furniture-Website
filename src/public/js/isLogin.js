@@ -22,7 +22,6 @@ function toggleDialog(e) {
 
 /// delete cookie
 function eraseCookie() {
-    console.log(logoutUser);
-    document.cookie = "token" + "=; Max-Age=0";
-    location.href = " http://localhost:3001";
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.href = "http://localhost:3001";
 }

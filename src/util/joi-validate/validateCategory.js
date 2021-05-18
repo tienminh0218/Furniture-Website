@@ -40,4 +40,5 @@ var schemaCategory = Joi.object({
             return errors;
         }),
 });
+
 module.exports = { schemaCategory };

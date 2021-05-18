@@ -2,6 +2,7 @@ const Account = require("../models/Account");
 const Product = require("../models/Product");
 const Cart = require("../models/Cart");
 const Categories = require("../models/Category");
+const Invoice = require("../models/Invoice");
 
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
@@ -9,6 +10,10 @@ var jwt = require("jsonwebtoken");
 
 var { toObject } = require("../../util/toObj");
 const { multipleToObject } = require("../../util/toObj");
+
+/// upload file
+const cloudinary = require("../../util/cloudinary");
+const upload = require("../../util/multer");
 
 /// schema validate
 var JoiSchemaAccount = require("../../util/joi-validate/validateAccount");
@@ -124,7 +129,7 @@ class AccountController {
                     account,
                 });
             })
-            .catch(next);
+            .catch((err) => console.log({ err }));
     }
 
     //GET -> /account/profile
@@ -148,7 +153,6 @@ class AccountController {
         /// Validate form
         const checked = await JoiSchemaAccount.schemaUpdateAccount.validate(
             {
-                password: req.body.password,
                 fullname: req.body.fullname,
                 phonenumber: req.body.phonenumber,
                 emailaddress: req.body.emailaddress,
@@ -165,11 +169,105 @@ class AccountController {
             return;
         }
 
-        // check user upload image
-        if (!req.file?.path) return res.status(400).json({ message: "Your image is empty" });
+        /// update account ///
+        const userInformation = {
+            fullname: req.body.fullname,
+            emailaddress: req.body.emailaddress,
+            phonenumber: req.body.phonenumber,
+            address: req.body.address,
+        };
 
-        /// update account
-        console.log(req.user);
+        // check user do not upload image
+        if (!req.file?.path) {
+            Promise.all([
+                Account.findOneAndUpdate({ username: req.user.username }, userInformation),
+                Cart.findOneAndUpdate(
+                    { "customer.username": req.user.username },
+                    { $set: { customer: userInformation } }
+                ),
+                Invoice.findOneAndUpdate(
+                    { "customer.username": req.user.username },
+                    { $set: { customer: userInformation } }
+                ),
+            ])
+                .then(([newUser, newCart, newInvoice]) => {
+                    res.status(200).json({ success: true, message: "Updated successfully" });
+                })
+                .catch((err) => console.log(err));
+
+            return;
+        }
+
+        /// first time upload image
+        let isImageExist = req.user.imageUser?.id;
+        if (!isImageExist) {
+            try {
+                /// Upload image to cloudinary
+                const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+                const userWithImage = {
+                    ...userInformation,
+                    imageUser: {
+                        link: result_uploadImage.url,
+                        id: result_uploadImage.public_id,
+                    },
+                };
+
+                Promise.all([
+                    Account.findOneAndUpdate({ username: req.user.username }, userWithImage),
+                    Cart.findOneAndUpdate(
+                        { "customer.username": req.user.username },
+                        { $set: { customer: userInformation } }
+                    ),
+                    Invoice.findOneAndUpdate(
+                        { "customer.username": req.user.username },
+                        { $set: { customer: userInformation } }
+                    ),
+                ])
+                    .then(([newUser, newCart, newInvoice]) => {
+                        res.status(200).json({ success: true, message: "Updated successfully" });
+                    })
+                    .catch((err) => console.log(err));
+            } catch (error) {
+                console.log(error);
+            }
+
+            return;
+        }
+
+        /// user change information and new image
+        try {
+            /// Upload image to cloudinary
+            const [result_uploadImage] = await Promise.all([
+                cloudinary.uploader.upload(req.file.path),
+                cloudinary.uploader.destroy(req.user.imageUser.id),
+            ]);
+
+            const userWithImage = {
+                ...userInformation,
+                imageUser: {
+                    link: result_uploadImage.url,
+                    id: result_uploadImage.public_id,
+                },
+            };
+
+            Promise.all([
+                Account.findOneAndUpdate({ username: req.user.username }, userWithImage),
+                Cart.findOneAndUpdate(
+                    { "customer.username": req.user.username },
+                    { $set: { customer: userInformation } }
+                ),
+                Invoice.findOneAndUpdate(
+                    { "customer.username": req.user.username },
+                    { $set: { customer: userInformation } }
+                ),
+            ])
+                .then(([newUser, newCart, newInvoice]) => {
+                    res.status(200).json({ success: true, message: "Updated successfully" });
+                })
+                .catch((err) => console.log(err));
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 

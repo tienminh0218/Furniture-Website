@@ -4,7 +4,7 @@ const Account = require("../models/Account");
 function checkLogin(req, res, next) {
     var cookie = req.cookies;
     /// check is cookie exist
-    if (Object.keys(cookie).length == 0) return res.redirect("back");
+    if (Object.keys(cookie).length == 0) return res.redirect("/");
 
     /// verify token in cookie
     try {
