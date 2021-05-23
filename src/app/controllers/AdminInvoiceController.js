@@ -112,7 +112,7 @@ class AdminInvoiceController {
         });
     }
 
-    /// GET -> /customer/search
+    /// GET -> /customer/search?keyword
     searchUser(req, res) {
         /// check empty string
         if (!req.query.keyword) return res.status(200).json({ message: [] });

@@ -175,19 +175,43 @@ class AccountController {
             emailaddress: req.body.emailaddress,
             phonenumber: req.body.phonenumber,
             address: req.body.address,
+            gender: req.body.gender,
         };
 
+        const inforCartInvoice = {
+            ...userInformation,
+            username: req.user.username,
+        };
+
+        const oldUser = {
+            username: req.user.username,
+            fullname: req.user.fullname,
+            phonenumber: req.user.phonenumber,
+            gender: req.user.gender,
+            address: req.user.address,
+            emailaddress: req.user.emailaddress,
+            imageUser: {
+                id: req.user.imageUser.id,
+                link: req.user.imageUser.link,
+            },
+        };
         // check user do not upload image
         if (!req.file?.path) {
             Promise.all([
-                Account.findOneAndUpdate({ username: req.user.username }, userInformation),
+                Account.findOneAndUpdate(
+                    { username: req.user.username },
+                    {
+                        ...oldUser,
+                        ...userInformation,
+                    }
+                ),
                 Cart.findOneAndUpdate(
                     { "customer.username": req.user.username },
-                    { $set: { customer: userInformation } }
+                    { $set: { customer: inforCartInvoice } }
                 ),
                 Invoice.findOneAndUpdate(
                     { "customer.username": req.user.username },
-                    { $set: { customer: userInformation } }
+                    { $set: { customer: inforCartInvoice } }
                 ),
             ])
                 .then(([newUser, newCart, newInvoice]) => {
@@ -213,14 +237,23 @@ class AccountController {
                 };
 
                 Promise.all([
-                    Account.findOneAndUpdate({ username: req.user.username }, userWithImage),
+                    Account.findOneAndUpdate(
+                        { username: req.user.username },
+                        {
+                            ...oldUser,
+                            ...userWithImage,
+                        },
+                        { new: true }
+                    ),
                     Cart.findOneAndUpdate(
                         { "customer.username": req.user.username },
-                        { $set: { customer: userInformation } }
+                        { $set: { customer: inforCartInvoice } },
+                        { new: true }
                     ),
                     Invoice.findOneAndUpdate(
                         { "customer.username": req.user.username },
-                        { $set: { customer: userInformation } }
+                        { $set: { customer: inforCartInvoice } },
+                        { new: true }
                     ),
                 ])
                     .then(([newUser, newCart, newInvoice]) => {
@@ -251,14 +284,20 @@ class AccountController {
             };
 
             Promise.all([
-                Account.findOneAndUpdate({ username: req.user.username }, userWithImage),
+                Account.findOneAndUpdate(
+                    { username: req.user.username },
+                    {
+                        ...oldUser,
+                        ...userWithImage,
+                    }
+                ),
                 Cart.findOneAndUpdate(
                     { "customer.username": req.user.username },
-                    { $set: { customer: userInformation } }
+                    { $set: { customer: inforCartInvoice } }
                 ),
                 Invoice.findOneAndUpdate(
                     { "customer.username": req.user.username },
-                    { $set: { customer: userInformation } }
+                    { $set: { customer: inforCartInvoice } }
                 ),
             ])
                 .then(([newUser, newCart, newInvoice]) => {
