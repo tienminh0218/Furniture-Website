@@ -40,13 +40,19 @@ class AccountController {
             username: req.body.username,
         });
 
-        if (!isAccountExist) return res.status(400).json({ message: "Your account not found" });
+        if (!isAccountExist)
+            return res.status(400).json({ message: "Your account not found" });
 
-        var checkPassword = await bcrypt.compare(req.body.password, isAccountExist.password);
+        var checkPassword = await bcrypt.compare(
+            req.body.password,
+            isAccountExist.password
+        );
 
         /// Check password
         if (!checkPassword)
-            return res.status(400).json({ message: "Your password or username is incorrect" });
+            return res
+                .status(400)
+                .json({ message: "Your password or username is incorrect" });
 
         /// Create a token
         var secret = process.env.SECRECT;
@@ -180,7 +186,10 @@ class AccountController {
         // check user do not upload image
         if (!req.file?.path) {
             Promise.all([
-                Account.findOneAndUpdate({ username: req.user.username }, userInformation),
+                Account.findOneAndUpdate(
+                    { username: req.user.username },
+                    userInformation
+                ),
                 Cart.findOneAndUpdate(
                     { "customer.username": req.user.username },
                     { $set: { customer: userInformation } }
@@ -191,7 +200,10 @@ class AccountController {
                 ),
             ])
                 .then(([newUser, newCart, newInvoice]) => {
-                    res.status(200).json({ success: true, message: "Updated successfully" });
+                    res.status(200).json({
+                        success: true,
+                        message: "Updated successfully",
+                    });
                 })
                 .catch((err) => console.log(err));
 
@@ -203,7 +215,9 @@ class AccountController {
         if (!isImageExist) {
             try {
                 /// Upload image to cloudinary
-                const result_uploadImage = await cloudinary.uploader.upload(req.file.path);
+                const result_uploadImage = await cloudinary.uploader.upload(
+                    req.file.path
+                );
                 const userWithImage = {
                     ...userInformation,
                     imageUser: {
@@ -213,7 +227,10 @@ class AccountController {
                 };
 
                 Promise.all([
-                    Account.findOneAndUpdate({ username: req.user.username }, userWithImage),
+                    Account.findOneAndUpdate(
+                        { username: req.user.username },
+                        userWithImage
+                    ),
                     Cart.findOneAndUpdate(
                         { "customer.username": req.user.username },
                         { $set: { customer: userInformation } }
@@ -224,7 +241,10 @@ class AccountController {
                     ),
                 ])
                     .then(([newUser, newCart, newInvoice]) => {
-                        res.status(200).json({ success: true, message: "Updated successfully" });
+                        res.status(200).json({
+                            success: true,
+                            message: "Updated successfully",
+                        });
                     })
                     .catch((err) => console.log(err));
             } catch (error) {
@@ -251,7 +271,10 @@ class AccountController {
             };
 
             Promise.all([
-                Account.findOneAndUpdate({ username: req.user.username }, userWithImage),
+                Account.findOneAndUpdate(
+                    { username: req.user.username },
+                    userWithImage
+                ),
                 Cart.findOneAndUpdate(
                     { "customer.username": req.user.username },
                     { $set: { customer: userInformation } }
@@ -262,7 +285,10 @@ class AccountController {
                 ),
             ])
                 .then(([newUser, newCart, newInvoice]) => {
-                    res.status(200).json({ success: true, message: "Updated successfully" });
+                    res.status(200).json({
+                        success: true,
+                        message: "Updated successfully",
+                    });
                 })
                 .catch((err) => console.log(err));
         } catch (error) {
