@@ -206,14 +206,10 @@ class AccountController {
             Promise.all([
                 Account.findOneAndUpdate(
                     { username: req.user.username },
-<<<<<<< HEAD
-                    userInformation
-=======
                     {
                         ...oldUser,
                         ...userInformation,
                     }
->>>>>>> cda97ffe116b4b600c4013ddc98d72461f9ff1e4
                 ),
                 Cart.findOneAndUpdate(
                     { "customer.username": req.user.username },
@@ -254,19 +250,11 @@ class AccountController {
                 Promise.all([
                     Account.findOneAndUpdate(
                         { username: req.user.username },
-<<<<<<< HEAD
-                        userWithImage
-=======
                         {
-                            ...oldUser,
-                            ...userWithImage,
-                        },
                         { new: true }
->>>>>>> cda97ffe116b4b600c4013ddc98d72461f9ff1e4
                     ),
                     Cart.findOneAndUpdate(
                         { "customer.username": req.user.username },
-                        { $set: { customer: inforCartInvoice } },
                         { new: true }
                     ),
                     Invoice.findOneAndUpdate(
@@ -308,14 +296,10 @@ class AccountController {
             Promise.all([
                 Account.findOneAndUpdate(
                     { username: req.user.username },
-<<<<<<< HEAD
-                    userWithImage
-=======
                     {
                         ...oldUser,
                         ...userWithImage,
                     }
->>>>>>> cda97ffe116b4b600c4013ddc98d72461f9ff1e4
                 ),
                 Cart.findOneAndUpdate(
                     { "customer.username": req.user.username },
