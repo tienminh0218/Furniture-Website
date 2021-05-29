@@ -250,7 +250,6 @@ class AccountController {
                 Promise.all([
                     Account.findOneAndUpdate(
                         { username: req.user.username },
-                        {
                         { new: true }
                     ),
                     Cart.findOneAndUpdate(
