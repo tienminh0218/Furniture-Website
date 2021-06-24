@@ -92,6 +92,6 @@ app.set("views", path.join(__dirname, "resources", "views"));
 // Routers
 route(app, express, path);
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0', () => {
     console.log(`Example app listening at http://localhost:${port} `);
 });
