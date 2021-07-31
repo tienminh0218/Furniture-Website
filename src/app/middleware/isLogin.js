@@ -6,7 +6,7 @@ function checkLogin(req, res, next) {
     /// check is cookie exist
     if (Object.keys(cookie).length == 0) return res.redirect("/");
 
-    /// verify token in cookie
+    /// verify token in cookies
     try {
         var secret = process.env.SECRECT;
         var decoded = jwt.verify(cookie.token, secret);
